@@ -1,4 +1,4 @@
-package com.mathMaster.data;
+package com.mathMaster.model;
 
 public class Level {
 	private int levelId;

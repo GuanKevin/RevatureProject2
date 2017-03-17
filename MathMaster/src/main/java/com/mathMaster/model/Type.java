@@ -1,4 +1,4 @@
-package com.mathMaster.data;
+package com.mathMaster.model;
 
 public class Type {
 	private int typeId;

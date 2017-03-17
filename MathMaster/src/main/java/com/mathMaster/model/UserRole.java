@@ -1,4 +1,4 @@
-package com.mathMaster.data;
+package com.mathMaster.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
