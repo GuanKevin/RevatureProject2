@@ -1,10 +1,113 @@
 package com.mathMaster.data;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="M2_USER")
 public class User {
+	@Id
+	@Column(name="userId")
+	@SequenceGenerator(name="user", sequenceName="USER_PK_SEQ", initialValue=0, allocationSize=1)
+	@GeneratedValue(generator="user", strategy=GenerationType.SEQUENCE)
 	private int userId;
+	@Column(unique=true)
 	private String username;
+	@Column
 	private String password;		// Encrpyt with JBCrypt
+	@Column
 	private String firstName;
+	@Column
 	private String lastName;
+	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
 	private UserRole userRoleId;
+	@Column(unique=true)
+	private String email;
+	
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public User(int userId, String username, String password, String firstName, String lastName, UserRole userRoleId,
+			String email) {
+		super();
+		this.userId = userId;
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.userRoleId = userRoleId;
+		this.email = email;
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public UserRole getUserRoleId() {
+		return userRoleId;
+	}
+
+	public void setUserRoleId(UserRole userRoleId) {
+		this.userRoleId = userRoleId;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", userRoleId=" + userRoleId + ", email=" + email + "]";
+	}
 }
