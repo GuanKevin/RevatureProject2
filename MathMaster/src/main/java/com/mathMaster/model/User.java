@@ -7,16 +7,24 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedQueries;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+@NamedQueries({
+	
+})
+@NamedNativeQueries({
+	
+})
 @Entity
 @Table(name="M2_USER")
 public class User {
 	@Id
 	@Column(name="userId")
-	@SequenceGenerator(name="user", sequenceName="USER_PK_SEQ", initialValue=0, allocationSize=1)
+	@SequenceGenerator(name="user", sequenceName="USER_PK_SEQ", initialValue=1, allocationSize=1)
 	@GeneratedValue(generator="user", strategy=GenerationType.SEQUENCE)
 	private int userId;
 	@Column(unique=true)
@@ -37,10 +45,9 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(int userId, String username, String password, String firstName, String lastName, UserRole userRoleId,
+	public User(String username, String password, String firstName, String lastName, UserRole userRoleId,
 			String email) {
 		super();
-		this.userId = userId;
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;

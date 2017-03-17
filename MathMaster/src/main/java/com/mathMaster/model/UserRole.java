@@ -22,7 +22,7 @@ import javax.persistence.Table;
 public class UserRole {
 	@Id
 	@Column
-	@SequenceGenerator(name="userRole", sequenceName="USER_ROLE_PK_SEQ", initialValue=0, allocationSize=1)
+	@SequenceGenerator(name="userRole", sequenceName="USER_ROLE_PK_SEQ", initialValue=1, allocationSize=1)
 	@GeneratedValue(generator="userRole", strategy=GenerationType.SEQUENCE)
 	private int userRoleId;
 	@Column
@@ -33,9 +33,8 @@ public class UserRole {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public UserRole(int userRoleId, String userRole) {
+	public UserRole(String userRole) {
 		super();
-		this.userRoleId = userRoleId;
 		this.userRole = userRole;
 	}
 	
