@@ -36,9 +36,11 @@ public class StudentCourse {
 	private int studentCourseId;
 
 	@OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+	@Column(name = "STUDENT_ID")
 	private User studentId;
 
 	@OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+	@Column(name = "COURSE_ID")
 	private Course courseId;
 
 	public StudentCourse() {}
