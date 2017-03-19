@@ -39,10 +39,12 @@ public class Course {
 	@GeneratedValue(generator="COURSE", strategy=GenerationType.SEQUENCE)
 	private int courseId;	
 	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
+	@Column(name="TEACHER_ID")
 	private User teacherId;
-	@Column
+	@Column(name="COURSE_NAME")
 	private String courseName;
 	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
+	@Column(name="SUBJECT_ID")
 	private Subject subjectId;
 	@ManyToMany
 	@JoinTable(name="COURSE_TEST")
