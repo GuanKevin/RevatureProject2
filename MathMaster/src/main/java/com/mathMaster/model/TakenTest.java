@@ -33,6 +33,9 @@ public class TakenTest {
 	@Column(name="SCORE_ID")
 	private float score;
 	
+	
+	
+	
 	public TakenTest() {
 		super();
 	}

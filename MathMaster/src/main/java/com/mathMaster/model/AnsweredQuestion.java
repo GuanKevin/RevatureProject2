@@ -42,6 +42,8 @@ public class AnsweredQuestion {
 	@JoinColumn(name="CHOSEN_ANSWER_ID")
 	private Answer chosenAnsId;
 	
+	
+	
 	public AnsweredQuestion() {}
 
 	public AnsweredQuestion(int ansQuesId, QuestionBank quesBankId, Answer chosenAnsId) {
