@@ -37,9 +37,8 @@ public class QuestionBank {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public QuestionBank(int questionBankId, String question, Answer correctAnswerId, Subject subjectId, Level levelId) {
+	public QuestionBank(String question, Answer correctAnswerId, Subject subjectId, Level levelId) {
 		super();
-		this.questionBankId = questionBankId;
 		this.question = question;
 		this.correctAnswerId = correctAnswerId;
 		this.subjectId = subjectId;
