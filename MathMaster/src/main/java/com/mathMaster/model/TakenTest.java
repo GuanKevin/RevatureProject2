@@ -23,9 +23,11 @@ public class TakenTest {
 	private int takenTestId;
 	
 	@OneToOne
+	@Column(name="STUDENT_COURSE_ID")
 	private StudentCourse studentCourse;
 	
 	@OneToOne
+	@Column(name="TEST_ID")
 	private Test test;
 	
 	@Column(name="SCORE_ID")
