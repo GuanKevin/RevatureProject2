@@ -1,9 +1,42 @@
 package com.mathMaster.model;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedQueries;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+/**
+ * 
+ * @author kevgu
+ *
+ */
+@NamedQueries({
+	
+})
+@NamedNativeQueries({
+	
+})
+@Entity
+@Table(name="M2_COURSE")
 public class Course {
+	@Id
+	@Column(name="COURSE_ID")
+	@SequenceGenerator(name="COURSE", sequenceName="COURSE_PK_SEQ", initialValue=1, allocationSize=1)
+	@GeneratedValue(generator="COURSE", strategy=GenerationType.SEQUENCE)
 	private int courseId;	
+	@Column(unique=true)
 	private int teacherId;
+	@Column(unique=true)
 	private String courseName;
+	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
 	private Subject subjectId;
 	
 	public Course() {

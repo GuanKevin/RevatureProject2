@@ -1,19 +1,44 @@
 package com.mathMaster.model;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+/**
+ * 
+ * @author Daniel Liu
+ *
+ */
+@Entity
+@Table(name="M2_QUESTION_BANK")
 public class QuestionBank {
+	@Id
+	@Column(name="QUESTION_BANK_ID")
+	@SequenceGenerator(name="question_bank", sequenceName="QUESTION_BANK_PK_SEQ", initialValue=1, allocationSize=1)
+	@GeneratedValue(generator="question_bank", strategy=GenerationType.SEQUENCE)
 	private int questionBankId;
+	@Column(unique=true)
 	private String question;
+	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
 	private Answer correctAnswerId;
+	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
 	private Subject subjectId;
+	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
 	private Level levelId;
 	
 	public QuestionBank() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public QuestionBank(int questionBankId, String question, Answer correctAnswerId, Subject subjectId, Level levelId) {
+	public QuestionBank(String question, Answer correctAnswerId, Subject subjectId, Level levelId) {
 		super();
-		this.questionBankId = questionBankId;
 		this.question = question;
 		this.correctAnswerId = correctAnswerId;
 		this.subjectId = subjectId;
