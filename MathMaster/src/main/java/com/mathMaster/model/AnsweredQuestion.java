@@ -37,7 +37,8 @@ public class AnsweredQuestion {
 	@GeneratedValue(generator="ANSWER_QUESTION", strategy=GenerationType.SEQUENCE)
 	private int ansQuesId;
 	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
-	private Question quesBankId;
+	@JoinColumn(name="QUESTION_ID")
+	private Question questionId;
 	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
 	@JoinColumn(name="CHOSEN_ANSWER_ID")
 	private Answer chosenAnsId;
@@ -49,7 +50,7 @@ public class AnsweredQuestion {
 	public AnsweredQuestion(int ansQuesId, Question quesBankId, Answer chosenAnsId) {
 		super();
 		this.ansQuesId = ansQuesId;
-		this.quesBankId = quesBankId;
+		this.questionId = quesBankId;
 		this.chosenAnsId = chosenAnsId;
 	}
 
@@ -62,11 +63,11 @@ public class AnsweredQuestion {
 	}
 
 	public Question getQuesBankId() {
-		return quesBankId;
+		return questionId;
 	}
 
 	public void setQuesBankId(Question quesBankId) {
-		this.quesBankId = quesBankId;
+		this.questionId = quesBankId;
 	}
 
 	public Answer getChosenAnsId() {
@@ -79,7 +80,7 @@ public class AnsweredQuestion {
 
 	@Override
 	public String toString() {
-		return "AnsweredQuestion [ansQuesId=" + ansQuesId + ", quesBankId=" + quesBankId + ", chosenAnsId="
+		return "AnsweredQuestion [ansQuesId=" + ansQuesId + ", quesBankId=" + questionId + ", chosenAnsId="
 				+ chosenAnsId + "]";
 	}
 }
