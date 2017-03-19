@@ -14,6 +14,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
+ * There are many courses that the student can take
  * 
  * @author kevgu
  *
@@ -39,9 +40,7 @@ public class Course {
 	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
 	private Subject subjectId;
 	
-	public Course() {
-		// TODO Auto-generated constructor stub
-	}
+	public Course() {}
 	
 	public Course(int courseId, int teacherId, String courseName, Subject subjectId) {
 		super();

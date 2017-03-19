@@ -10,10 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedQueries;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
+ * Table stores all the answer (may or may not be correct) 
+ * that is chosen/picked by the student as their solution
+ * to the test
  * 
  * @author kevgu
  *
@@ -25,56 +29,55 @@ import javax.persistence.Table;
 	
 })
 @Entity
-@Table(name="M2_ANSWERED_QUESTION")
+@Table(name="M2_ANS_QUES")
 public class AnsweredQuestion {
 	@Id
-	@Column(name="ANSWERED_QUESTION_ID")
-	@SequenceGenerator(name="ANSWERED_QUESTION", sequenceName="ANSWERED_QUESTION_PK_SEQ", initialValue=1, allocationSize=1)
-	@GeneratedValue(generator="ANSWERED_QUESTION", strategy=GenerationType.SEQUENCE)
-	private int answeredQuestionId;
-	@OneToMany(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
-	private QuestionBank questionBankId;
-	@OneToMany(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
-	private Answer chosenAnswerId;
+	@Column(name="ANS_QUES_ID")
+	@SequenceGenerator(name="ANS_QUES", sequenceName="ANS_QUES_PK_SEQ", initialValue=1, allocationSize=1)
+	@GeneratedValue(generator="ANS_QUES", strategy=GenerationType.SEQUENCE)
+	private int ansQuesId;
+	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
+	private QuestionBank quesBankId;
+	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
+	@Column(name="CHO_ANS_ID")
+	private Answer chosenAnsId;
 	
-	public AnsweredQuestion() {
-		// TODO Auto-generated constructor stub
-	}
-	
-	public AnsweredQuestion(int answeredQuestionId, QuestionBank questionBankId, Answer chosenAnswerId) {
+	public AnsweredQuestion() {}
+
+	public AnsweredQuestion(int ansQuesId, QuestionBank quesBankId, Answer chosenAnsId) {
 		super();
-		this.answeredQuestionId = answeredQuestionId;
-		this.questionBankId = questionBankId;
-		this.chosenAnswerId = chosenAnswerId;
+		this.ansQuesId = ansQuesId;
+		this.quesBankId = quesBankId;
+		this.chosenAnsId = chosenAnsId;
 	}
 
-	public int getAnsweredQuestionId() {
-		return answeredQuestionId;
+	public int getAnsQuesId() {
+		return ansQuesId;
 	}
-	
-	public void setAnsweredQuestionId(int answeredQuestionId) {
-		this.answeredQuestionId = answeredQuestionId;
+
+	public void setAnsQuesId(int ansQuesId) {
+		this.ansQuesId = ansQuesId;
 	}
-	
-	public QuestionBank getQuestionBankId() {
-		return questionBankId;
+
+	public QuestionBank getQuesBankId() {
+		return quesBankId;
 	}
-	
-	public void setQuestionBankId(QuestionBank questionBankId) {
-		this.questionBankId = questionBankId;
+
+	public void setQuesBankId(QuestionBank quesBankId) {
+		this.quesBankId = quesBankId;
 	}
-	
-	public Answer getChosenAnswerId() {
-		return chosenAnswerId;
+
+	public Answer getChosenAnsId() {
+		return chosenAnsId;
 	}
-	
-	public void setChosenAnswerId(Answer chosenAnswerId) {
-		this.chosenAnswerId = chosenAnswerId;
+
+	public void setChosenAnsId(Answer chosenAnsId) {
+		this.chosenAnsId = chosenAnsId;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "AnsweredQuestion [answeredQuestionId=" + answeredQuestionId + ", questionBankId=" + questionBankId
-				+ ", chosenAnswerId=" + chosenAnswerId + "]";
+		return "AnsweredQuestion [ansQuesId=" + ansQuesId + ", quesBankId=" + quesBankId + ", chosenAnsId="
+				+ chosenAnsId + "]";
 	}
 }

@@ -11,6 +11,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
+ * Table stores all the correct answers to questions from Question Bank class
  * 
  * @author kevgu
  *
@@ -22,19 +23,17 @@ import javax.persistence.Table;
 	
 })
 @Entity
-@Table(name="M2_ANSWER")
+@Table(name="M2_ANS")
 public class Answer {
 	@Id
-	@Column(name="ANSWER_ID")
-	@SequenceGenerator(name="ANSWER", sequenceName="ANSWER_PK_SEQ", initialValue=1, allocationSize=1)
-	@GeneratedValue(generator="ANSWER", strategy=GenerationType.SEQUENCE)
+	@Column(name="ANS_ID")
+	@SequenceGenerator(name="ANS", sequenceName="ANS_PK_SEQ", initialValue=1, allocationSize=1)
+	@GeneratedValue(generator="ANS", strategy=GenerationType.SEQUENCE)
 	private int answerId;
 	@Column(unique=true)
 	private String answer;
 	
-	public Answer() {
-		// TODO Auto-generated constructor stub
-	}
+	public Answer() {}
 	
 	public Answer(int answerId, String answer) {
 		super();
