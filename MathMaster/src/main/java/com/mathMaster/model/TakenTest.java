@@ -39,6 +39,7 @@ public class TakenTest {
 	@Column(name = "SCORE_ID")
 	private float score;
 
+	/*denise*/
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "TAKEN_TEST_ANSWERED_QUESTION")
 	private List<AnsweredQuestion> answeredQuestionList = new ArrayList<AnsweredQuestion>();

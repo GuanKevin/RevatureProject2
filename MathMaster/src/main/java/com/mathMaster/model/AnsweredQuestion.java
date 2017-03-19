@@ -1,5 +1,8 @@
 package com.mathMaster.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedQueries;
 import javax.persistence.OneToOne;
@@ -43,6 +47,9 @@ public class AnsweredQuestion {
 	@JoinColumn(name="CHOSEN_ANSWER_ID")
 	private Answer chosenAnsId;
 	
+	/*denise*/
+	@ManyToMany(mappedBy="answeredQuestionList")
+	private List<TakenTest> takenTestList = new ArrayList<TakenTest>();
 	
 	
 	public AnsweredQuestion() {}
