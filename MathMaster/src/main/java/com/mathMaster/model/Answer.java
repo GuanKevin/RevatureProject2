@@ -1,10 +1,14 @@
 package com.mathMaster.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedQueries;
 import javax.persistence.SequenceGenerator;
@@ -33,6 +37,9 @@ public class Answer {
 	
 	@Column(name = "ANSWER", unique=true)
 	private String answer;
+	
+	@ManyToMany(mappedBy="answerList")
+	private List<Question> questionList = new ArrayList<Question>();
 	
 	public Answer() {}
 	
