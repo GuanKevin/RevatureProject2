@@ -21,11 +21,11 @@ import javax.persistence.Table;
 @Table(name="M2_User_Role")
 public class UserRole {
 	@Id
-	@Column
+	@Column(name = "USER_ROLE_ID")
 	@SequenceGenerator(name="userRole", sequenceName="USER_ROLE_PK_SEQ", initialValue=1, allocationSize=1)
 	@GeneratedValue(generator="userRole", strategy=GenerationType.SEQUENCE)
 	private int userRoleId;
-	@Column
+	@Column(name = "USER_ROLE")
 	private String userRole;
 	
 	public UserRole() {
