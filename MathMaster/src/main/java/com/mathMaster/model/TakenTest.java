@@ -34,12 +34,12 @@ public class TakenTest {
 	private StudentCourse studentCourse;
 
 	@OneToOne
+	@JoinColumn(name = "TEST_ID")
 	private Test test;
 
-	@Column(name = "SCORE_ID")
+	@Column(name = "SCORE")
 	private float score;
 
-	/*denise*/
 	@ManyToMany
 	@JoinTable(name = "TAKEN_TEST_ANSWERED_QUESTION")
 	//aqlist = answeredQuestionList
@@ -85,5 +85,11 @@ public class TakenTest {
 
 	public void setScore(int score) {
 		this.score = score;
+	}
+
+	@Override
+	public String toString() {
+		return "TakenTest [takenTestId=" + takenTestId + ", studentCourse=" + studentCourse + ", test=" + test
+				+ ", score=" + score + ", aqList=" + aqList + "]";
 	}
 }
