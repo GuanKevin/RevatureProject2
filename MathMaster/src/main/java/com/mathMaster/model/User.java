@@ -7,6 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedQueries;
 import javax.persistence.OneToOne;
@@ -27,23 +28,19 @@ public class User {
 	@SequenceGenerator(name="USER", sequenceName="USER_PK_SEQ", initialValue=1, allocationSize=1)
 	@GeneratedValue(generator="USER", strategy=GenerationType.SEQUENCE)
 	private int userId;
-	@Column(unique = true)
+	@Column(name = "USERNAME", unique = true)
 	private String username;
-	@Column
+	@Column(name = "PASSWORD")
 	private String password; // Encrpyt with JBCrypt
-	@Column
+	@Column(name = "FIRST_NAME")
 	private String firstName;
-	@Column
+	@Column(name = "LASTE_NAME")
 	private String lastName;
 	@OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-	@Column(name = "USER_ROLE_ID")
+	@JoinColumn(name = "USER_ROLE_ID")
 	private UserRole userRoleId;
-	@Column(unique = true)
+	@Column(name = "EMAIL", unique = true)
 	private String email;
-
-	/*Denise*/
-	/*@OneToMany(mappedBy = "studentId")
-	private List<StudentCourse> studentCourse = new ArrayList<StudentCourse>();*/
 
 	public User() {
 		super();
