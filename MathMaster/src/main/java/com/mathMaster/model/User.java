@@ -9,37 +9,42 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedQueries;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @NamedQueries({
-	
+
 })
 @NamedNativeQueries({
-	
+
 })
 @Entity
-@Table(name="M2_USER")
+@Table(name = "M2_USER")
 public class User {
 	@Id
-	@Column(name="userId")
-	@SequenceGenerator(name="user", sequenceName="USER_PK_SEQ", initialValue=1, allocationSize=1)
-	@GeneratedValue(generator="user", strategy=GenerationType.SEQUENCE)
+	@Column(name = "userId")
+	@SequenceGenerator(name = "user", sequenceName = "USER_PK_SEQ", initialValue = 1, allocationSize = 1)
+	@GeneratedValue(generator = "user", strategy = GenerationType.SEQUENCE)
 	private int userId;
-	@Column(unique=true)
+	@Column(unique = true)
 	private String username;
 	@Column
-	private String password;		// Encrpyt with JBCrypt
+	private String password; // Encrpyt with JBCrypt
 	@Column
 	private String firstName;
 	@Column
 	private String lastName;
-	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
+	@OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
 	private UserRole userRoleId;
-	@Column(unique=true)
+	@Column(unique = true)
 	private String email;
-	
+
+	/*Denise*/
+	/*@OneToMany(mappedBy = "studentId")
+	private List<StudentCourse> studentCourse = new ArrayList<StudentCourse>();*/
+
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
