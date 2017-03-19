@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -23,11 +24,10 @@ public class TakenTest {
 	private int takenTestId;
 	
 	@OneToOne
-	@Column(name="STUDENT_COURSE_ID")
+	@JoinColumn(name="STUDENT_COURSE_ID")
 	private StudentCourse studentCourse;
 	
 	@OneToOne
-	@Column(name="TEST_ID")
 	private Test test;
 	
 	@Column(name="SCORE_ID")
