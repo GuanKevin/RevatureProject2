@@ -1,18 +1,43 @@
 package com.mathMaster.model;
 
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+/**
+ * 
+ * @author Pier Yos
+ */
+@Entity
+@Table(name="M2_TAKEN_TEST")
 public class TakenTest {
+	@Id
+	@Column(name="TAKEN_TEST_ID")
+	@SequenceGenerator(name="takenTest", sequenceName="TAKEN_TEST_PK_SEQ", initialValue=1, allocationSize=1)
+	@GeneratedValue(generator="takenTest", strategy=GenerationType.SEQUENCE)
 	private int takenTestId;
-	private Test testId;
-	private int score;
+	
+	@OneToOne
+	private StudentCourse studentCourse;
+	
+	@OneToOne
+	private Test test;
+	
+	@Column(name="SCORE_ID")
+	private float score;
 	
 	public TakenTest() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 	
-	public TakenTest(int takenTestId, Test testId, int score) {
+	public TakenTest(Test test, int score) {
 		super();
-		this.takenTestId = takenTestId;
-		this.testId = testId;
+		this.test = test;
 		this.score = score;
 	}
 
@@ -24,24 +49,27 @@ public class TakenTest {
 		this.takenTestId = takenTestId;
 	}
 	
-	public Test getTestId() {
-		return testId;
+	public Test getTest() {
+		return test;
 	}
 	
-	public void setTestId(Test testId) {
-		this.testId = testId;
+	public void setTest(Test test) {
+		this.test = test;
 	}
 	
-	public int getScore() {
+	public StudentCourse getStudentCourse() {
+		return studentCourse;
+	}
+
+	public void setStudentCourse(StudentCourse studentCourse) {
+		this.studentCourse = studentCourse;
+	}
+
+	public float getScore() {
 		return score;
 	}
 	
 	public void setScore(int score) {
 		this.score = score;
-	}
-	
-	@Override
-	public String toString() {
-		return "TakenTest [takenTestId=" + takenTestId + ", testId=" + testId + ", score=" + score + "]";
 	}
 }
