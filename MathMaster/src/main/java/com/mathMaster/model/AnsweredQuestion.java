@@ -7,6 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedQueries;
 import javax.persistence.OneToOne;
@@ -38,7 +39,7 @@ public class AnsweredQuestion {
 	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
 	private QuestionBank quesBankId;
 	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
-	@Column(name="CHOSEN_ANSWER_ID")
+	@JoinColumn(name="CHOSEN_ANSWER_ID")
 	private Answer chosenAnsId;
 	
 	public AnsweredQuestion() {}
