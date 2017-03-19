@@ -36,6 +36,7 @@ public class User {
 	@Column
 	private String lastName;
 	@OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+	@Column(name = "USER_ROLE_ID")
 	private UserRole userRoleId;
 	@Column(unique = true)
 	private String email;

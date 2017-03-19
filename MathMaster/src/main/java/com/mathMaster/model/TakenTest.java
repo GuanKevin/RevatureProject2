@@ -40,9 +40,10 @@ public class TakenTest {
 	private float score;
 
 	/*denise*/
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany
 	@JoinTable(name = "TAKEN_TEST_ANSWERED_QUESTION")
-	private List<AnsweredQuestion> answeredQuestionList = new ArrayList<AnsweredQuestion>();
+	//aqlist = answeredQuestionList
+	private List<AnsweredQuestion> aqList = new ArrayList<AnsweredQuestion>();
 
 	public TakenTest() {
 		super();

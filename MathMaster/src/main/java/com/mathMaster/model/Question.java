@@ -43,7 +43,7 @@ public class Question {
 	private Level levelId;
 	@ManyToMany(mappedBy="questionList")
 	private List<Test> testList = new ArrayList<Test>();
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany
 	@JoinTable(name="QUESTION_POSSIBLE_ANSWERS")
 	private List<Answer> answerList = new ArrayList<Answer>();
 	

@@ -38,19 +38,19 @@ public class Course {
 	@SequenceGenerator(name="COURSE", sequenceName="COURSE_PK_SEQ", initialValue=1, allocationSize=1)
 	@GeneratedValue(generator="COURSE", strategy=GenerationType.SEQUENCE)
 	private int courseId;	
-	@Column(unique=true)
-	private int teacherId;
+	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
+	private User teacherId;
 	@Column
 	private String courseName;
 	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
 	private Subject subjectId;
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany
 	@JoinTable(name="COURSE_TEST")
 	private List<Test> testList = new ArrayList<Test>();
 	
 	public Course() {}
 	
-	public Course(int courseId, int teacherId, String courseName, Subject subjectId) {
+	public Course(int courseId, User teacherId, String courseName, Subject subjectId) {
 		super();
 		this.courseId = courseId;
 		this.teacherId = teacherId;
@@ -66,11 +66,11 @@ public class Course {
 		this.courseId = courseId;
 	}
 	
-	public int getTeacherId() {
+	public User getTeacherId() {
 		return teacherId;
 	}
 	
-	public void setTeacherId(int teacherId) {
+	public void setTeacherId(User teacherId) {
 		this.teacherId = teacherId;
 	}
 	

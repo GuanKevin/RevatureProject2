@@ -35,7 +35,7 @@ public class Test {
 	@ManyToMany(mappedBy="testList")
 	private List<Course> courseList = new ArrayList<Course>();
 	
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany
 	@JoinTable(name="TEST_QUESTION")
 	private List<Question> questionList = new ArrayList<Question>();
 	

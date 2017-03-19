@@ -48,7 +48,7 @@ public class AnsweredQuestion {
 	private Answer chosenAnsId;
 	
 	/*denise*/
-	@ManyToMany(mappedBy="answeredQuestionList")
+	@ManyToMany(mappedBy="aqList")
 	private List<TakenTest> takenTestList = new ArrayList<TakenTest>();
 	
 	
