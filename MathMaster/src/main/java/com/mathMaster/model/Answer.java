@@ -23,14 +23,15 @@ import javax.persistence.Table;
 	
 })
 @Entity
-@Table(name="M2_ANS")
+@Table(name="M2_ANSWER")
 public class Answer {
 	@Id
-	@Column(name="ANS_ID")
-	@SequenceGenerator(name="ANS", sequenceName="ANS_PK_SEQ", initialValue=1, allocationSize=1)
-	@GeneratedValue(generator="ANS", strategy=GenerationType.SEQUENCE)
+	@Column(name="ANSWER_ID")
+	@SequenceGenerator(name="ANSWER", sequenceName="ANSWER_PK_SEQ", initialValue=1, allocationSize=1)
+	@GeneratedValue(generator="ANSWER", strategy=GenerationType.SEQUENCE)
 	private int answerId;
-	@Column(unique=true)
+	
+	@Column(name = "ANSWER", unique=true)
 	private String answer;
 	
 	public Answer() {}

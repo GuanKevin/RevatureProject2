@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedQueries;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -29,17 +28,17 @@ import javax.persistence.Table;
 	
 })
 @Entity
-@Table(name="M2_ANS_QUES")
+@Table(name="M2_ANSWER_QUES")
 public class AnsweredQuestion {
 	@Id
-	@Column(name="ANS_QUES_ID")
-	@SequenceGenerator(name="ANS_QUES", sequenceName="ANS_QUES_PK_SEQ", initialValue=1, allocationSize=1)
-	@GeneratedValue(generator="ANS_QUES", strategy=GenerationType.SEQUENCE)
+	@Column(name="ANSWER_QUESTION_ID")
+	@SequenceGenerator(name="ANSWER_QUESTION", sequenceName="ANSWER_QUESTION_PK_SEQ", initialValue=1, allocationSize=1)
+	@GeneratedValue(generator="ANSWER_QUESTION", strategy=GenerationType.SEQUENCE)
 	private int ansQuesId;
 	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
 	private QuestionBank quesBankId;
 	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
-	@Column(name="CHO_ANS_ID")
+	@Column(name="CHOSEN_ANSWER_ID")
 	private Answer chosenAnsId;
 	
 	public AnsweredQuestion() {}
