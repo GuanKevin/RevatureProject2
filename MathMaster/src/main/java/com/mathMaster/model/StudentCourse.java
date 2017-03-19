@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedQueries;
 import javax.persistence.OneToOne;
@@ -36,11 +37,11 @@ public class StudentCourse {
 	private int studentCourseId;
 
 	@OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-	@Column(name = "STUDENT_ID")
+	@JoinColumn(name = "STUDENT_ID")
 	private User studentId;
 
 	@OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-	@Column(name = "COURSE_ID")
+	@JoinColumn(name = "COURSE_ID")
 	private Course courseId;
 
 	public StudentCourse() {}
