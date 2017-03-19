@@ -50,8 +50,8 @@
 			<artifactId>ojdbc6</artifactId>
 			<version>11.2.0</version>
 		</dependency>
-		</dependencies>
-		<build>
-			<finalName>MathMaster</finalName>
-		</build>
+	</dependencies>
+	<build>
+		<finalName>MathMaster</finalName>
+	</build>
 </project>
