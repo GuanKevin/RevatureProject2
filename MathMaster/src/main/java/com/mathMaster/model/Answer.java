@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedQueries;
@@ -20,7 +20,7 @@ import javax.persistence.Table;
  * 
  * @author kevgu
  *
- */
+ */	
 @NamedQueries({
 	
 })
@@ -40,7 +40,6 @@ public class Answer {
 	private String answer;
 	
 	@ManyToMany(mappedBy="answerList")
-	@JoinColumn(name="QUESTION_LIST")
 	private List<Question> questionList = new ArrayList<Question>();
 	
 	public Answer() {}

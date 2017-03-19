@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedNativeQueries;
@@ -39,12 +40,12 @@ public class Course {
 	@GeneratedValue(generator="COURSE", strategy=GenerationType.SEQUENCE)
 	private int courseId;	
 	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
-	@Column(name="TEACHER_ID")
+	@JoinColumn(name="TEACHER_ID")
 	private User teacherId;
 	@Column(name="COURSE_NAME")
 	private String courseName;
 	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
-	@Column(name="SUBJECT_ID")
+	@JoinColumn(name="SUBJECT_ID")
 	private Subject subjectId;
 	@ManyToMany
 	@JoinTable(name="COURSE_TEST")
