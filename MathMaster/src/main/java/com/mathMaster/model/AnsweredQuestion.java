@@ -37,14 +37,14 @@ public class AnsweredQuestion {
 	@GeneratedValue(generator="ANSWER_QUESTION", strategy=GenerationType.SEQUENCE)
 	private int ansQuesId;
 	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
-	private QuestionBank quesBankId;
+	private Question quesBankId;
 	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
 	@JoinColumn(name="CHOSEN_ANSWER_ID")
 	private Answer chosenAnsId;
 	
 	public AnsweredQuestion() {}
 
-	public AnsweredQuestion(int ansQuesId, QuestionBank quesBankId, Answer chosenAnsId) {
+	public AnsweredQuestion(int ansQuesId, Question quesBankId, Answer chosenAnsId) {
 		super();
 		this.ansQuesId = ansQuesId;
 		this.quesBankId = quesBankId;
@@ -59,11 +59,11 @@ public class AnsweredQuestion {
 		this.ansQuesId = ansQuesId;
 	}
 
-	public QuestionBank getQuesBankId() {
+	public Question getQuesBankId() {
 		return quesBankId;
 	}
 
-	public void setQuesBankId(QuestionBank quesBankId) {
+	public void setQuesBankId(Question quesBankId) {
 		this.quesBankId = quesBankId;
 	}
 
