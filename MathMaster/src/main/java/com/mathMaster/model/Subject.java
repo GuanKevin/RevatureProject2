@@ -30,7 +30,7 @@ public class Subject {
 	@SequenceGenerator(name="SUBJECT", sequenceName="SUBJECT_PK_SEQ", initialValue=1, allocationSize=1)
 	@GeneratedValue(generator="SUBJECT", strategy=GenerationType.SEQUENCE)
 	private int subjectId;
-	@Column(unique=true)
+	@Column(name = "SUBJECT_NAME",unique=true)
 	private String subjectName;
 	
 	public Subject(int subjectId, String subjectName) {
