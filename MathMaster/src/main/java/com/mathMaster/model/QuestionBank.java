@@ -7,6 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -27,13 +28,13 @@ public class QuestionBank {
 	@Column(name="QUESTION", unique=true)
 	private String question;
 	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
-	@Column(name="CORRECT_ANSWER_ID")
+	@JoinColumn(name="CORRECT_ANSWER_ID")
 	private Answer correctAnswerId;
 	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
-	@Column(name="SUBJECT_ID")
+	@JoinColumn(name="SUBJECT_ID")
 	private Subject subjectId;
 	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
-	@Column(name="LEVEL_ID")
+	@JoinColumn(name="LEVEL_ID")
 	private Level levelId;
 	
 	public QuestionBank() {
