@@ -22,7 +22,7 @@ public class Level {
 	@SequenceGenerator(name="level", sequenceName="LEVEL_PK_SEQ", initialValue=1, allocationSize=1)
 	@GeneratedValue(generator="level", strategy=GenerationType.SEQUENCE)
 	private int levelId;
-	@Column(unique=true)
+	@Column(name="LEVEL_NAME", unique=true)
 	private String levelName;
 	
 	public Level() {

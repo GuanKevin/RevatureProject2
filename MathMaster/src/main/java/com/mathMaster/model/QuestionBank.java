@@ -24,13 +24,16 @@ public class QuestionBank {
 	@SequenceGenerator(name="question_bank", sequenceName="QUESTION_BANK_PK_SEQ", initialValue=1, allocationSize=1)
 	@GeneratedValue(generator="question_bank", strategy=GenerationType.SEQUENCE)
 	private int questionBankId;
-	@Column(unique=true)
+	@Column(name="QUESTION", unique=true)
 	private String question;
 	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
+	@Column(name="CORRECT_ANSWER_ID")
 	private Answer correctAnswerId;
 	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
+	@Column(name="SUBJECT_ID")
 	private Subject subjectId;
 	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
+	@Column(name="LEVEL_ID")
 	private Level levelId;
 	
 	public QuestionBank() {
