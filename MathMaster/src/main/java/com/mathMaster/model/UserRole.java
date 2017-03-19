@@ -9,7 +9,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
- * Class consist of two current users
+ * Class consist of two roles of users
  * Teacher
  * Students
  * 
