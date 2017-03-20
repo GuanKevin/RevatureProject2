@@ -35,9 +35,9 @@ public class Question {
 	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
 	@JoinColumn(name="CORRECT_ANSWER_ID")
 	private Answer correctAnswerId;
-	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
+	/*@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
 	@JoinColumn(name="SUBJECT_ID")
-	private Subject subjectId;
+	private Subject subjectId;*/
 	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
 	@JoinColumn(name="LEVEL_ID")
 	private Level levelId;
@@ -51,11 +51,11 @@ public class Question {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Question(String question, Answer correctAnswerId, Subject subjectId, Level levelId) {
+	public Question(String question, Answer correctAnswerId,  Level levelId) {
 		super();
 		this.question = question;
 		this.correctAnswerId = correctAnswerId;
-		this.subjectId = subjectId;
+		//this.subjectId = subjectId;
 		this.levelId = levelId;
 	}
 
@@ -83,13 +83,13 @@ public class Question {
 		this.correctAnswerId = correctAnswerId;
 	}
 	
-	public Subject getSubjectId() {
+	/*public Subject getSubjectId() {
 		return subjectId;
 	}
 	
 	public void setSubjectId(Subject subjectId) {
 		this.subjectId = subjectId;
-	}
+	}*/
 	
 	public Level getLevelId() {
 		return levelId;
@@ -99,9 +99,9 @@ public class Question {
 		this.levelId = levelId;
 	}
 	
-	@Override
+	/*@Override
 	public String toString() {
 		return "QuestionBank [questionBankId=" + questionId + ", question=" + question + ", correctAnswerId="
 				+ correctAnswerId + ", subjectId=" + subjectId + ", levelId=" + levelId + "]";
-	}
+	}*/
 }

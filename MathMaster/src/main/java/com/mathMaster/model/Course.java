@@ -44,21 +44,21 @@ public class Course {
 	private User teacherId;
 	@Column(name="COURSE_NAME")
 	private String courseName;
-	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
+	/*@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
 	@JoinColumn(name="SUBJECT_ID")
-	private Subject subjectId;
+	private Subject subjectId;*/
 	@ManyToMany
 	@JoinTable(name="COURSE_TEST")
 	private List<Test> testList = new ArrayList<Test>();
 	
 	public Course() {}
 	
-	public Course(int courseId, User teacherId, String courseName, Subject subjectId) {
+	public Course(int courseId, User teacherId, String courseName) {
 		super();
 		this.courseId = courseId;
 		this.teacherId = teacherId;
 		this.courseName = courseName;
-		this.subjectId = subjectId;
+		//this.subjectId = subjectId;
 	}
 
 	public int getCourseId() {
@@ -85,7 +85,7 @@ public class Course {
 		this.courseName = courseName;
 	}
 	
-	public Subject getSubjectId() {
+	/*public Subject getSubjectId() {
 		return subjectId;
 	}
 	
@@ -97,5 +97,5 @@ public class Course {
 	public String toString() {
 		return "Course [courseId=" + courseId + ", teacherId=" + teacherId + ", courseName=" + courseName
 				+ ", subjectId=" + subjectId + "]";
-	}
+	}*/
 }

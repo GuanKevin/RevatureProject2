@@ -30,7 +30,7 @@ public class Test {
 	private int testId;
 	
 	@OneToOne(cascade=CascadeType.REMOVE, fetch=FetchType.EAGER) 
-	private Subject subjectId;
+	//private Subject subjectId;
 	
 	@ManyToMany(mappedBy="testList")
 	private List<Course> courseList = new ArrayList<Course>();
@@ -43,11 +43,11 @@ public class Test {
 		super();
 	}
 	
-	public Test(Subject subjectId) {
+	/*public Test(Subject subjectId) {
 		super();
 		this.subjectId = subjectId;
 	}
-
+*/
 	public int getTestId() {
 		return testId;
 	}
@@ -56,7 +56,7 @@ public class Test {
 		this.testId = testId;
 	}
 	
-	public Subject getSubjectId() {
+	/*public Subject getSubjectId() {
 		return subjectId;
 	}
 	
@@ -67,5 +67,5 @@ public class Test {
 	@Override
 	public String toString() {
 		return "Test [testId=" + testId + ", subjectId=" + subjectId + "]";
-	}
+	}*/
 }
