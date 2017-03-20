@@ -1,16 +1,18 @@
 package com.mathMaster.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedQueries;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 //DENISE TEST
 @Entity
@@ -24,6 +26,8 @@ import javax.persistence.Table;
 public class Course {
 	@Id
 	@Column(name="COURSE_ID")
+	@SequenceGenerator(name="COURSE", sequenceName="COURSE_PK_SEQ", initialValue=1, allocationSize=1)
+	@GeneratedValue(generator="COURSE", strategy=GenerationType.SEQUENCE)
 	private int courseId;
 	
 	@ManyToOne
@@ -37,18 +41,17 @@ public class Course {
 	private String subjectName;
 	
 	@ManyToMany(mappedBy = "courses")
-	private List<Student> students = new ArrayList<Student>();
+	private Set<Student> students;
 
 	
 	public Course () {}
 	
-	public Course(int courseId, Teacher teacher, String courseName, String subjectName, List<Student> students) {
+	public Course(int courseId, Teacher teacher, String courseName, String subjectName) {
 		super();
 		this.courseId = courseId;
 		this.teacher = teacher;
 		this.courseName = courseName;
 		this.subjectName = subjectName;
-		this.students = students;
 	}
 
 	public int getCourseId() {
@@ -81,14 +84,6 @@ public class Course {
 
 	public void setSubjectName(String subjectName) {
 		this.subjectName = subjectName;
-	}
-
-	public List<Student> getStudents() {
-		return students;
-	}
-
-	public void setStudents(List<Student> students) {
-		this.students = students;
 	}
 
 	@Override
