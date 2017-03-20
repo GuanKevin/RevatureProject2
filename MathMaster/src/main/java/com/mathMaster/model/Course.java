@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedQueries;
 import javax.persistence.Table;
-
+//DENISE TEST
 @Entity
 @Table(name="M2_COURSE")
 @NamedQueries({
