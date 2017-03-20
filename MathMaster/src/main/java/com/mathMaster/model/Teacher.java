@@ -1,5 +1,7 @@
 package com.mathMaster.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedQueries;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -39,6 +42,9 @@ public class Teacher {
 	
 	@Column(name="EMAIL")
 	private String email;
+	
+	@OneToMany(mappedBy = "teacher")
+	private Set<Course> courses;
 	
 	public Teacher() {}
 
