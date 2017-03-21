@@ -59,7 +59,7 @@ public class Question {
 	private String choiceThree;
 	
 	@OneToMany(mappedBy = "question")
-	private Set<AnsweredQuestions> answeredQuestions = new HashSet<AnsweredQuestions>();
+	private Set<AnsweredQuestion> answeredQuestions = new HashSet<AnsweredQuestion>();
 	
 	
 	public Question() {
@@ -150,11 +150,11 @@ public class Question {
 		this.test = test;
 	}
 
-	public Set<AnsweredQuestions> getAnsweredQuestions() {
+	public Set<AnsweredQuestion> getAnsweredQuestions() {
 		return answeredQuestions;
 	}
 
-	public void setAnsweredQuestions(Set<AnsweredQuestions> answeredQuestions) {
+	public void setAnsweredQuestions(Set<AnsweredQuestion> answeredQuestions) {
 		this.answeredQuestions = answeredQuestions;
 	}
 

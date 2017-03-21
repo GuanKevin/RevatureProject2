@@ -27,7 +27,7 @@ import javax.persistence.Table;
 @NamedNativeQueries({
 	
 })
-public class AnsweredQuestions {
+public class AnsweredQuestion {
 	@Id
 	@Column(name="ANS_QUES_ID")
 	@SequenceGenerator(name="ANS_QUES", sequenceName="ANS_QUES_PK_SEQ", initialValue=1, allocationSize=1)
@@ -46,11 +46,11 @@ public class AnsweredQuestions {
 	private TakenTest takenTest;
 
 	
-	public AnsweredQuestions() {
+	public AnsweredQuestion() {
 		super();
 	}
 
-	public AnsweredQuestions(String answerChoosen, Question question, TakenTest takenTest) {
+	public AnsweredQuestion(String answerChoosen, Question question, TakenTest takenTest) {
 		super();
 		this.answerChoosen = answerChoosen;
 		this.question = question;

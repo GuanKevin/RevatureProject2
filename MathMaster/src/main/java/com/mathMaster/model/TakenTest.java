@@ -47,7 +47,7 @@ public class TakenTest {
 	
 	/*denise added to mapp to AnsweredQuestions*/
 	@OneToMany(mappedBy = "takenTest")
-	private Set<AnsweredQuestions> answeredQuestions = new HashSet<AnsweredQuestions>();
+	private Set<AnsweredQuestion> answeredQuestions = new HashSet<AnsweredQuestion>();
 	
 	public TakenTest() {}
 
@@ -100,11 +100,11 @@ public class TakenTest {
 		this.timeTaken = timeTaken;
 	}
 
-	public Set<AnsweredQuestions> getAnsweredQuestions() {
+	public Set<AnsweredQuestion> getAnsweredQuestions() {
 		return answeredQuestions;
 	}
 
-	public void setAnsweredQuestions(Set<AnsweredQuestions> answeredQuestions) {
+	public void setAnsweredQuestions(Set<AnsweredQuestion> answeredQuestions) {
 		this.answeredQuestions = answeredQuestions;
 	}
 
