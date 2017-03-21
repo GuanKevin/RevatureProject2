@@ -53,8 +53,8 @@ public class TakenTest {
 
 	public TakenTest(Test testId, Student studentId, int score, int timeTaken) {
 		super();
-		this.testId = testId;
-		this.studentId = studentId;
+		this.test = testId;
+		this.student = studentId;
 		this.score = score;
 		this.timeTaken = timeTaken;
 	}
@@ -68,19 +68,19 @@ public class TakenTest {
 	}
 
 	public Test getTestId() {
-		return testId;
+		return test;
 	}
 
 	public void setTestId(Test testId) {
-		this.testId = testId;
+		this.test = testId;
 	}
 
 	public Student getStudentId() {
-		return studentId;
+		return student;
 	}
 
 	public void setStudentId(Student studentId) {
-		this.studentId = studentId;
+		this.student = studentId;
 	}
 
 	public int getScore() {
@@ -109,7 +109,7 @@ public class TakenTest {
 
 	@Override
 	public String toString() {
-		return "TakenTest [takenTestId=" + takenTestId + ", testId=" + testId + ", studentId=" + studentId + ", score="
+		return "TakenTest [takenTestId=" + takenTestId + ", testId=" + test + ", studentId=" + student + ", score="
 				+ score + ", timeTaken=" + timeTaken + "]";
 	}
 }
