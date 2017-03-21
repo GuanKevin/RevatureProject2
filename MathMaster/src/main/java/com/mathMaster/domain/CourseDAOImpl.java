@@ -15,10 +15,12 @@ import com.mathMaster.util.M2SessionFactory;
  * @author Pier Yos
  */
 public class CourseDAOImpl implements CourseDAO {
-
+	Session session;
+	public CourseDAOImpl(Session session) {
+		this.session = session;
+	}
+	
 	public boolean createCourse(Teacher teacher, String courseName, String subjectName) {
-		SessionFactory sf = M2SessionFactory.getSessionFactory();
-		Session session = sf.openSession();
 		Transaction txn = session.beginTransaction();
 		try {
 			Course course = new Course();
@@ -28,32 +30,23 @@ public class CourseDAOImpl implements CourseDAO {
 			
 			session.save(course);
 			txn.commit();
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 			txn.rollback();
-		} finally {
-			session.close();
-			sf.close();
 		}
-		
-		
 		return false;
 	}
 
 	public Course getCourseById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return (Course) session.load(Course.class, id);
 	}
 
 	public List<Course> getAllCourseByTeacherId(Teacher teacher) {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<Course>) session.getNamedQuery("getAllCourseByTeacherId").setParameter("teacher", teacher);
 	}
 
 	public List<Course> getAllCourseByStudentId(Student student) {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<Course>) session.getNamedQuery("getAllCourseByStudentId").setParameter("student", student);
 	}
-
-
 }

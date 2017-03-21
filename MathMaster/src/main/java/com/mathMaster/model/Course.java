@@ -11,17 +11,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 //DENISE TEST
-
 @NamedQueries({
-	
-})
-@NamedNativeQueries({
-	
+	@NamedQuery(name="getAllCourseByTeacherId", query="from Course where Course.teacher = :teacher"),
+	@NamedQuery(name="getAllCourseByStudentId", query="from Course where Course.student = :student")
 })
 @Entity
 @Table(name="M2_COURSE")
@@ -45,7 +42,6 @@ public class Course {
 	@ManyToMany(mappedBy = "courses")
 	private Set<Student> students = new HashSet<Student>();
 
-	
 	public Course () {}
 	
 	public Course(Teacher teacher, String courseName, String subjectName) {

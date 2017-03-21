@@ -10,18 +10,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 
 @NamedQueries({
-	
-})
-@NamedNativeQueries({
-	
+	@NamedQuery(name="getStudentByUsername", query="from Student where userName = :userName")
 })
 @Entity
 @Table(name="M2_STUDENT")
