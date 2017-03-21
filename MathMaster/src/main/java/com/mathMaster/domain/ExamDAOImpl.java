@@ -24,8 +24,7 @@ public class ExamDAOImpl implements ExamDAO{
 	}
 
 	public Exam getExamById(int examId) {
-		Criteria criteria = session.createCriteria(Exam.class);
-		return (Exam) criteria.add(Restrictions.eq("TEST_ID", examId)).uniqueResult();
+		return (Exam) session.load(Exam.class, examId);
 	}
 
 	public boolean createExam(Exam exam) {
