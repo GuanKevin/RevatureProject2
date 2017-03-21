@@ -61,6 +61,7 @@ public class Question {
 	@OneToMany(mappedBy = "question")
 	private Set<AnsweredQuestions> answeredQuestions = new HashSet<AnsweredQuestions>();
 	
+	
 	public Question() {
 		super();
 	}
@@ -139,6 +140,22 @@ public class Question {
 
 	public void setChoiceThree(String choiceThree) {
 		this.choiceThree = choiceThree;
+	}
+
+	public Test getTest() {
+		return test;
+	}
+
+	public void setTest(Test test) {
+		this.test = test;
+	}
+
+	public Set<AnsweredQuestions> getAnsweredQuestions() {
+		return answeredQuestions;
+	}
+
+	public void setAnsweredQuestions(Set<AnsweredQuestions> answeredQuestions) {
+		this.answeredQuestions = answeredQuestions;
 	}
 
 	@Override

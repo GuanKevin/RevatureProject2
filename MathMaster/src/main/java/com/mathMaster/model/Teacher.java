@@ -106,6 +106,14 @@ public class Teacher {
 		this.email = email;
 	}
 
+	public Set<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(Set<Course> courses) {
+		this.courses = courses;
+	}
+
 	@Override
 	public String toString() {
 		return "Teacher [teacherId=" + teacherId + ", userName=" + userName + ", password=" + password + ", firstName="

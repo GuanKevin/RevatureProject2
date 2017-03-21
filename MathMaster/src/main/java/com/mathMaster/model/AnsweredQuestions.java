@@ -46,8 +46,6 @@ public class AnsweredQuestions {
 	private TakenTest takenTest;
 
 	
-	
-	
 	public AnsweredQuestions() {
 		super();
 	}

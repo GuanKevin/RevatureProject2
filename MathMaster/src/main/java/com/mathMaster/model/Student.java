@@ -112,6 +112,22 @@ public class Student {
 		this.email = email;
 	}
 
+	public Set<Course> getCourseSet() {
+		return courseSet;
+	}
+
+	public void setCourseSet(Set<Course> courseSet) {
+		this.courseSet = courseSet;
+	}
+
+	public Set<TakenTest> getTakenTestSet() {
+		return takenTestSet;
+	}
+
+	public void setTakenTestSet(Set<TakenTest> takenTestSet) {
+		this.takenTestSet = takenTestSet;
+	}
+
 	@Override
 	public String toString() {
 		return "Student [studentId=" + studentId + ", userName=" + userName + ", password=" + password + ", firstName="

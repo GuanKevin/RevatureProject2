@@ -86,6 +86,14 @@ public class Course {
 		this.subjectName = subjectName;
 	}
 
+	public Set<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(Set<Student> students) {
+		this.students = students;
+	}
+
 	@Override
 	public String toString() {
 		return "Course [courseId=" + courseId + ", teacher=" + teacher + ", courseName=" + courseName + ", subjectName="

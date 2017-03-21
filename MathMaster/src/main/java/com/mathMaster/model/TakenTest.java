@@ -1,5 +1,8 @@
 package com.mathMaster.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedQueries;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -41,11 +45,13 @@ public class TakenTest {
 	@Column(name="TIME_TAKEN")
 	private int timeTaken;
 	
+	@OneToMany(mappedBy = "takenTest")
+	private Set<AnsweredQuestions> answeredQuestions = new HashSet<AnsweredQuestions>();
+	
 	public TakenTest() {}
 
-	public TakenTest(int takenTestId, Test testId, Student studentId, int score, int timeTaken) {
+	public TakenTest(Test testId, Student studentId, int score, int timeTaken) {
 		super();
-		this.takenTestId = takenTestId;
 		this.testId = testId;
 		this.studentId = studentId;
 		this.score = score;
@@ -90,6 +96,14 @@ public class TakenTest {
 
 	public void setTimeTaken(int timeTaken) {
 		this.timeTaken = timeTaken;
+	}
+
+	public Set<AnsweredQuestions> getAnsweredQuestions() {
+		return answeredQuestions;
+	}
+
+	public void setAnsweredQuestions(Set<AnsweredQuestions> answeredQuestions) {
+		this.answeredQuestions = answeredQuestions;
 	}
 
 	@Override
