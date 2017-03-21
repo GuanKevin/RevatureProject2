@@ -37,11 +37,13 @@ public class CourseDAOImpl implements CourseDAO {
 		return (Course) session.load(Course.class, id);
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Course> getAllCourseByTeacherId(Teacher teacher) {
 		Criteria criteria = session.createCriteria(Course.class);
 		return (List<Course>) criteria.add(Restrictions.eq("teacher", teacher)).list();
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Course> getAllCourseByStudentId(Student student) {
 		Criteria criteria = session.createCriteria(Course.class);
 		return (List<Course>) criteria.add(Restrictions.eq("student", student)).list();

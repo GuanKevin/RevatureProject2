@@ -17,9 +17,11 @@ public class CreateExam {
 		Session session = sf.openSession();
 		
 		CourseDAOImpl courseDao = new CourseDAOImpl(session);
-		System.out.println(courseDao.getCourseById(1));
-		//Exam exam = new Exam("Exam #1", courseDao.getCourseById(1)); 
+		Exam exam = new Exam("Exam #1", courseDao.getCourseById(2)); 
 		
-		//System.out.println(new ExamDAOImpl(session).createExam(exam));
+		System.out.println(new ExamDAOImpl(session).createExam(exam));
+		
+		session.close();
+		sf.close();
 	}
 }
