@@ -79,8 +79,25 @@ public class Test {
 		this.course = course;
 	}
 
+	public Set<Question> getQuestions() {
+		return questions;
+	}
+
+	public void setQuestions(Set<Question> questions) {
+		this.questions = questions;
+	}
+
+	public Set<TakenTest> getTakenTests() {
+		return takenTests;
+	}
+
+	public void setTakenTests(Set<TakenTest> takenTests) {
+		this.takenTests = takenTests;
+	}
+
 	@Override
 	public String toString() {
-		return "Test [id=" + testId + ", name=" + name + ", course=" + course + "]";
+		return "Test [testId=" + testId + ", name=" + name + ", course=" + course + ", questions=" + questions
+				+ ", takenTests=" + takenTests + "]";
 	}
 }

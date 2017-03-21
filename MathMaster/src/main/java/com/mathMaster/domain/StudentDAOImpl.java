@@ -11,16 +11,23 @@ import com.mathMaster.model.Student;
  * @author Pier Yos
  */
 public class StudentDAOImpl implements StudentDAO {
-	Session session;
+
+	private Session session;
 	
 	public StudentDAOImpl(Session session) {
+		super();
 		this.session = session;
 	}
-	
+
 	public Student getStudentByUsername(String username) {
 		Criteria criteria = session.createCriteria(Student.class);
 		return 	(Student) criteria.add(Restrictions.eq("userName", username)).uniqueResult();
 	}
+
+	/**
+	 * Creates a student object and store it into
+	 * the database
+	 */
 	public boolean createStudent(Student student) {
 		Transaction tx = session.beginTransaction();
 		try {
@@ -31,6 +38,6 @@ public class StudentDAOImpl implements StudentDAO {
 			e.printStackTrace();
 			tx.rollback();
 			return false;
-		}		
+		}
 	}
 }

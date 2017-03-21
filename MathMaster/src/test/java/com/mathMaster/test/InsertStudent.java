@@ -7,6 +7,14 @@ import org.junit.Test;
 import com.mathMaster.domain.StudentDAOImpl;
 import com.mathMaster.util.M2SessionFactory;
 
+/**
+ * Instead a student into the database
+ * Edit any of the variable however you like
+ * to add a student to the database
+ * 
+ * @author kevgu
+ *
+ */
 public class InsertStudent {
 
 
@@ -15,7 +23,11 @@ public class InsertStudent {
 		SessionFactory sf = M2SessionFactory.getSessionFactory();
 		Session session = sf.openSession();
 		
-		StudentDAO student = new StudentDAOImpl();
+		StudentDAO student = new StudentDAOImpl(session);
+		
+		/**
+		 * Has unique constraint, make sure to change
+		 */
 		String username = "Student002";
 		
 		/**
@@ -24,12 +36,16 @@ public class InsertStudent {
 		String password = BCrypt.hashpw("welcome1", BCrypt.gensalt(12));
 		String firstname = "Daniel";
 		String lastname = "Liu";
-		String email = "passwordIs@welcome1.com";
+		
+		/**
+		 * Has unique constraint, make sure to change
+		 */
+		String email = "Student002passwordIs@welcome1.com";
 		student.createStudent(new Student(
 				username,
 				password,
 				firstname,
 				lastname,
-				email), session);
+				email));
 	}
 }
