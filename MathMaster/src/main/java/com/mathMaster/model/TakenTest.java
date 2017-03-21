@@ -54,6 +54,7 @@ public class TakenTest {
 	public TakenTest(Test test, Student student, int score, int timeTaken) {
 		super();
 		this.test = test;
+
 		this.student = student;
 		this.score = score;
 		this.timeTaken = timeTaken;
