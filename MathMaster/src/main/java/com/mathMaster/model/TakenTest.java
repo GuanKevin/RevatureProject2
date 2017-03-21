@@ -40,4 +40,61 @@ public class TakenTest {
 	
 	@Column(name="TIME_TAKEN")
 	private int timeTaken;
+	
+	public TakenTest() {}
+
+	public TakenTest(int takenTestId, Test testId, Student studentId, int score, int timeTaken) {
+		super();
+		this.takenTestId = takenTestId;
+		this.testId = testId;
+		this.studentId = studentId;
+		this.score = score;
+		this.timeTaken = timeTaken;
+	}
+
+	public int getTakenTestId() {
+		return takenTestId;
+	}
+
+	public void setTakenTestId(int takenTestId) {
+		this.takenTestId = takenTestId;
+	}
+
+	public Test getTestId() {
+		return testId;
+	}
+
+	public void setTestId(Test testId) {
+		this.testId = testId;
+	}
+
+	public Student getStudentId() {
+		return studentId;
+	}
+
+	public void setStudentId(Student studentId) {
+		this.studentId = studentId;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+
+	public int getTimeTaken() {
+		return timeTaken;
+	}
+
+	public void setTimeTaken(int timeTaken) {
+		this.timeTaken = timeTaken;
+	}
+
+	@Override
+	public String toString() {
+		return "TakenTest [takenTestId=" + takenTestId + ", testId=" + testId + ", studentId=" + studentId + ", score="
+				+ score + ", timeTaken=" + timeTaken + "]";
+	}
 }
