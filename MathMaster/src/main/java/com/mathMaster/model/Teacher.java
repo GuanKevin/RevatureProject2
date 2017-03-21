@@ -28,7 +28,7 @@ public class Teacher {
 	@GeneratedValue(generator="TEACHER", strategy=GenerationType.SEQUENCE)
 	private int teacherId;
 	
-	@Column(name="USER_NAME")
+	@Column(name="USER_NAME", unique=true)
 	private String userName;
 	
 	@Column(name="PASSWORD")
@@ -40,7 +40,7 @@ public class Teacher {
 	@Column(name="LAST_NAME")
 	private String lastName;
 	
-	@Column(name="EMAIL")
+	@Column(name="EMAIL", unique=true)
 	private String email;
 	
 	@OneToMany(mappedBy = "teacher")
