@@ -1,9 +1,1 @@
-<<<<<<< HEAD
 [[{"location":"C:\\Program Files\\Java\\jre1.8.0_121","type":"JRE","hints":{"EXECUTION_ENVIRONMENT":"J2SE-1.5"}},"jre:jre:1.5.0"],[{"location":"C:\\Users\\kevgu\\.m2\\repository\\org\\hibernate\\hibernate-core\\3.6.0.Final\\hibernate-core-3.6.0.Final.jar","type":"JAR","hints":{}},"org.hibernate:hibernate-core:3.6.0"],[{"location":"D:\\Revature\\RevatureProject2\\MathMaster","type":"PROJECT","hints":{"PROJECT_NAME":"MathMaster"}},"com.codeblooded:MathMaster:0.0.1"]]
-=======
-<<<<<<< HEAD
-[[{"location":"C:\\Users\\Daniel\\.m2\\repository\\org\\hibernate\\hibernate-core\\3.6.0.Final\\hibernate-core-3.6.0.Final.jar","type":"JAR","hints":{}},"org.hibernate:hibernate-core:3.6.0"],[{"location":"C:\\Users\\Daniel\\Documents\\Eclipse Projects\\RevatureProject2\\MathMaster","type":"PROJECT","hints":{"PROJECT_NAME":"MathMaster"}},"com.codeblooded:MathMaster:0.0.1"],[{"location":"C:\\Program Files\\Java\\jre1.8.0_121","type":"JRE","hints":{"EXECUTION_ENVIRONMENT":"J2SE-1.5"}},"jre:jre:1.5.0"]]
-=======
-[[{"location":"C:\\Users\\kevgu\\.m2\\repository\\org\\hibernate\\hibernate-core\\3.6.0.Final\\hibernate-core-3.6.0.Final.jar","type":"JAR","hints":{}},"org.hibernate:hibernate-core:3.6.0"]]
->>>>>>> 246d792e086d716dd1608157bbc6482e18ea27c2
->>>>>>> b3282816fd08ccab4b551e32e55aed6d695df3cc
