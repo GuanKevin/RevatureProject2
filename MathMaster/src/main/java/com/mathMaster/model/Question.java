@@ -139,7 +139,7 @@ public class Question {
 		return exam;
 	}
 
-	public void setTest(Exam exam) {
+	public void setExam(Exam exam) {
 		this.exam = exam;
 	}
 
