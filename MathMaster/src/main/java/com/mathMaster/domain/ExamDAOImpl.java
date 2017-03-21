@@ -7,25 +7,24 @@ import org.hibernate.criterion.Restrictions;
 
 import com.mathMaster.model.Exam;
 
-public class ExamDAOImpl implements ExamDAO{
+public class ExamDAOImpl implements ExamDAO {
 	private Session session;
-	
+
 	public ExamDAOImpl(Session session) {
 		this.session = session;
 	}
 
 	public Exam getExamById(int examId) {
-		Criteria criteria = session.createCriteria(Exam.class);
-		return (Exam) criteria.add(Restrictions.eq("TEST_ID", examId)).uniqueResult();
+		return (Exam) session.load(Exam.class, examId);
 	}
 
 	public boolean createExam(Exam exam) {
 		Transaction tx = session.beginTransaction();
-		try{
+		try {
 			session.save(exam);
 			tx.commit();
 			return true;
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			tx.rollback();
 			return false;

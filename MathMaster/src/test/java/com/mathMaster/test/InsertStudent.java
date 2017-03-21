@@ -50,5 +50,8 @@ public class InsertStudent {
 				firstname,
 				lastname,
 				email));
+		
+		session.close();
+		sf.close();
 	}
 }

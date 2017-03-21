@@ -26,7 +26,10 @@ public class GetTeacher {
 		
 		TeacherDAO teacher = new TeacherDAOImpl(session);
 		
-		System.out.println(teacher.getTeacherByUserName("Code_Blooded_KG").getCourses());
+		System.out.println(teacher.getTeacherByUserName("Code_Blooded_KG"));
+		
+		session.close();
+		sf.close();
 	}
 
 }
