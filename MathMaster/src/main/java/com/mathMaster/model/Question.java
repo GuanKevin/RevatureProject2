@@ -1,5 +1,8 @@
 package com.mathMaster.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,11 +12,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedQueries;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
- * Denise
+ * 
+ * @author Denise
+ *
  */
 @Entity
 @Table(name="M2_QUESTION")
@@ -51,6 +57,9 @@ public class Question {
 	
 	@Column (name = "CHOICE_THREE")
 	private String choiceThree;
+	
+	@OneToMany(mappedBy = "question")
+	private Set<AnsweredQuestions> answeredQuestions = new HashSet<AnsweredQuestions>();
 	
 	public Question() {
 		super();
