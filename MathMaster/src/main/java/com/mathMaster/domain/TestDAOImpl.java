@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
@@ -13,8 +12,8 @@ import com.mathMaster.model.Test;
 public class TestDAOImpl implements TestDAO{
 	private Session session;
 	
-	public TestDAOImpl(SessionFactory sf) {
-		this.session = sf.openSession();
+	public TestDAOImpl(Session session) {
+		this.session = session;
 	}
 
 	@SuppressWarnings("unchecked")

@@ -7,7 +7,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
-import com.mathMaster.model.Student;
 import com.mathMaster.model.TakenTest;
 
 public class TakenTestDAOImpl implements TakenTestDAO{
