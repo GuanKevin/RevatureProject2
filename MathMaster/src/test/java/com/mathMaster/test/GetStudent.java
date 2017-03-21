@@ -24,6 +24,8 @@ public class GetStudent {
 		StudentDAO student = new StudentDAOImpl(session);
 		
 		System.out.println(student.getStudentByUsername("Student001"));
+		
+		session.close();
+		sf.close();
 	}
-
 }

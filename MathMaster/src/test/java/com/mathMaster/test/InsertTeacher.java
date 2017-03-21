@@ -49,5 +49,8 @@ public class InsertTeacher {
 				firstname,
 				lastname,
 				email));
+		
+		session.close();
+		sf.close();
 	}
 }

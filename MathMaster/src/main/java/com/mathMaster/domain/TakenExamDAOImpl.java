@@ -10,9 +10,9 @@ import org.hibernate.criterion.Restrictions;
 import com.mathMaster.model.Student;
 import com.mathMaster.model.TakenExam;
 
-public class TakenExamDAOImpl implements TakenExamDAO{
+public class TakenExamDAOImpl implements TakenExamDAO {
 	Session session;
-	
+
 	public TakenExamDAOImpl(Session session) {
 		this.session = session;
 	}
@@ -30,11 +30,11 @@ public class TakenExamDAOImpl implements TakenExamDAO{
 
 	public boolean takeExam(TakenExam takenExam) {
 		Transaction tx = session.beginTransaction();
-		try{
+		try {
 			session.save(takenExam);
 			tx.commit();
 			return true;
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 			tx.rollback();
 			return false;
