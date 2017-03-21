@@ -21,7 +21,7 @@ public class AnsweredQuestionDAOImpl implements AnsweredQuestionDAO{
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<AnsweredQuestion> getQuestionsByTakenTestId(TakenExam takenExam) {
+	public List<AnsweredQuestion> getQuestionsByTakenExamId(TakenExam takenExam) {
 		Criteria criteria = session.createCriteria(AnsweredQuestion.class);
 		return criteria.add(Restrictions.eq("takenExam", takenExam)).list();
 	}

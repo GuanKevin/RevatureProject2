@@ -18,7 +18,7 @@ public interface AnsweredQuestionDAO {
 	 * @param takenTest
 	 * @return
 	 */
-	public List<AnsweredQuestion> getQuestionsByTakenTestId(TakenExam takenExam);
+	public List<AnsweredQuestion> getQuestionsByTakenExamId(TakenExam takenExam);
 
 	/**
 	 * save a new answered question

@@ -40,6 +40,6 @@ public interface QuestionDAO {
 	 * @param test
 	 * @return
 	 */
-	public List<Question> getQuestionsByTestId(Exam exam);
+	public List<Question> getQuestionsByExamId(Exam exam);
 	
 }

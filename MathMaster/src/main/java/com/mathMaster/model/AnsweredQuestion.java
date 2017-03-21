@@ -50,11 +50,11 @@ public class AnsweredQuestion {
 		super();
 	}
 
-	public AnsweredQuestion(String answerChoosen, Question question, TakenExam takenTest) {
+	public AnsweredQuestion(String answerChoosen, Question question, TakenExam takenExam) {
 		super();
 		this.answerChoosen = answerChoosen;
 		this.question = question;
-		this.takenExam = takenTest;
+		this.takenExam = takenExam;
 	}
 
 	public int getAnsQuesId() {
