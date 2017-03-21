@@ -107,10 +107,4 @@ public class TakenExam {
 	public void setAnsweredQuestions(Set<AnsweredQuestion> answeredQuestions) {
 		this.answeredQuestions = answeredQuestions;
 	}
-
-	@Override
-	public String toString() {
-		return "TakenExam [takenExamId=" + takenExamId + ", exam=" + exam + ", student=" + student + ", score=" + score
-				+ ", timeTaken=" + timeTaken + ", answeredQuestions=" + answeredQuestions + "]";
-	}
 }
