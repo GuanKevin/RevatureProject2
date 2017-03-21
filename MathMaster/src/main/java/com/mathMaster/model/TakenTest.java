@@ -33,11 +33,11 @@ public class TakenTest {
 	
 	@ManyToOne
 	@JoinColumn(name="TEST_ID")
-	private Test testId;
+	private Test test;
 	
 	@ManyToOne
 	@JoinColumn(name="STUDENT_ID")
-	private Student studentId;
+	private Student student;
 	
 	@Column(name="SCORE")
 	private int score;
