@@ -24,17 +24,17 @@ import javax.persistence.Table;
 	
 })
 @Entity
-@Table(name="M2_TAKEN_TEST")
-public class TakenTest {
+@Table(name="M2_TAKEN_EXAM")
+public class TakenExam {
 	@Id
-	@Column(name="TAKEN_TEST_ID")
-	@SequenceGenerator(name="TAKEN_TEST", sequenceName="TAKEN_TEST_PK_SEQ", initialValue=1, allocationSize=1)
-	@GeneratedValue(generator="TAKEN_TEST", strategy=GenerationType.SEQUENCE)
-	private int takenTestId;
+	@Column(name="TAKEN_EXAM_ID")
+	@SequenceGenerator(name="TAKEN_EXAM", sequenceName="TAKEN_EXAM_PK_SEQ", initialValue=1, allocationSize=1)
+	@GeneratedValue(generator="TAKEN_EXAM", strategy=GenerationType.SEQUENCE)
+	private int takenExamId;
 	
 	@ManyToOne
-	@JoinColumn(name="TEST_ID")
-	private Test test;
+	@JoinColumn(name="EXAM_ID")
+	private Exam exam;
 	
 	@ManyToOne
 	@JoinColumn(name="STUDENT_ID")
@@ -47,33 +47,33 @@ public class TakenTest {
 	private int timeTaken;
 	
 	/*denise added to mapp to AnsweredQuestions*/
-	@OneToMany(mappedBy = "takenTest")
+	@OneToMany(mappedBy = "takenExam")
 	private Set<AnsweredQuestion> answeredQuestions = new HashSet<AnsweredQuestion>();
 	
-	public TakenTest() {}
+	public TakenExam() {}
 
-	public TakenTest(Test test, Student student, int score, int timeTaken) {
+	public TakenExam(Exam exam, Student student, int score, int timeTaken) {
 		super();
-		this.test = test;
+		this.exam = exam;
 		this.student = student;
 		this.score = score;
 		this.timeTaken = timeTaken;
 	}
 
 	public int getTakenTestId() {
-		return takenTestId;
+		return takenExamId;
 	}
 
-	public void setTakenTestId(int takenTestId) {
-		this.takenTestId = takenTestId;
+	public void setTakenTestId(int takenExamId) {
+		this.takenExamId = takenExamId;
 	}
 
-	public Test getTest() {
-		return test;
+	public Exam getTest() {
+		return exam;
 	}
 
-	public void setTest(Test test) {
-		this.test = test;
+	public void setTest(Exam exam) {
+		this.exam = exam;
 	}
 
 	public Student getStudent() {
@@ -110,7 +110,7 @@ public class TakenTest {
 
 	@Override
 	public String toString() {
-		return "TakenTest [takenTestId=" + takenTestId + ", test=" + test + ", student=" + student + ", score="
-				+ score + ", timeTaken=" + timeTaken + "]";
+		return "TakenExam [takenExamId=" + takenExamId + ", exam=" + exam + ", student=" + student + ", score=" + score
+				+ ", timeTaken=" + timeTaken + ", answeredQuestions=" + answeredQuestions + "]";
 	}
 }

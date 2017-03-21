@@ -30,7 +30,7 @@
 		<!-- only recommended for dev/test -->
 
 		<!-- hibernate mapping file -->
-		<mapping class="com.mathMaster.model.Test" />
+		<mapping class="com.mathMaster.model.Exam" />
 		<mapping class="com.mathMaster.model.Question" />
 		<mapping class="com.mathMaster.model.AnsweredQuestion" />
 		<mapping class="com.mathMaster.model.Course" />
