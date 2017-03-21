@@ -1,5 +1,6 @@
 package com.mathMaster.domain;
 
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -23,7 +24,6 @@ public class StudentDAOImpl implements StudentDAO {
 		Criteria criteria = session.createCriteria(Student.class);
 		return 	(Student) criteria.add(Restrictions.eq("userName", username)).uniqueResult();
 	}
-
 	/**
 	 * Creates a student object and store it into
 	 * the database

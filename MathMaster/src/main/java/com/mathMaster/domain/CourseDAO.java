@@ -12,6 +12,4 @@ import com.mathMaster.model.Teacher;
 public interface CourseDAO {
 	public boolean createCourse(Course course);
 	public Course getCourseById(int id);
-	public List<Course> getAllCourseByTeacherId(Teacher teacher);
-	public List<Course> getAllCourseByStudentId(Student student);
 }
