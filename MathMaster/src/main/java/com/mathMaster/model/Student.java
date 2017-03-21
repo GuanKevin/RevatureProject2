@@ -43,7 +43,7 @@ public class Student {
 	private Set<Course> courses = new HashSet<Course>();
 	
 	@OneToMany(mappedBy="student")
-	private Set<TakenExam> takenTests = new HashSet<TakenExam>();
+	private Set<TakenExam> takenExams = new HashSet<TakenExam>();
 	
 	public Student() {}
 
@@ -112,12 +112,12 @@ public class Student {
 		this.courses = courseSet;
 	}
 
-	public Set<TakenExam> getTakenTestSet() {
-		return takenTests;
+	public Set<TakenExam> getTakenExams() {
+		return takenExams;
 	}
 
-	public void setTakenTestSet(Set<TakenExam> takenTests) {
-		this.takenTests = takenTests;
+	public void setTakenExams(Set<TakenExam> takenExams) {
+		this.takenExams = takenExams;
 	}
 
 	@Override
