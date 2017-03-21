@@ -42,7 +42,7 @@ public class Test {
 	private Set<Question> questionSet = new HashSet<Question>();
 		
 	@OneToMany(mappedBy="test")
-	private Set<TakenTest> takenTestIdSet = new HashSet<TakenTest>();
+	private Set<TakenTest> takenTestSet = new HashSet<TakenTest>();
 	
 	public Test() {
 		super();
