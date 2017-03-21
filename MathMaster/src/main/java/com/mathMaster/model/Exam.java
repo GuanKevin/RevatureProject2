@@ -39,11 +39,11 @@ public class Exam {
 	@JoinColumn(name="COURSE_ID")
 	private Course course;
 
-	@OneToMany(mappedBy="test") 
+	@OneToMany(mappedBy="exam") 
 	private Set<Question> questions = new HashSet<Question>();
 		
 	@OneToMany(mappedBy="test")
-	private Set<TakenExam> takenTests = new HashSet<TakenExam>();
+	private Set<TakenExam> takenExam = new HashSet<TakenExam>();
 	
 	public Exam() {
 		super();
@@ -87,17 +87,17 @@ public class Exam {
 		this.questions = questions;
 	}
 
-	public Set<TakenExam> getTakenTests() {
-		return takenTests;
+	public Set<TakenExam> getTakenExams() {
+		return takenExam;
 	}
 
-	public void setTakenTests(Set<TakenExam> takenTests) {
-		this.takenTests = takenTests;
+	public void setTakenExams(Set<TakenExam> takenExams) {
+		this.takenExam = takenExams;
 	}
 
 	@Override
 	public String toString() {
 		return "Exam [examId=" + examId + ", name=" + name + ", course=" + course + ", questions=" + questions
-				+ ", takenTests=" + takenTests + "]";
+				+ ", takenExams=" + takenExam + "]";
 	}
 }

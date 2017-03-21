@@ -34,7 +34,7 @@
 		<mapping class="com.mathMaster.model.Question" />
 		<mapping class="com.mathMaster.model.AnsweredQuestion" />
 		<mapping class="com.mathMaster.model.Course" />
-		<mapping class="com.mathMaster.model.TakenTest" />
+		<mapping class="com.mathMaster.model.TakenExam" />
 		<mapping class="com.mathMaster.model.Student" />
 		<mapping class="com.mathMaster.model.Teacher" />
 

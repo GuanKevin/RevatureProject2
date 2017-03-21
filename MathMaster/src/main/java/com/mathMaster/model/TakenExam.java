@@ -60,19 +60,19 @@ public class TakenExam {
 		this.timeTaken = timeTaken;
 	}
 
-	public int getTakenTestId() {
+	public int getTakenExamId() {
 		return takenExamId;
 	}
 
-	public void setTakenTestId(int takenExamId) {
+	public void setTakenExamId(int takenExamId) {
 		this.takenExamId = takenExamId;
 	}
 
-	public Exam getTest() {
+	public Exam getExam() {
 		return exam;
 	}
 
-	public void setTest(Exam exam) {
+	public void setExam(Exam exam) {
 		this.exam = exam;
 	}
 
