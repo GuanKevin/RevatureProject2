@@ -17,7 +17,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TEST")
+@Table(name = "M2_TEST")
 @NamedQueries({
 	
 })
