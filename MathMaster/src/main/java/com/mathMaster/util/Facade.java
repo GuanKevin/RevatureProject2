@@ -2,9 +2,13 @@ package com.mathMaster.util;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.mindrot.jbcrypt.BCrypt;
 
+import com.mathMaster.domain.StudentDAO;
+import com.mathMaster.domain.StudentDAOImpl;
 import com.mathMaster.domain.TeacherDAO;
 import com.mathMaster.domain.TeacherDAOImpl;
+import com.mathMaster.model.Student;
 import com.mathMaster.model.Teacher;
 
 public class Facade implements AutoCloseable {
@@ -12,8 +16,21 @@ public class Facade implements AutoCloseable {
 	private Session session = sf.openSession();
 	private TeacherDAO teacherDAO;
 	private Teacher teacher;
+	private StudentDAO studentDAO;
+	private Student student;
 	private boolean user; //true = teacher, false = student
 	
+	/**
+	 * isTeacher is a boolean variable that takes in true if the user that is trying
+	 * to sign in enter the buttons as a teacher, otherwise, it is false and assumed
+	 * that the user that is trying to sign in is a student. The user is then verified
+	 * by looking for the username in the teacher or student table in the database
+	 * and finally, their hashed password is checked with the password entered.
+	 * 
+	 * @param isTeacher
+	 * @param username
+	 * @param password
+	 */
 	public void login(boolean isTeacher, String username, String password) {
 		if (username != null && password != null)
 			user = isTeacher;
@@ -23,14 +40,34 @@ public class Facade implements AutoCloseable {
 		if (user) {
 			teacherDAO = new TeacherDAOImpl(session);
 			teacher = teacherDAO.getTeacherByUserName(username);
+			
 			if (teacher != null) {
-				if (!teacher.getPassword().equals(password)) {
+				if (!BCrypt.checkpw(password, teacher.getPassword())) {
+					// Gets in here if password entered does not matches the password
+					// found in the database that is related to the username
 					//TODO Don't allow teacher to login  
 				}	
 			}
 		}
+		else {
+			studentDAO = new StudentDAOImpl(session);
+			student = studentDAO.getStudentByUsername(username);
+			
+			if (student != null) {
+				if (!BCrypt.checkpw(password, student.getPassword())) {
+					// Gets in here if password entered does not matches the password
+					// found in the database that is related to the username
+					//TODO Don't allow teacher to login  
+				}
+			}
+		}
 	}
 	
+	/**
+	 * TODO
+	 * Figure out where all the sessions and the sessionfactory 
+	 * should be called
+	 */
 	public void close() throws Exception {
 		sf.close();
 		session.close();
