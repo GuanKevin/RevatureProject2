@@ -23,7 +23,7 @@ public interface QuestionDAO {
 	 * save a new question
 	 * @param question
 	 */
-	public void insertQuestion(Question question);
+	public boolean insertQuestion(Question question);
 	
 	/**
 	 * save a bunch of questions

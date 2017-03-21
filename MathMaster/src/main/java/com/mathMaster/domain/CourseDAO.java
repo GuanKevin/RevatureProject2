@@ -10,7 +10,7 @@ import com.mathMaster.model.Teacher;
  * @author Pier Yos
  */
 public interface CourseDAO {
-	public boolean createCourse(Teacher teacher, String courseName, String subjectName);
+	public boolean createCourse(Course course);
 	public Course getCourseById(int id);
 	public List<Course> getAllCourseByTeacherId(Teacher teacher);
 	public List<Course> getAllCourseByStudentId(Student student);

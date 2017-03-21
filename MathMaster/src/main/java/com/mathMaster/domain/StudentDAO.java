@@ -13,6 +13,5 @@ public interface StudentDAO {
 	 * 
 	 * @param student
 	 */
-	public void createStudent(Student student);
-	
+	public boolean createStudent(Student student);
 }
