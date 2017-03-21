@@ -50,7 +50,7 @@ public class Student {
 	@JoinTable(name = "STUDENT_COURSE")
 	private Set<Course> courseSet = new HashSet<Course>();
 	
-	@OneToMany(mappedBy="studentId")
+	@OneToMany(mappedBy="student")
 	private Set<TakenTest> takenTestSet = new HashSet<TakenTest>();
 	
 	public Student() {}

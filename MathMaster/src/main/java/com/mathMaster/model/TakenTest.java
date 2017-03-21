@@ -75,12 +75,12 @@ public class TakenTest {
 		this.test = testId;
 	}
 
-	public Student getStudentId() {
+	public Student getStudent() {
 		return student;
 	}
 
-	public void setStudentId(Student studentId) {
-		this.student = studentId;
+	public void setStudent(Student student) {
+		this.student = student;
 	}
 
 	public int getScore() {
