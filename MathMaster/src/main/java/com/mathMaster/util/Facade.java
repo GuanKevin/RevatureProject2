@@ -8,7 +8,6 @@ public class Facade implements AutoCloseable {
 	private Session session;
 	
 	
-	
 	public void close() throws Exception {
 		sf.close();
 		session.close();

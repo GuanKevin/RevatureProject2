@@ -3,7 +3,6 @@ package com.mathMaster.domain;
 import java.util.List;
 
 import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
@@ -30,8 +29,8 @@ public class CourseDAOImpl implements CourseDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			txn.rollback();
+			return false;
 		}
-		return false;
 	}
 
 	public Course getCourseById(int id) {

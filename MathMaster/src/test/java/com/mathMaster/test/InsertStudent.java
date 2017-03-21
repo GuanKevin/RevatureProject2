@@ -3,11 +3,8 @@ package com.mathMaster.test;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.Test;
-import org.mindrot.jbcrypt.BCrypt;
 
-import com.mathMaster.domain.StudentDAO;
 import com.mathMaster.domain.StudentDAOImpl;
-import com.mathMaster.model.Student;
 import com.mathMaster.util.M2SessionFactory;
 
 public class InsertStudent {

@@ -12,6 +12,7 @@ import com.mathMaster.model.Student;
  */
 public class StudentDAOImpl implements StudentDAO {
 	Session session;
+	
 	public StudentDAOImpl(Session session) {
 		this.session = session;
 	}
