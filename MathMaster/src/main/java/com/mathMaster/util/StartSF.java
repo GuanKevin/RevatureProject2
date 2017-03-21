@@ -8,5 +8,6 @@ public class StartSF {
 		SessionFactory sf = new Configuration()
 				.configure()
 				.buildSessionFactory();
+		sf.close();
 	}
 }

@@ -31,19 +31,19 @@ public class InsertStudent {
 		/**
 		 * Has unique constraint, make sure to change
 		 */
-		String username = "Student002";
+		String username = "Student004";
 		
 		/**
 		 * JBCrypt hashed password
 		 */
 		String password = BCrypt.hashpw("welcome1", BCrypt.gensalt(12));
-		String firstname = "Daniel";
-		String lastname = "Liu";
+		String firstname = "Denise";
+		String lastname = "Montesdeoca";
 		
 		/**
 		 * Has unique constraint, make sure to change
 		 */
-		String email = "Student002passwordIs@welcome1.com";
+		String email = "Student004@welcome1.com";
 		student.createStudent(new Student(
 				username,
 				password,

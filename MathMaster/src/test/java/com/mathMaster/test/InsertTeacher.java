@@ -30,19 +30,19 @@ public class InsertTeacher {
 		/**
 		 * Has unique constraint, make sure to change!
 		 */
-		String username = "Code_Blooded_DL";
+		String username = "Code_Blooded_PY";
 		
 		/**
 		 * JBCrypt hashed password
 		 */
 		String password = BCrypt.hashpw("welcome1", BCrypt.gensalt(12));
-		String firstname = "Daniel";
-		String lastname = "Liu";
+		String firstname = "Pier";
+		String lastname = "Yos";
 		
 		/**
 		 * Has unique constraint, make sure to change!
 		 */
-		String email = "Code_Blooded_DL_passwordIs@welcome1.com";
+		String email = "Code_Blooded_PY@welcome1.com";
 		teacher.createTeacher(new Teacher(
 				username,
 				password,

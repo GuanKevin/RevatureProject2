@@ -12,6 +12,8 @@ import com.mathMaster.domain.TeacherDAOImpl;
 import com.mathMaster.util.M2SessionFactory;
 
 /**
+ * Test getting teacher from database
+ * 
  * @author kevgu
  *
  */
