@@ -5,20 +5,21 @@ import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.mindrot.jbcrypt.BCrypt;
 
-import com.mathMaster.domain.TeacherDAO;
-import com.mathMaster.domain.TeacherDAOImpl;
-import com.mathMaster.model.Teacher;
+import com.mathMaster.domain.StudentDAO;
+import com.mathMaster.domain.StudentDAOImpl;
+import com.mathMaster.model.Student;
 import com.mathMaster.util.M2SessionFactory;
 
-public class InsertTeacher {
+public class InsertStudent {
+
 
 	@Test
-	public void insertTeacherIntoDatabase() {
+	public void insertStudentIntoDabase() {
 		SessionFactory sf = M2SessionFactory.getSessionFactory();
 		Session session = sf.openSession();
 		
-		TeacherDAO teacher = new TeacherDAOImpl();
-		String username = "Code_Blooded_DL";
+		StudentDAO student = new StudentDAOImpl();
+		String username = "Student002";
 		
 		/**
 		 * JBCrypt hashed password
@@ -27,7 +28,7 @@ public class InsertTeacher {
 		String firstname = "Daniel";
 		String lastname = "Liu";
 		String email = "passwordIs@welcome1.com";
-		teacher.createTeacher(new Teacher(
+		student.createStudent(new Student(
 				username,
 				password,
 				firstname,
