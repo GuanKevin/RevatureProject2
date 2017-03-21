@@ -14,7 +14,7 @@ public class M2SessionFactory {
 	
 	public static void createSessionFactory() {
 		sessionFactory = new Configuration()
-				.configure()
+				.configure("hibernate.cfg.xml")
 				.buildSessionFactory();
 	}
 }
