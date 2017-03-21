@@ -2,9 +2,13 @@ package com.mathMaster.domain;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 import com.mathMaster.model.AnsweredQuestion;
+import com.mathMaster.model.TakenTest;
 
 public class AnsweredQuestionDAOImpl implements AnsweredQuestionDAO{
 
@@ -16,19 +20,39 @@ public class AnsweredQuestionDAOImpl implements AnsweredQuestionDAO{
 		this.session = session;
 	}
 	
-	public List<AnsweredQuestion> getQuestionsByTakenTestId(int takenTestId) {
-		// TODO Auto-generated method stub
-		return null;
+	@SuppressWarnings("unchecked")
+	public List<AnsweredQuestion> getQuestionsByTakenTestId(TakenTest takenTest) {
+		Criteria criteria = session.createCriteria(AnsweredQuestion.class);
+		return criteria.add(Restrictions.eq("takenTest", takenTest)).list();
 	}
 
 	public boolean insertAnsweredQuestion(AnsweredQuestion answeredQuestion) {
-		// TODO Auto-generated method stub
-		return false;
+		Transaction tx = session.beginTransaction();
+		try{
+			session.save(answeredQuestion);
+			tx.commit();
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			tx.rollback();
+			return false;
+		}
 	}
 
 	public boolean insertAnsweredQuestions(List<AnsweredQuestion> answeredQuestions) {
-		// TODO Auto-generated method stub
-		return false;
+		Transaction tx = session.beginTransaction();
+		try{
+			for(AnsweredQuestion ansQuestion : answeredQuestions){
+				// using the method to save each object from the list
+				insertAnsweredQuestion(ansQuestion);
+			}
+			tx.commit();
+			return true;
+		} catch(Exception e) {
+			e.printStackTrace();
+			tx.rollback();
+			return false;
+		}
 	}
 
 }
