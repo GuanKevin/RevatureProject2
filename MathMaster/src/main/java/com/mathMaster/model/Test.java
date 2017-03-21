@@ -24,7 +24,7 @@ import javax.persistence.Table;
 @NamedNativeQueries({
 	
 })
-public class M2Test {
+public class Test {
 	@Id
 	@Column(name="TEST_ID")
 	@SequenceGenerator(name="TEST", sequenceName="TEST_PK_SEQ", initialValue=1, allocationSize=1)
@@ -38,14 +38,14 @@ public class M2Test {
 	@JoinColumn(name="COURSE_ID")
 	private Course course;
 
-	@OneToMany(mappedBy="m2Test") 
+	@OneToMany(mappedBy="test") 
 	private Set<Question> questions = new HashSet<Question>();
 		
-	public M2Test() {
+	public Test() {
 		super();
 	}
 
-	public M2Test(String name, Course course) {
+	public Test(String name, Course course) {
 		super();
 		this.name = name;
 		this.course = course;
