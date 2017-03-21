@@ -2,14 +2,15 @@ package com.mathMaster.domain;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 import com.mathMaster.model.Course;
 import com.mathMaster.model.Student;
 import com.mathMaster.model.Teacher;
-import com.mathMaster.util.M2SessionFactory;
 /**
  * 
  * @author Pier Yos
@@ -20,14 +21,9 @@ public class CourseDAOImpl implements CourseDAO {
 		this.session = session;
 	}
 	
-	public boolean createCourse(Teacher teacher, String courseName, String subjectName) {
+	public boolean createCourse(Course course) {
 		Transaction txn = session.beginTransaction();
 		try {
-			Course course = new Course();
-			course.setTeacher(teacher);
-			course.setCourseName(courseName);
-			course.setSubjectName(subjectName);
-			
 			session.save(course);
 			txn.commit();
 			return true;
@@ -43,10 +39,12 @@ public class CourseDAOImpl implements CourseDAO {
 	}
 
 	public List<Course> getAllCourseByTeacherId(Teacher teacher) {
-		return (List<Course>) session.getNamedQuery("getAllCourseByTeacherId").setParameter("teacher", teacher);
+		Criteria criteria = session.createCriteria(Course.class);
+		return (List<Course>) criteria.add(Restrictions.eq("teacher", teacher)).list();
 	}
 
 	public List<Course> getAllCourseByStudentId(Student student) {
-		return (List<Course>) session.getNamedQuery("getAllCourseByStudentId").setParameter("student", student);
+		Criteria criteria = session.createCriteria(Course.class);
+		return (List<Course>) criteria.add(Restrictions.eq("student", student)).list();
 	}
 }

@@ -7,5 +7,5 @@ import com.mathMaster.model.Student;
  */
 public interface StudentDAO {
 	public Student getStudentByUsername(String username);
-	//public String getStudentPassword(int studentId);
+	public boolean createStudent(Student student);
 }
