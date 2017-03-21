@@ -13,7 +13,7 @@ public class TakenExamDAOImpl implements TakenExamDAO {
 	}
 
 	public TakenExam getTakenExamById(int takenExamId) {
-		return (TakenExam) session.load(TakenExam.class, takenExamId);
+		return (TakenExam) session.get(TakenExam.class, takenExamId);
 	}
 
 	public boolean takeExam(TakenExam takenExam) {
