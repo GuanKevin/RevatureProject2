@@ -29,7 +29,7 @@ public class Student {
 	@GeneratedValue(generator="STUDENT", strategy=GenerationType.SEQUENCE)
 	private int studentId;
 	
-	@Column(name="USER_NAME")
+	@Column(name="USER_NAME", unique=true)
 	private String userName;
 	
 	@Column(name="PASSWORD")
@@ -41,7 +41,7 @@ public class Student {
 	@Column(name="LAST_NAME")
 	private String lastName;
 	
-	@Column(name="EMAIL")
+	@Column(name="EMAIL", unique=true)
 	private String email;
 	
 	@ManyToMany

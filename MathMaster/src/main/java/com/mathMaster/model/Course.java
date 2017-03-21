@@ -34,7 +34,7 @@ public class Course {
 	@JoinColumn(name="TEACHER_ID")
 	private Teacher teacher;
 	
-	@Column(name="COURSE_NAME")
+	@Column(name="COURSE_NAME", unique=true)
 	private String courseName;
 	
 	@Column(name="SUBJECT_NAME")
