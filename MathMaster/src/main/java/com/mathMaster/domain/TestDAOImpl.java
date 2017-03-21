@@ -8,7 +8,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
-import com.mathMaster.model.Course;
 import com.mathMaster.model.Test;
 
 public class TestDAOImpl implements TestDAO{
@@ -19,9 +18,9 @@ public class TestDAOImpl implements TestDAO{
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Test> getAllTest(Course course) {
+	public List<Test> getAllTest(int courseId) {
 		Criteria criteria = session.createCriteria(Test.class);
-		return criteria.add(Restrictions.eq("COURSE_ID", course.getCourseId())).list();
+		return criteria.add(Restrictions.eq("course", courseId)).list();
 	}
 
 	public Test getTestById(int testId) {
