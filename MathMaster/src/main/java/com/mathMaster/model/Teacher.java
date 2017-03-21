@@ -14,14 +14,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="M2_TEACHER")
+
 @NamedQueries({
 	
 })
 @NamedNativeQueries({
 	
 })
+@Entity
+@Table(name="M2_TEACHER")
 public class Teacher {
 	@Id
 	@Column(name="TEACHER_ID")

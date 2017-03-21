@@ -21,14 +21,15 @@ import javax.persistence.Table;
  * @author Denise
  *
  */
-@Entity
-@Table(name="M2_QUESTION")
+
 @NamedQueries({
 	
 })
 @NamedNativeQueries({
 	
 })
+@Entity
+@Table(name="M2_QUESTION")
 public class Question {
 	@Id
 	@Column(name="QUESTION_ID")
@@ -39,8 +40,8 @@ public class Question {
 	@ManyToOne
 	@JoinColumn(name="TEST_ID")
 	private Test test;
-
-	@Column (name = "LEVEL")
+	// level is a reserved word in db
+	@Column (name = "LVL")
 	private int level;
 	
 	@Column (name = "QUESTION")
@@ -66,10 +67,10 @@ public class Question {
 		super();
 	}
 	
-	public Question(Test m2Test, int level, String question, String answer, String choiceOne,
+	public Question(Test test, int level, String question, String answer, String choiceOne,
 			String choiceTwo, String choiceThree) {
 		super();
-		this.test = m2Test;
+		this.test = test;
 		this.level = level;
 		this.question = question;
 		this.answer = answer;
@@ -84,14 +85,6 @@ public class Question {
 
 	public void setQuestionId(int questionId) {
 		this.questionId = questionId;
-	}
-
-	public Test getM2Test() {
-		return test;
-	}
-
-	public void setM2Test(Test m2Test) {
-		this.test = m2Test;
 	}
 	
 	public int getLevel() {

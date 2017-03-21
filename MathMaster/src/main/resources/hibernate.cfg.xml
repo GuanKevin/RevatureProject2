@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM 
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.connection.driver_class">
+			oracle.jdbc.OracleDriver
+		</property>
+		<property name="hibernate.connection.username">
+			RevatureKG
+		</property>
+		<property name="hibernate.connection.password">
+			welcome1
+		</property>
+		<property name="hibernate.connection.url">
+			jdbc:oracle:thin:@kevinguan.cst3hkeetcxn.us-west-2.rds.amazonaws.com:1521:orcl
+		</property>
+		<property name="hibernate.dialect">
+			org.hibernate.dialect.Oracle10gDialect
+		</property>
+
+		<!-- only recommended for dev/test -->
+		<property name="show_sql">
+			true
+		</property>
+		<property name="hibernate.hbm2ddl.auto">
+			update
+		</property>
+		<!-- only recommended for dev/test -->
+
+		<!-- hibernate mapping file -->
+		<mapping class="com.mathMaster.model.Test" />
+		<mapping class="com.mathMaster.model.Question" />
+		<mapping class="com.mathMaster.model.AnsweredQuestion" />
+		<mapping class="com.mathMaster.model.Course" />
+		<mapping class="com.mathMaster.model.TakenTest" />
+		<mapping class="com.mathMaster.model.Student" />
+		<mapping class="com.mathMaster.model.Teacher" />
+
+		<!-- <mapping file="Hero.hbm.xml" /> -->
+	</session-factory>
+</hibernate-configuration>

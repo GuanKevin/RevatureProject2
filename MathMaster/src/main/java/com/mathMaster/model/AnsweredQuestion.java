@@ -20,7 +20,7 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name="M2_ANSWERED_QUESTIONS")
+@Table(name="M2_ANSWERED_QUESTION")
 @NamedQueries({
 	
 })

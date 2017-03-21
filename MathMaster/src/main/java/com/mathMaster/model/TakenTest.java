@@ -16,14 +16,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="M2_TAKEN_TEST")
+
 @NamedQueries({
 	
 })
 @NamedNativeQueries({
 	
 })
+@Entity
+@Table(name="M2_TAKEN_TEST")
 public class TakenTest {
 	@Id
 	@Column(name="TAKEN_TEST_ID")
@@ -54,7 +55,6 @@ public class TakenTest {
 	public TakenTest(Test test, Student student, int score, int timeTaken) {
 		super();
 		this.test = test;
-
 		this.student = student;
 		this.score = score;
 		this.timeTaken = timeTaken;

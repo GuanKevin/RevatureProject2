@@ -16,14 +16,15 @@ import javax.persistence.NamedQueries;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 //DENISE TEST
-@Entity
-@Table(name="M2_COURSE")
+
 @NamedQueries({
 	
 })
 @NamedNativeQueries({
 	
 })
+@Entity
+@Table(name="M2_COURSE")
 public class Course {
 	@Id
 	@Column(name="COURSE_ID")
@@ -35,7 +36,7 @@ public class Course {
 	@JoinColumn(name="TEACHER_ID")
 	private Teacher teacher;
 	
-	@Column(name="COURSE_NAME", unique=true)
+	@Column(name="COURSE_NAME")
 	private String courseName;
 	
 	@Column(name="SUBJECT_NAME")

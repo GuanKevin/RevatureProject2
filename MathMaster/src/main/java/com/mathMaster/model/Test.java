@@ -16,14 +16,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "M2_TEST")
+
 @NamedQueries({
 	
 })
 @NamedNativeQueries({
 	
 })
+@Entity
+@Table(name = "M2_TEST")
 public class Test {
 	@Id
 	@Column(name="TEST_ID")
@@ -39,10 +40,10 @@ public class Test {
 	private Course course;
 
 	@OneToMany(mappedBy="test") 
-	private Set<Question> questionSet = new HashSet<Question>();
+	private Set<Question> questions = new HashSet<Question>();
 		
 	@OneToMany(mappedBy="test")
-	private Set<TakenTest> takenTestSet = new HashSet<TakenTest>();
+	private Set<TakenTest> takenTests = new HashSet<TakenTest>();
 	
 	public Test() {
 		super();
