@@ -12,6 +12,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedQueries;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -47,7 +48,10 @@ public class Student {
 	
 	@ManyToMany
 	@JoinTable(name = "STUDENT_COURSE")
-	private Set<Course> courses = new HashSet<Course>();
+	private Set<Course> courseSet = new HashSet<Course>();
+	
+	@OneToMany(mappedBy="studentId")
+	private Set<TakenTest> takenTestSet = new HashSet<TakenTest>();
 	
 	public Student() {}
 
