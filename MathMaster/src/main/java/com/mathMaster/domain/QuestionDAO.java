@@ -3,7 +3,7 @@ package com.mathMaster.domain;
 import java.util.List;
 
 import com.mathMaster.model.Question;
-import com.mathMaster.model.Test;
+import com.mathMaster.model.Exam;
 
 /**
  * This interface will be used for the QuestionDAOImpl
@@ -40,6 +40,6 @@ public interface QuestionDAO {
 	 * @param test
 	 * @return
 	 */
-	public List<Question> getQuestionsByTestId(Test test);
+	public List<Question> getQuestionsByTestId(Exam exam);
 	
 }
