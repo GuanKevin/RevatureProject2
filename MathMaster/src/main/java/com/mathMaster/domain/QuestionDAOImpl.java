@@ -8,7 +8,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import com.mathMaster.model.Question;
-import com.mathMaster.model.Test;
+import com.mathMaster.model.Exam;
 
 public class QuestionDAOImpl implements QuestionDAO {
 
@@ -56,9 +56,9 @@ public class QuestionDAOImpl implements QuestionDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Question> getQuestionsByTestId(Test test) {
+	public List<Question> getQuestionsByExamId(Exam exam) {
 		Criteria criteria = session.createCriteria(Question.class);
-		return criteria.add(Restrictions.eq("takenTest", test)).list();
+		return criteria.add(Restrictions.eq("takenExam", exam)).list();
 
 	}
 

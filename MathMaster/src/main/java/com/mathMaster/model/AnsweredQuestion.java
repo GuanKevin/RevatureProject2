@@ -42,19 +42,19 @@ public class AnsweredQuestion {
 	private Question question;
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "TAKEN_TEST_ID")
-	private TakenExam takenTest;
+	@JoinColumn(name = "TAKEN_EXAM_ID")
+	private TakenExam takenExam;
 
 	
 	public AnsweredQuestion() {
 		super();
 	}
 
-	public AnsweredQuestion(String answerChoosen, Question question, TakenExam takenTest) {
+	public AnsweredQuestion(String answerChoosen, Question question, TakenExam takenExam) {
 		super();
 		this.answerChoosen = answerChoosen;
 		this.question = question;
-		this.takenTest = takenTest;
+		this.takenExam = takenExam;
 	}
 
 	public int getAnsQuesId() {
@@ -81,12 +81,12 @@ public class AnsweredQuestion {
 		this.question = question;
 	}
 
-	public TakenExam getTakenTest() {
-		return takenTest;
+	public TakenExam getTakenExam() {
+		return takenExam;
 	}
 
-	public void setTakenTest(TakenExam takenTest) {
-		this.takenTest = takenTest;
+	public void setTakenExam(TakenExam takenExam) {
+		this.takenExam = takenExam;
 	}
 
 	@Override

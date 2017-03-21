@@ -3,7 +3,7 @@ package com.mathMaster.domain;
 import java.util.List;
 
 import com.mathMaster.model.AnsweredQuestion;
-import com.mathMaster.model.TakenTest;
+import com.mathMaster.model.TakenExam;
 
 /**
  * This interface will be used for the AnsweredQuestionDAOImpl
@@ -18,7 +18,7 @@ public interface AnsweredQuestionDAO {
 	 * @param takenTest
 	 * @return
 	 */
-	public List<AnsweredQuestion> getQuestionsByTakenTestId(TakenTest takenTest);
+	public List<AnsweredQuestion> getQuestionsByTakenExamId(TakenExam takenExam);
 
 	/**
 	 * save a new answered question
