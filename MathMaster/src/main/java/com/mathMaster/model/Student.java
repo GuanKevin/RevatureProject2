@@ -48,10 +48,10 @@ public class Student {
 	
 	@ManyToMany
 	@JoinTable(name = "STUDENT_COURSE")
-	private Set<Course> courseSet = new HashSet<Course>();
+	private Set<Course> courses = new HashSet<Course>();
 	
 	@OneToMany(mappedBy="student")
-	private Set<TakenTest> takenTestSet = new HashSet<TakenTest>();
+	private Set<TakenTest> takenTest = new HashSet<TakenTest>();
 	
 	public Student() {}
 
@@ -113,19 +113,19 @@ public class Student {
 	}
 
 	public Set<Course> getCourseSet() {
-		return courseSet;
+		return courses;
 	}
 
 	public void setCourseSet(Set<Course> courseSet) {
-		this.courseSet = courseSet;
+		this.courses = courseSet;
 	}
 
 	public Set<TakenTest> getTakenTestSet() {
-		return takenTestSet;
+		return takenTest;
 	}
 
 	public void setTakenTestSet(Set<TakenTest> takenTestSet) {
-		this.takenTestSet = takenTestSet;
+		this.takenTest = takenTestSet;
 	}
 
 	@Override
