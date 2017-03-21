@@ -12,7 +12,8 @@ import com.mathMaster.model.AnsweredQuestion;
 public interface AnsweredQuestionDAO {
 
 	/**
-	 * 
+	 * Return all answered Questions 
+	 * from a specific taken test
 	 * @param takenTestId
 	 * @return
 	 */
