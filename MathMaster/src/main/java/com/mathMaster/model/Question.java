@@ -38,8 +38,8 @@ public class Question {
 	private int questionId;
 
 	@ManyToOne
-	@JoinColumn(name="TEST_ID")
-	private Exam test;
+	@JoinColumn(name="EXAM_ID")
+	private Exam exam;
 	// level is a reserved word in db
 	@Column (name = "LVL")
 	private int level;
@@ -67,10 +67,10 @@ public class Question {
 		super();
 	}
 	
-	public Question(Exam test, int level, String question, String answer, String choiceOne,
+	public Question(Exam exam, int level, String question, String answer, String choiceOne,
 			String choiceTwo, String choiceThree) {
 		super();
-		this.test = test;
+		this.exam = exam;
 		this.level = level;
 		this.question = question;
 		this.answer = answer;
@@ -135,12 +135,12 @@ public class Question {
 		this.choiceThree = choiceThree;
 	}
 
-	public Exam getTest() {
-		return test;
+	public Exam getExam() {
+		return exam;
 	}
 
-	public void setTest(Exam test) {
-		this.test = test;
+	public void setTest(Exam exam) {
+		this.exam = exam;
 	}
 
 	public Set<AnsweredQuestion> getAnsweredQuestions() {
