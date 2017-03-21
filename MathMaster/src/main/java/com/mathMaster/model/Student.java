@@ -1,5 +1,6 @@
 package com.mathMaster.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -46,13 +47,12 @@ public class Student {
 	
 	@ManyToMany
 	@JoinTable(name = "STUDENT_COURSE")
-	private Set<Course> courses;
+	private Set<Course> courses = new HashSet<Course>();
 	
 	public Student() {}
 
-	public Student(int studentId, String userName, String password, String firstName, String lastName, String email) {
+	public Student(String userName, String password, String firstName, String lastName, String email) {
 		super();
-		this.studentId = studentId;
 		this.userName = userName;
 		this.password = password;
 		this.firstName = firstName;

@@ -1,5 +1,6 @@
 package com.mathMaster.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -44,13 +45,12 @@ public class Teacher {
 	private String email;
 	
 	@OneToMany(mappedBy = "teacher")
-	private Set<Course> courses;
+	private Set<Course> courses = new HashSet<Course>();
 	
 	public Teacher() {}
 
-	public Teacher(int teacherId, String userName, String password, String firstName, String lastName, String email) {
+	public Teacher(String userName, String password, String firstName, String lastName, String email) {
 		super();
-		this.teacherId = teacherId;
 		this.userName = userName;
 		this.password = password;
 		this.firstName = firstName;

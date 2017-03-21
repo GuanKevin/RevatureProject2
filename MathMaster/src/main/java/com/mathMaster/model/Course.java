@@ -1,5 +1,6 @@
 package com.mathMaster.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -41,14 +42,13 @@ public class Course {
 	private String subjectName;
 	
 	@ManyToMany(mappedBy = "courses")
-	private Set<Student> students;
+	private Set<Student> students = new HashSet<Student>();
 
 	
 	public Course () {}
 	
-	public Course(int courseId, Teacher teacher, String courseName, String subjectName) {
+	public Course(Teacher teacher, String courseName, String subjectName) {
 		super();
-		this.courseId = courseId;
 		this.teacher = teacher;
 		this.courseName = courseName;
 		this.subjectName = subjectName;

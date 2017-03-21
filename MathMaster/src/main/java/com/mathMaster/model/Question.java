@@ -32,7 +32,7 @@ public class Question {
 
 	@ManyToOne
 	@JoinColumn(name="TEST_ID")
-	private Test test;
+	private M2Test m2Test;
 
 	@Column (name = "LEVEL")
 	private int level;
@@ -52,12 +52,14 @@ public class Question {
 	@Column (name = "CHOICE_THREE")
 	private String choiceThree;
 	
-	public Question() {}
+	public Question() {
+		super();
+	}
 	
-	public Question(Test test, int level, String question, String answer, String choiceOne,
+	public Question(M2Test m2Test, int level, String question, String answer, String choiceOne,
 			String choiceTwo, String choiceThree) {
 		super();
-		this.test = test;
+		this.m2Test = m2Test;
 		this.level = level;
 		this.question = question;
 		this.answer = answer;
@@ -74,14 +76,14 @@ public class Question {
 		this.questionId = questionId;
 	}
 
-	public Test getTest() {
-		return test;
+	public M2Test getM2Test() {
+		return m2Test;
 	}
 
-	public void setTest(Test test) {
-		this.test = test;
+	public void setM2Test(M2Test m2Test) {
+		this.m2Test = m2Test;
 	}
-
+	
 	public int getLevel() {
 		return level;
 	}
