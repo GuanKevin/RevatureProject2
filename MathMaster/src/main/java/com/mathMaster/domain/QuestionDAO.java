@@ -34,12 +34,4 @@ public interface QuestionDAO {
 	 *  					returns boolean for now for testing
 	 */
 	public boolean insertQuestions(List<Question> questions);
-
-	/**
-	 * get all the questions from one specific test
-	 * @param test
-	 * @return
-	 */
-	public List<Question> getQuestionsByExamId(Exam exam);
-	
 }

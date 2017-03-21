@@ -19,12 +19,6 @@ public class AnsweredQuestionDAOImpl implements AnsweredQuestionDAO{
 	public AnsweredQuestionDAOImpl(Session session){
 		this.session = session;
 	}
-	
-	@SuppressWarnings("unchecked")
-	public List<AnsweredQuestion> getQuestionsByTakenExamId(TakenExam takenExam) {
-		Criteria criteria = session.createCriteria(AnsweredQuestion.class);
-		return criteria.add(Restrictions.eq("takenExam", takenExam)).list();
-	}
 
 	public boolean insertAnsweredQuestion(AnsweredQuestion answeredQuestion) {
 		Transaction tx = session.beginTransaction();

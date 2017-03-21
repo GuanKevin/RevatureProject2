@@ -55,11 +55,4 @@ public class QuestionDAOImpl implements QuestionDAO {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<Question> getQuestionsByExamId(Exam exam) {
-		Criteria criteria = session.createCriteria(Question.class);
-		return criteria.add(Restrictions.eq("takenExam", exam)).list();
-
-	}
-
 }

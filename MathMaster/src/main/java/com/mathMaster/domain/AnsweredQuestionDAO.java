@@ -13,14 +13,6 @@ import com.mathMaster.model.TakenExam;
 public interface AnsweredQuestionDAO {
 
 	/**
-	 * Return all answered Questions 
-	 * from a specific taken test
-	 * @param takenTest
-	 * @return
-	 */
-	public List<AnsweredQuestion> getQuestionsByTakenExamId(TakenExam takenExam);
-
-	/**
 	 * save a new answered question
 	 * @param answeredQuestion
 	 * 							return boolean for testing
