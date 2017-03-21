@@ -32,7 +32,6 @@ public class Facade implements AutoCloseable {
 	}
 	
 	
-	
 	public void close() throws Exception {
 		sf.close();
 		session.close();

@@ -11,6 +11,7 @@ import com.mathMaster.model.Student;
  * @author Pier Yos
  */
 public class StudentDAOImpl implements StudentDAO {
+
 	private Session session;
 	
 	public StudentDAOImpl(Session session) {
