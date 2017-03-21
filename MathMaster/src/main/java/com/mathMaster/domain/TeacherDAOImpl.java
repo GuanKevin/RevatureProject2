@@ -27,13 +27,6 @@ public class TeacherDAOImpl implements TeacherDAO{
 	}
 
 	/**
-	 * Return the password of the teacher
-	 */
-	public String getPassword(Teacher teacher) {
-		return teacher.getPassword();
-	}
-
-	/**
 	 * Create a teacher and store it into the database
 	 */
 	public void createTeacher(Teacher teacher) {
