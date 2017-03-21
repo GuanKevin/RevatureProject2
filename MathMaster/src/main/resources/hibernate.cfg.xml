@@ -24,13 +24,13 @@
 		<property name="show_sql">
 			true
 		</property>
-		<property name="hibernate.hbm2ddl.auto">
+	<!-- 	<property name="hibernate.hbm2ddl.auto">
 			update
-		</property>
+		</property> -->
 		<!-- only recommended for dev/test -->
 
 		<!-- hibernate mapping file -->
-		<mapping class="com.mathMaster.model.Test" />
+		<mapping class="com.mathMaster.model.Exam" />
 		<mapping class="com.mathMaster.model.Question" />
 		<mapping class="com.mathMaster.model.AnsweredQuestion" />
 		<mapping class="com.mathMaster.model.Course" />

@@ -8,30 +8,30 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import com.mathMaster.model.Student;
-import com.mathMaster.model.TakenTest;
+import com.mathMaster.model.TakenExam;
 
-public class TakenTestDAOImpl implements TakenTestDAO{
+public class TakenExamDAOImpl implements TakenExamDAO{
 	Session session;
 	
-	public TakenTestDAOImpl(Session session) {
+	public TakenExamDAOImpl(Session session) {
 		this.session = session;
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<TakenTest> getAllTakenTest(Student student) {
-		Criteria criteria = session.createCriteria(TakenTest.class);
+	public List<TakenExam> getAllExamTest(Student student) {
+		Criteria criteria = session.createCriteria(TakenExam.class);
 		return criteria.add(Restrictions.eq("student", student)).list();
 	}
 
-	public TakenTest getTakenTestById(int takenTestId) {
-		Criteria criteria = session.createCriteria(TakenTest.class);
-		return (TakenTest) criteria.add(Restrictions.eq("TAKEN_TEST_ID", takenTestId)).uniqueResult();
+	public TakenExam getTakenExamById(int takenExamId) {
+		Criteria criteria = session.createCriteria(TakenExam.class);
+		return (TakenExam) criteria.add(Restrictions.eq("TAKEN_TEST_ID", takenExamId)).uniqueResult();
 	}
 
-	public boolean takeTest(TakenTest takenTest) {
+	public boolean takeExam(TakenExam takenExam) {
 		Transaction tx = session.beginTransaction();
 		try{
-			session.save(takenTest);
+			session.save(takenExam);
 			tx.commit();
 			return true;
 		}catch(Exception e){

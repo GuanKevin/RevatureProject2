@@ -39,7 +39,7 @@ public class Question {
 
 	@ManyToOne
 	@JoinColumn(name="TEST_ID")
-	private Test test;
+	private Exam test;
 	// level is a reserved word in db
 	@Column (name = "LVL")
 	private int level;
@@ -67,7 +67,7 @@ public class Question {
 		super();
 	}
 	
-	public Question(Test test, int level, String question, String answer, String choiceOne,
+	public Question(Exam test, int level, String question, String answer, String choiceOne,
 			String choiceTwo, String choiceThree) {
 		super();
 		this.test = test;
@@ -135,11 +135,11 @@ public class Question {
 		this.choiceThree = choiceThree;
 	}
 
-	public Test getTest() {
+	public Exam getTest() {
 		return test;
 	}
 
-	public void setTest(Test test) {
+	public void setTest(Exam test) {
 		this.test = test;
 	}
 

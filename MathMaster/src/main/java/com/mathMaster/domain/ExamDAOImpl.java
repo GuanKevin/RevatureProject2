@@ -8,30 +8,30 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import com.mathMaster.model.Course;
-import com.mathMaster.model.Test;
+import com.mathMaster.model.Exam;
 
-public class TestDAOImpl implements TestDAO{
+public class ExamDAOImpl implements ExamDAO{
 	private Session session;
 	
-	public TestDAOImpl(Session session) {
+	public ExamDAOImpl(Session session) {
 		this.session = session;
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Test> getAllTest(Course course) {
-		Criteria criteria = session.createCriteria(Test.class);
+	public List<Exam> getAllExam(Course course) {
+		Criteria criteria = session.createCriteria(Exam.class);
 		return criteria.add(Restrictions.eq("course", course)).list();
 	}
 
-	public Test getTestById(int testId) {
-		Criteria criteria = session.createCriteria(Test.class);
-		return (Test) criteria.add(Restrictions.eq("TEST_ID", testId)).uniqueResult();
+	public Exam getExamById(int examId) {
+		Criteria criteria = session.createCriteria(Exam.class);
+		return (Exam) criteria.add(Restrictions.eq("TEST_ID", examId)).uniqueResult();
 	}
 
-	public boolean createTest(Test test) {
+	public boolean createExam(Exam exam) {
 		Transaction tx = session.beginTransaction();
 		try{
-			session.save(test);
+			session.save(exam);
 			tx.commit();
 			return true;
 		} catch(Exception e) {
@@ -40,7 +40,4 @@ public class TestDAOImpl implements TestDAO{
 			return false;
 		}
 	}
-
-	
-
 }

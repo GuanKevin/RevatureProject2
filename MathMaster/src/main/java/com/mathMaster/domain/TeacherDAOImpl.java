@@ -29,14 +29,16 @@ public class TeacherDAOImpl implements TeacherDAO{
 	/**
 	 * Create a teacher and store it into the database
 	 */
-	public void createTeacher(Teacher teacher) {
+	public boolean createTeacher(Teacher teacher) {
 		Transaction tx = session.beginTransaction();
 		
 		try {
 			session.save(teacher);
 			tx.commit();
+			return true;
 		} catch (Exception ex) {
 			tx.rollback();
+			return false;
 		}
 	}
 }
