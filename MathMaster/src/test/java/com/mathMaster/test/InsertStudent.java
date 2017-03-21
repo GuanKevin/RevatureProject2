@@ -21,28 +21,28 @@ import com.mathMaster.util.M2SessionFactory;
 public class InsertStudent {
 
 
-	@Test
+	/*@Test
 	public void insertStudentIntoDabase() {
 		SessionFactory sf = M2SessionFactory.getSessionFactory();
 		Session session = sf.openSession();
 		
 		StudentDAO student = new StudentDAOImpl(session);
 		
-		/**
+		*//**
 		 * Has unique constraint, make sure to change
-		 */
+		 *//*
 		String username = "Student004";
 		
-		/**
+		*//**
 		 * JBCrypt hashed password
-		 */
+		 *//*
 		String password = BCrypt.hashpw("welcome1", BCrypt.gensalt(12));
 		String firstname = "Denise";
 		String lastname = "Montesdeoca";
 		
-		/**
+		*//**
 		 * Has unique constraint, make sure to change
-		 */
+		 *//*
 		String email = "Student004@welcome1.com";
 		student.createStudent(new Student(
 				username,
@@ -53,5 +53,5 @@ public class InsertStudent {
 		
 		session.close();
 		sf.close();
-	}
+	}*/
 }

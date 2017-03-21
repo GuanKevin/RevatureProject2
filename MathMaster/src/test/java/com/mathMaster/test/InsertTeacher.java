@@ -20,28 +20,28 @@ import com.mathMaster.util.M2SessionFactory;
  */
 public class InsertTeacher {
 
-	@Test
+	/*@Test
 	public void insertTeacherIntoDatabase() {	
 		SessionFactory sf = M2SessionFactory.getSessionFactory();
 		Session session = sf.openSession();
 		
 		TeacherDAO teacher = new TeacherDAOImpl(session);
 		
-		/**
+		*//**
 		 * Has unique constraint, make sure to change!
-		 */
+		 *//*
 		String username = "Code_Blooded_PY";
 		
-		/**
+		*//**
 		 * JBCrypt hashed password
-		 */
+		 *//*
 		String password = BCrypt.hashpw("welcome1", BCrypt.gensalt(12));
 		String firstname = "Pier";
 		String lastname = "Yos";
 		
-		/**
+		*//**
 		 * Has unique constraint, make sure to change!
-		 */
+		 *//*
 		String email = "Code_Blooded_PY@welcome1.com";
 		teacher.createTeacher(new Teacher(
 				username,
@@ -52,5 +52,5 @@ public class InsertTeacher {
 		
 		session.close();
 		sf.close();
-	}
+	}*/
 }
