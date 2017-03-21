@@ -51,10 +51,10 @@ public class TakenTest {
 	
 	public TakenTest() {}
 
-	public TakenTest(Test testId, Student studentId, int score, int timeTaken) {
+	public TakenTest(Test testId, Student student, int score, int timeTaken) {
 		super();
 		this.test = testId;
-		this.student = studentId;
+		this.student = student;
 		this.score = score;
 		this.timeTaken = timeTaken;
 	}
