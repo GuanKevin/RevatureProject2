@@ -45,6 +45,7 @@ public class TakenTest {
 	@Column(name="TIME_TAKEN")
 	private int timeTaken;
 	
+	/*denise added to mapp to AnsweredQuestions*/
 	@OneToMany(mappedBy = "takenTest")
 	private Set<AnsweredQuestions> answeredQuestions = new HashSet<AnsweredQuestions>();
 	
