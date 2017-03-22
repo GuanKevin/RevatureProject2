@@ -8,6 +8,5 @@ import com.mathMaster.model.Course;
  */
 public interface CourseDAO {
 	public boolean createCourse(Course course);
-
 	public Course getCourseById(int id);
 }
