@@ -63,6 +63,11 @@ public class Facade implements AutoCloseable {
 		}
 	}
 	
+	/**
+	 * Calling TeacherDaoImpl DAO
+	 * @param username
+	 * @return
+	 */
 	public Teacher getTeacherByUserName(String username) {
 		return this.teacherDAO.getTeacherByUserName(username);
 	}
