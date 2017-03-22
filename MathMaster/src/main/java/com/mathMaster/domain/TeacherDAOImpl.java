@@ -34,10 +34,10 @@ public class TeacherDAOImpl implements TeacherDAO {
 	 * Gets a teacher object and store the teachers' data into the database
 	 */
 	public boolean createTeacher(Teacher teacher) {
-		Transaction tx = null;
+		Transaction tx = session.beginTransaction();
 
 		try {
-			tx = session.beginTransaction();
+			
 			session.save(teacher);
 			session.flush();
 			tx.commit();
@@ -50,9 +50,7 @@ public class TeacherDAOImpl implements TeacherDAO {
 				tx.rollback();
 			
 			return false;
-		} finally {
-			session.close();
-		}
+		} 
 	}
 
 	public boolean removeTeacher(Teacher teacher) {
@@ -72,8 +70,6 @@ public class TeacherDAOImpl implements TeacherDAO {
 				tx.rollback();
 			
 			return false;
-		} finally {
-			session.close();
-		}
+		} 
 	}
 }

@@ -37,7 +37,5 @@
 		<mapping class="com.mathMaster.model.TakenExam" />
 		<mapping class="com.mathMaster.model.Student" />
 		<mapping class="com.mathMaster.model.Teacher" />
-
-		<!-- <mapping file="Hero.hbm.xml" /> -->
 	</session-factory>
 </hibernate-configuration>
