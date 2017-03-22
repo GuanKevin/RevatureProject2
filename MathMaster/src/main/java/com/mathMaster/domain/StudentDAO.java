@@ -11,10 +11,17 @@ public interface StudentDAO {
 	 * Get the Student by user name
 	 */
 	public Student getStudentByUsername(String username);
+	
 	/**
-	 * Used to create a student and add it to the database
-	 * 
+	 * Create a student and add it to the database
 	 * @param student
+	 * @return
 	 */
 	public boolean createStudent(Student student);
+	/**
+	 * Delete the student from the database
+	 * @param student
+	 * @return
+	 */
+	public boolean removeStudent(Student student);
 }

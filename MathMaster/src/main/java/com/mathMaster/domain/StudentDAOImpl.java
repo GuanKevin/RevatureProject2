@@ -40,4 +40,20 @@ public class StudentDAOImpl implements StudentDAO {
 			return false;
 		}
 	}
+
+	public boolean removeStudent(Student student) {
+		Transaction tx = session.beginTransaction();
+		try {
+			session.delete(student);
+			session.flush();
+			tx.commit();
+			
+			return true;
+		} catch (Exception e) {
+			System.out.println("Error in deleting student from the database");
+			e.printStackTrace();
+			tx.rollback();
+			return false;
+		}
+	}
 }
