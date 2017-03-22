@@ -45,7 +45,7 @@ public class Facade implements AutoCloseable {
 				if (!BCrypt.checkpw(password, teacher.getPassword())) {
 					// Gets in here if password entered does not matches the password
 					// found in the database that is related to the username
-					//TODO Don't allow teacher to login  
+					// TODO Don't allow teacher to login  
 				}	
 			}
 		}
@@ -57,7 +57,7 @@ public class Facade implements AutoCloseable {
 				if (!BCrypt.checkpw(password, student.getPassword())) {
 					// Gets in here if password entered does not matches the password
 					// found in the database that is related to the username
-					//TODO Don't allow teacher to login  
+					// TODO Don't allow teacher to login  
 				}
 			}
 		}
