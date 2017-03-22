@@ -35,8 +35,7 @@ public class AnsweredQuestionDAOImpl implements AnsweredQuestionDAO {
 		Transaction tx = session.beginTransaction();
 		try {
 			for (AnsweredQuestion ansQuestion : answeredQuestions) {
-				// using the method to save each object from the list
-				insertAnsweredQuestion(ansQuestion);
+				session.save(ansQuestion);
 			}
 			tx.commit();
 			return true;

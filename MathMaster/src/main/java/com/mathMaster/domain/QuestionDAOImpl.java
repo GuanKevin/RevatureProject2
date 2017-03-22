@@ -40,8 +40,7 @@ public class QuestionDAOImpl implements QuestionDAO {
 		Transaction tx = session.beginTransaction();
 		try {
 			for (Question question : questions) {
-				// using the method to save each object from the list
-				insertQuestion(question);
+				session.save(question);
 			}
 			tx.commit();
 			return true;

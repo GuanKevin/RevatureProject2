@@ -19,9 +19,7 @@ public interface AnsweredQuestionDAO {
 	public boolean insertAnsweredQuestion(AnsweredQuestion answeredQuestion);
 
 	/**
-	 * save all answered questions from a test submitted
-	 * use insertAnsweredQuestion(answeredQuestion) 
-	 * to insert one by one
+	 * save all answered questions from a test submitted 
 	 * @param answeredQuestions
 	 * 						return boolean for testing
 	 */

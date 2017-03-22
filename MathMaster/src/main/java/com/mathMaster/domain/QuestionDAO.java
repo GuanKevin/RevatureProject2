@@ -26,9 +26,7 @@ public interface QuestionDAO {
 	public boolean insertQuestion(Question question);
 	
 	/**
-	 * save a bunch of questions
-	 * will use insertQuestion(question) 
-	 * to insert one by one
+	 * save a list of questions
 	 * @param questions
 	 *  					returns boolean for now for testing
 	 */
