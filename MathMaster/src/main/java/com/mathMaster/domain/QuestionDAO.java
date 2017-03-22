@@ -3,7 +3,6 @@ package com.mathMaster.domain;
 import java.util.List;
 
 import com.mathMaster.model.Question;
-import com.mathMaster.model.Exam;
 
 /**
  * This interface will be used for the QuestionDAOImpl
