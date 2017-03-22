@@ -63,6 +63,10 @@ public class Facade implements AutoCloseable {
 		}
 	}
 	
+	public Teacher getTeacherByUserName(String username) {
+		return this.teacherDAO.getTeacherByUserName(username);
+	}
+	
 	/**
 	 * TODO
 	 * Figure out where all the sessions and the sessionfactory 
