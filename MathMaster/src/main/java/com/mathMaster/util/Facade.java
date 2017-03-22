@@ -18,7 +18,7 @@ public class Facade implements AutoCloseable {
 	private Teacher teacher;
 	private StudentDAO studentDAO;
 	private Student student;
-	private boolean user; //true = teacher, false = student
+	private boolean user; 		// true = teacher, false = student
 	
 	/**
 	 * isTeacher is a boolean variable that takes in true if the user that is trying
@@ -35,7 +35,7 @@ public class Facade implements AutoCloseable {
 		if (username != null && password != null)
 			user = isTeacher;
 		else
-			System.out.println("Facade login error!");
+			// TODO User is missing username or password field and need to fill it
 			
 		if (user) {
 			teacherDAO = new TeacherDAOImpl(session);
