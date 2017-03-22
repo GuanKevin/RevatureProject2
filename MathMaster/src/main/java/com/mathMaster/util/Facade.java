@@ -20,6 +20,8 @@ public class Facade implements AutoCloseable {
 	private Student student;
 	private boolean user; 		// true = teacher, false = student
 	
+	public Facade() {}
+	
 	/**
 	 * isTeacher is a boolean variable that takes in true if the user that is trying
 	 * to sign in enter the buttons as a teacher, otherwise, it is false and assumed
