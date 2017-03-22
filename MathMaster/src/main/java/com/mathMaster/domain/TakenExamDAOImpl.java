@@ -3,6 +3,8 @@ package com.mathMaster.domain;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.mathMaster.model.Exam;
+import com.mathMaster.model.Student;
 import com.mathMaster.model.TakenExam;
 
 public class TakenExamDAOImpl implements TakenExamDAO {
@@ -16,9 +18,10 @@ public class TakenExamDAOImpl implements TakenExamDAO {
 		return (TakenExam) session.get(TakenExam.class, takenExamId);
 	}
 
-	public boolean takeExam(TakenExam takenExam) {
+	public boolean takeExam(Exam exam, Student student, int score, int timeTaken) {
 		Transaction tx = session.beginTransaction();
 		try {
+			TakenExam takenExam = new TakenExam(exam, student, score, timeTaken);
 			session.save(takenExam);
 			tx.commit();
 			return true;
