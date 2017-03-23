@@ -109,6 +109,14 @@ public class Facade implements AutoCloseable {
 		return teacherDAO.getTeacherByUserName(username);
 	}
 
+	public boolean createTeacher(Teacher teacher) {
+		return teacherDAO.createTeacher(teacher);
+	}
+	
+	public boolean removeTeacher(Teacher teacher) {
+		return teacherDAO.removeTeacher(teacher);
+	}
+	
 	public Exam getExamById(int examId) {
 		return examDAO.getExamById(examId);
 	}
