@@ -13,6 +13,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
 //DENISE TEST
 @Entity
 @Table(name="M2_COURSE")
@@ -52,7 +53,7 @@ public class Course {
 	public void setCourseId(int courseId) {
 		this.courseId = courseId;
 	}
-
+	
 	public Teacher getTeacher() {
 		return teacher;
 	}
