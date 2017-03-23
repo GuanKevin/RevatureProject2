@@ -1,5 +1,5 @@
 package com.mathMaster.controller;
 
-public class AnswerController {
+public class QuestionController {
 
 }
