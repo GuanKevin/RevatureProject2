@@ -31,23 +31,23 @@ public class InsertThenDeleteTeacher {
 		facade = new Facade();
 	}
 	
-	/*@Test
+	@Test
 	public void insertTeacherIntoDatabase() {	
-		*//**
+		/**
 		 * Has unique constraint, make sure to change!
-		 *//*
+		 */
 		String username = "Code_Blooded_Test";
 		
-		*//**
+		/**
 		 * JBCrypt hashed password
-		 *//*
+		 */
 		String password = BCrypt.hashpw("welcome1", BCrypt.gensalt(12));
 		String firstname = "Jenkin";
 		String lastname = "Test";
 		
-		*//**
+		/**
 		 * Has unique constraint, make sure to change!
-		 *//*
+		 */
 		String email = "Code_Blooded_Test@welcome1.com";
 		
 		if (facade.createTeacher(new Teacher(
@@ -61,9 +61,9 @@ public class InsertThenDeleteTeacher {
 	
 	@Test
 	public void deleteTeacherFromDatabase() {
-		if (facade.remove(facade.getTeacherByUserName("Code_Blooded_Test")))
+		if (facade.removeTeacher(facade.getTeacherByUserName("Code_Blooded_Test")))
 			System.out.println("Sucessfully deleted teacher from the database.");
-	}*/
+	}
 	
 	@AfterClass
 	public static void closingAllSessions() {

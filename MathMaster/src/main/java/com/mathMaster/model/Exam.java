@@ -17,6 +17,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 @NamedQueries({
 	
@@ -42,13 +45,16 @@ public class Exam {
 	@Column(name="EXAM_END")
 	private Timestamp end;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="COURSE_ID")
 	private Course course;
 
+	@JsonIgnore
 	@OneToMany(mappedBy="exam") 
 	private Set<Question> questions = new HashSet<Question>();
 		
+	@JsonIgnore
 	@OneToMany(mappedBy="exam")
 	private Set<TakenExam> takenExam = new HashSet<TakenExam>();
 	
@@ -96,34 +102,42 @@ public class Exam {
 		this.end = end;
 	}
 
+	
 	public Course getCourse() {
 		return course;
 	}
-
+	
+	@JsonIgnore
 	public void setCourse(Course course) {
 		this.course = course;
 	}
 
+	@JsonProperty
 	public Set<Question> getQuestions() {
 		return questions;
 	}
 
+	@JsonIgnore
 	public void setQuestions(Set<Question> questions) {
 		this.questions = questions;
 	}
 
+	@JsonProperty
 	public Set<TakenExam> getTakenExams() {
 		return takenExam;
 	}
 
+	@JsonIgnore
 	public void setTakenExams(Set<TakenExam> takenExams) {
 		this.takenExam = takenExams;
 	}
 
+	@JsonProperty
 	public Set<TakenExam> getTakenExam() {
 		return takenExam;
 	}
 
+	@JsonIgnore
 	public void setTakenExam(Set<TakenExam> takenExam) {
 		this.takenExam = takenExam;
 	}

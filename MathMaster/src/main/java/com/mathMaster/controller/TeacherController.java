@@ -13,20 +13,23 @@ import com.mathMaster.model.Teacher;
 import com.mathMaster.util.Facade;
 
 @Controller
-@RequestMapping(value="Teacher")
+@RequestMapping(value = "Teacher")
 public class TeacherController {
-	
+
 	/**
 	 * localhost:7001/MathMaster/Teacher/Code_Blooded_KG
 	 * 
 	 * @param username
 	 * @return
 	 */
-	@RequestMapping(value="{username}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "{username}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<Teacher> getExamById(@PathVariable String username) throws Exception {
+	public ResponseEntity<Teacher> getTeacherByUsername(@PathVariable String username) throws Exception {
 		Facade facade = new Facade();
 		Teacher teacher = facade.getTeacherByUserName(username);
+		facade.close();
 		return new ResponseEntity<Teacher>(teacher, HttpStatus.OK);
 	}
+	
+	
 }
