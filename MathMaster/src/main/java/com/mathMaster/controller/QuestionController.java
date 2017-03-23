@@ -58,10 +58,11 @@ public class QuestionController {
 	@RequestMapping(value = "{quesId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<Question> getQuestion(@PathVariable int quesId) {
-		
-		System.out.println("This is the question with question ID of " + quesId);
+
 		Facade facade = new Facade();
 		Question question = facade.getQuestionByQuestionId(quesId);
+		System.out.println("BOO");
+		System.out.println("This is the question with question ID of " + quesId);
 		System.out.println("[ THIS IS THE QUESTION ] " + question);
 		
 		return new ResponseEntity<Question>(question, HttpStatus.OK);
