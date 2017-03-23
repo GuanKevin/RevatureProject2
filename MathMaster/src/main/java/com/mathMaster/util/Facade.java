@@ -165,6 +165,9 @@ public class Facade implements AutoCloseable {
 		return questionDAO.insertQuestion(question);
 	}
 
+	public boolean insertQuestions(List<Question> questions) {
+		return questionDAO.insertQuestions(questions);
+	}	
 	/**
 	 * TODO Figure out where all the sessions and the sessionfactory should be
 	 * called
