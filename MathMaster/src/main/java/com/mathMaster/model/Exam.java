@@ -1,5 +1,6 @@
 package com.mathMaster.model;
 
+import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -35,6 +36,12 @@ public class Exam {
 	@Column(name="NAME")
 	private String name;
 	
+	@Column(name="EXAM_START")
+	private Timestamp start;
+	
+	@Column(name="EXAM_END")
+	private Timestamp end;
+	
 	@ManyToOne
 	@JoinColumn(name="COURSE_ID")
 	private Course course;
@@ -49,10 +56,12 @@ public class Exam {
 		super();
 	}
 
-	public Exam(String name, Course course) {
+	public Exam(String name, Course course, Timestamp start, Timestamp end) {
 		super();
 		this.name = name;
 		this.course = course;
+		this.start = start;
+		this.end = end;
 	}
 
 	public int getId() {
@@ -69,6 +78,22 @@ public class Exam {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public Timestamp getStart() {
+		return start;
+	}
+
+	public void setStart(Timestamp start) {
+		this.start = start;
+	}
+
+	public Timestamp getEnd() {
+		return end;
+	}
+
+	public void setEnd(Timestamp end) {
+		this.end = end;
 	}
 
 	public Course getCourse() {
@@ -95,9 +120,17 @@ public class Exam {
 		this.takenExam = takenExams;
 	}
 
+	public Set<TakenExam> getTakenExam() {
+		return takenExam;
+	}
+
+	public void setTakenExam(Set<TakenExam> takenExam) {
+		this.takenExam = takenExam;
+	}
+
 	@Override
 	public String toString() {
-		return "Exam [examId=" + examId + ", name=" + name + ", course=" + course + ", questions=" + questions
-				+ ", takenExams=" + takenExam + "]";
+		return "Exam [examId=" + examId + ", name=" + name + ", start=" + start + ", end=" + end + ", course=" + course
+				+ ", questions=" + questions + ", takenExam=" + takenExam + "]";
 	}
 }
