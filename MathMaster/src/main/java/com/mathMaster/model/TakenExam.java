@@ -1,5 +1,6 @@
 package com.mathMaster.model;
 
+import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -44,7 +45,7 @@ public class TakenExam {
 	private int score;
 	
 	@Column(name="TIME_TAKEN")
-	private int timeTaken;
+	private Timestamp timeTaken;
 	
 	/*denise added to mapp to AnsweredQuestions*/
 	@OneToMany(mappedBy = "takenExam")
@@ -52,7 +53,7 @@ public class TakenExam {
 	
 	public TakenExam() {}
 
-	public TakenExam(Exam exam, Student student, int score, int timeTaken) {
+	public TakenExam(Exam exam, Student student, int score, Timestamp timeTaken) {
 		super();
 		this.exam = exam;
 		this.student = student;
@@ -92,11 +93,11 @@ public class TakenExam {
 		this.score = score;
 	}
 
-	public int getTimeTaken() {
+	public Timestamp getTimeTaken() {
 		return timeTaken;
 	}
 
-	public void setTimeTaken(int timeTaken) {
+	public void setTimeTaken(Timestamp timeTaken) {
 		this.timeTaken = timeTaken;
 	}
 

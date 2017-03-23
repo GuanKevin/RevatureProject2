@@ -1,5 +1,7 @@
 package com.mathMaster.domain;
 
+import java.sql.Timestamp;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -18,7 +20,7 @@ public class TakenExamDAOImpl implements TakenExamDAO {
 		return (TakenExam) session.get(TakenExam.class, takenExamId);
 	}
 
-	public boolean takeExam(Exam exam, Student student, int score, int timeTaken) {
+	public boolean takeExam(Exam exam, Student student, int score, Timestamp timeTaken) {
 		Transaction tx = session.beginTransaction();
 		try {
 			TakenExam takenExam = new TakenExam(exam, student, score, timeTaken);

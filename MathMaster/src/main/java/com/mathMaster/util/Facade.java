@@ -1,5 +1,6 @@
 package com.mathMaster.util;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -120,7 +121,7 @@ public class Facade implements AutoCloseable {
 		return takenExamDAO.getTakenExamById(takenExamId);
 	}
 
-	public boolean takeExam(Exam exam, Student student, int score, int timeTaken) {
+	public boolean takeExam(Exam exam, Student student, int score, Timestamp timeTaken) {
 		return takenExamDAO.takeExam(exam, student, score, timeTaken);
 	}
 
