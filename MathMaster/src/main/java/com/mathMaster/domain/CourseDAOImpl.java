@@ -26,7 +26,6 @@ public class CourseDAOImpl implements CourseDAO {
 			return false;
 		}
 	}
-
 	public Course getCourseById(int id) {
 		return (Course) session.load(Course.class, id);
 	}
