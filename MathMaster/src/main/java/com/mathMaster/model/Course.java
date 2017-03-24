@@ -34,7 +34,6 @@ public class Course {
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="TEACHER_ID")
-	@JsonBackReference
 	private Teacher teacher;
 	
 	@OneToMany(mappedBy="course", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
@@ -46,7 +45,6 @@ public class Course {
 	@Column(name="SUBJECT_NAME")
 	private String subjectName;
 	
-	@JsonManagedReference
 	@ManyToMany(mappedBy = "courses", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Student> students = new HashSet<Student>();
 

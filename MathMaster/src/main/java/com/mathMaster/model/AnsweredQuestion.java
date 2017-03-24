@@ -31,12 +31,10 @@ public class AnsweredQuestion {
 	@Column(name = "ANSWER_CHOOSEN")
 	private String answerChoosen;
 	
-	@JsonManagedReference
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "QUESTION_ID")
 	private Question question;
 
-	@JsonManagedReference    // change the AnsweredQuestion set to be @JsonBackReference
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "TAKEN_EXAM_ID")
 	private TakenExam takenExamQuestion;
@@ -90,7 +88,4 @@ public class AnsweredQuestion {
 		return "AnsweredQuestions [ansQuesId=" + ansQuesId + ", answerChoosen=" + answerChoosen + ", question="
 				+ question + "]";
 	}
-	
-	
-	
 }

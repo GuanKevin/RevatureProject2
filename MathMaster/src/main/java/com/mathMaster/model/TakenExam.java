@@ -36,12 +36,10 @@ public class TakenExam {
 	@GeneratedValue(generator="TAKEN_EXAM", strategy=GenerationType.SEQUENCE)
 	private int takenExamId;
 	
-	@JsonBackReference
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="EXAM_ID")
 	private Exam takenExam;
 	
-	@JsonBackReference
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="STUDENT_ID")
 	private Student student;

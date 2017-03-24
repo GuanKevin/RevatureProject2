@@ -49,11 +49,9 @@ public class Exam {
 	@JoinColumn(name="COURSE_ID")
 	private Course course;
 
-	@JsonManagedReference
 	@OneToMany(mappedBy="examQuestion", fetch=FetchType.EAGER, cascade = CascadeType.ALL) 
 	private Set<Question> questionSet = new HashSet<Question>();
 		
-	@JsonManagedReference
 	@OneToMany(mappedBy="takenExam", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<TakenExam> takenExamSet = new HashSet<TakenExam>();
 	

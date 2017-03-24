@@ -1,10 +1,10 @@
 package com.mathMaster.controller;
 
+
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -50,8 +50,11 @@ public class CourseController {
 	@RequestMapping(value = "create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<String> createCourse(@RequestBody Course course) {
-		Facade facade = new Facade();
-		facade.createCourse(course);
+		try {
+			new Facade().createCourse(course);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return new ResponseEntity<String>("Success!", HttpStatus.CREATED);
 	}
 }
