@@ -26,14 +26,14 @@ public class CourseController {
 
 	@RequestMapping(value = "{courseId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<Set<Student>> getByCourseById(@PathVariable int courseId) {
+	public ResponseEntity<Course> getByCourseById(@PathVariable int courseId) {
 		Facade facade = new Facade();
 		try {
 			Course course = facade.getCourseById(courseId);
-			return new ResponseEntity<Set<Student>>(course.getStudents(), HttpStatus.OK);
+			return new ResponseEntity<Course>(course, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<Set<Student>>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Course>(HttpStatus.NOT_FOUND);
 		}
 	}
 

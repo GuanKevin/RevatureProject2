@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 /**
@@ -35,6 +35,7 @@ public class AnsweredQuestion {
 	@JoinColumn(name = "QUESTION_ID")
 	private Question question;
 
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "TAKEN_EXAM_ID")
 	private TakenExam takenExamQuestion;

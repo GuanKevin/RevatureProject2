@@ -35,7 +35,7 @@ public class Question {
 	@GeneratedValue(generator="QUESTION", strategy=GenerationType.SEQUENCE)
 	private int questionId;
 
-	@JsonManagedReference // Exams question set must be @JsonBackReference Change in qc
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="EXAM_ID")
 	private Exam examQuestion;
@@ -58,7 +58,7 @@ public class Question {
 	@Column (name = "CHOICE_THREE")
 	private String choiceThree;
 	
-	@JsonBackReference //come back and test.. i will need tis to retrieve all answered questions
+	@JsonIgnore
 	@OneToMany(mappedBy = "question", fetch=FetchType.EAGER)
 	private Set<AnsweredQuestion> answeredQuestions = new HashSet<AnsweredQuestion>();
 	
