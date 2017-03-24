@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,9 +19,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @NamedQueries({
 	
@@ -50,11 +49,12 @@ public class Exam {
 	@JoinColumn(name="COURSE_ID")
 	private Course course;
 
-	@OneToMany(mappedBy="examQuestion", fetch=FetchType.EAGER) 
+	@JsonManagedReference
+	@OneToMany(mappedBy="examQuestion", fetch=FetchType.EAGER, cascade = CascadeType.ALL) 
 	private Set<Question> questionSet = new HashSet<Question>();
 		
-	@JsonIgnore
-	@OneToMany(mappedBy="takenExam", fetch=FetchType.EAGER)
+	@JsonManagedReference
+	@OneToMany(mappedBy="takenExam", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<TakenExam> takenExamSet = new HashSet<TakenExam>();
 	
 	public Exam() {
@@ -106,37 +106,30 @@ public class Exam {
 		return course;
 	}
 	
-	@JsonIgnore
 	public void setCourse(Course course) {
 		this.course = course;
 	}
 
-	@JsonProperty
 	public Set<Question> getQuestions() {
 		return questionSet;
 	}
 
-	@JsonIgnore
 	public void setQuestions(Set<Question> question) {
 		this.questionSet = question;
 	}
 
-	@JsonProperty
 	public Set<TakenExam> getTakenExams() {
 		return takenExamSet;
 	}
 
-	@JsonIgnore
 	public void setTakenExams(Set<TakenExam> takenExams) {
 		this.takenExamSet = takenExams;
 	}
 
-	@JsonProperty
 	public Set<TakenExam> getTakenExam() {
 		return takenExamSet;
 	}
 
-	@JsonIgnore
 	public void setTakenExam(Set<TakenExam> takenExam) {
 		this.takenExamSet = takenExam;
 	}

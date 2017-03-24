@@ -13,8 +13,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 
 /**
  * testing
@@ -39,7 +37,6 @@ public class AnsweredQuestion {
 	@Column(name = "ANSWER_CHOOSEN")
 	private String answerChoosen;
 	
-	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "QUESTION_ID")
 	private Question question;
