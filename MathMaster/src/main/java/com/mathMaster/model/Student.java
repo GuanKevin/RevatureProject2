@@ -43,7 +43,6 @@ public class Student {
 	@Column(name="EMAIL", unique=true)
 	private String email;
 	
-
 	@JsonBackReference
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "STUDENT_COURSE")

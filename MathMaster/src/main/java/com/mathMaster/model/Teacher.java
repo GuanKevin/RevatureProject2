@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
@@ -49,7 +50,7 @@ public class Teacher {
 	@Column(name="EMAIL", unique=true)
 	private String email;
 	
-	@JsonManagedReference
+	@JsonManagedReference(value="teacher")
 	@OneToMany(mappedBy = "teacher", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Course> courses = new HashSet<Course>();
 	
