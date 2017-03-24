@@ -53,6 +53,7 @@ public class Exam {
 	@OneToMany(mappedBy="examQuestion", fetch=FetchType.EAGER) 
 	private Set<Question> questionSet = new HashSet<Question>();
 		
+	@JsonIgnore
 	@OneToMany(mappedBy="takenExam", fetch=FetchType.EAGER)
 	private Set<TakenExam> takenExamSet = new HashSet<TakenExam>();
 	

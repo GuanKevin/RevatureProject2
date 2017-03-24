@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -46,8 +47,8 @@ public class Student {
 	@JoinTable(name = "STUDENT_COURSE")
 	private Set<Course> courses = new HashSet<Course>();
 	
-	@OneToMany(mappedBy="student")
-	private Set<TakenExam> takenExams = new HashSet<TakenExam>();
+	@OneToMany(mappedBy="student", fetch=FetchType.EAGER)
+	private Set<TakenExam> takenExamSet = new HashSet<TakenExam>();
 	
 	public Student() {}
 
@@ -117,11 +118,11 @@ public class Student {
 	}
 
 	public Set<TakenExam> getTakenExams() {
-		return takenExams;
+		return takenExamSet;
 	}
 
 	public void setTakenExams(Set<TakenExam> takenExams) {
-		this.takenExams = takenExams;
+		this.takenExamSet = takenExams;
 	}
 
 	@Override

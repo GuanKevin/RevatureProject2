@@ -139,11 +139,11 @@ public class Question {
 		this.choiceThree = choiceThree;
 	}
 
-	public Exam getExam() {
+	public Exam getExamQuestion() {
 		return examQuestion;
 	}
 
-	public void setExam(Exam exam) {
+	public void setExamQuestion(Exam exam) {
 		this.examQuestion = exam;
 	}
 
@@ -161,6 +161,5 @@ public class Question {
 				+ answer + ", choiceOne=" + choiceOne + ", choiceTwo=" + choiceTwo + ", choiceThree=" + choiceThree
 				+ "]";
 	}
-	
 	
 }

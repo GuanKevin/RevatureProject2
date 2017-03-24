@@ -42,6 +42,7 @@ public class TakenExam {
 	@JoinColumn(name="EXAM_ID")
 	private Exam takenExam;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="STUDENT_ID")
 	private Student student;
@@ -54,8 +55,8 @@ public class TakenExam {
 	
 	/*denise added to mapp to AnsweredQuestions*/
 	@JsonIgnore
-	@OneToMany(mappedBy = "takenExam", fetch=FetchType.EAGER)
-	private Set<AnsweredQuestion> answeredQuestions = new HashSet<AnsweredQuestion>();
+	@OneToMany(mappedBy = "takenExamQuestion", fetch=FetchType.EAGER)
+	private Set<AnsweredQuestion> answeredQuestionSet = new HashSet<AnsweredQuestion>();
 	
 	public TakenExam() {}
 
@@ -75,11 +76,11 @@ public class TakenExam {
 		this.takenExamId = takenExamId;
 	}
 
-	public Exam getExam() {
+	public Exam getTakenExam() {
 		return takenExam;
 	}
 
-	public void setExam(Exam exam) {
+	public void setTakenExam(Exam exam) {
 		this.takenExam = exam;
 	}
 
@@ -107,11 +108,11 @@ public class TakenExam {
 		this.timeTaken = timeTaken;
 	}
 
-	public Set<AnsweredQuestion> getAnsweredQuestions() {
-		return answeredQuestions;
+	public Set<AnsweredQuestion> getAnsweredQuestionSet() {
+		return answeredQuestionSet;
 	}
 
-	public void setAnsweredQuestions(Set<AnsweredQuestion> answeredQuestions) {
-		this.answeredQuestions = answeredQuestions;
+	public void setAnsweredQuestionSet(Set<AnsweredQuestion> answeredQuestions) {
+		this.answeredQuestionSet = answeredQuestions;
 	}
 }
