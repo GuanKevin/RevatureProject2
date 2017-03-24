@@ -157,9 +157,11 @@ public class Question {
 
 	@Override
 	public String toString() {
-		return "Question [questionId=" + questionId + ", level=" + level + ", question=" + question + ", answer="
-				+ answer + ", choiceOne=" + choiceOne + ", choiceTwo=" + choiceTwo + ", choiceThree=" + choiceThree
-				+ "]";
+		return "Question [questionId=" + questionId + ", examQuestion=" + examQuestion + ", level=" + level
+				+ ", question=" + question + ", answer=" + answer + ", choiceOne=" + choiceOne + ", choiceTwo="
+				+ choiceTwo + ", choiceThree=" + choiceThree + "]";
 	}
+
+
 	
 }
