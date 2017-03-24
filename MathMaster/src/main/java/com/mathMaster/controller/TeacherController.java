@@ -1,5 +1,7 @@
 package com.mathMaster.controller;
 
+import java.util.Set;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -28,16 +30,17 @@ public class TeacherController {
 	public ResponseEntity<Teacher> getTeacherByUsername(@PathVariable String username) throws Exception {
 		Facade facade = new Facade();
 		Teacher teacher = facade.getTeacherByUserName(username);
+		System.out.println(teacher);
 		facade.close();
 		return new ResponseEntity<Teacher>(teacher, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "Teacher/Course/{username}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<Course> getAllCourseByTeacherUsername(@PathVariable String username) throws Exception {
+	public ResponseEntity<Set<Course>> getAllCourseByTeacherUsername(@PathVariable String username) throws Exception {
 		Facade facade = new Facade();
-		Course course = null;
+		Set<Course > courseSet= facade.getTeacherByUserName(username).getCourses();
 		facade.close();
-		return new ResponseEntity<Course>(course, HttpStatus.OK);
+		return new ResponseEntity<Set<Course>>(courseSet, HttpStatus.OK);
 	}
 }
