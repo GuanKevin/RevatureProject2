@@ -34,7 +34,6 @@ public class Question {
 	@GeneratedValue(generator="QUESTION", strategy=GenerationType.SEQUENCE)
 	private int questionId;
 
-	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="EXAM_ID")
 	private Exam examQuestion;
@@ -57,7 +56,6 @@ public class Question {
 	@Column (name = "CHOICE_THREE")
 	private String choiceThree;
 	
-	@JsonManagedReference
 	@OneToMany(mappedBy = "question", fetch=FetchType.EAGER)
 	private Set<AnsweredQuestion> answeredQuestions = new HashSet<AnsweredQuestion>();
 	
@@ -153,7 +151,7 @@ public class Question {
 
 	@Override
 	public String toString() {
-		return "Question [questionId=" + questionId + /*", examQuestion=" + examQuestion +*/ ", level=" + level
+		return "Question [questionId=" + questionId + ", examQuestion=" + examQuestion + ", level=" + level
 				+ ", question=" + question + ", answer=" + answer + ", choiceOne=" + choiceOne + ", choiceTwo="
 				+ choiceTwo + ", choiceThree=" + choiceThree + "]";
 	}
