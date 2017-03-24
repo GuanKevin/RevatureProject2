@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +17,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @NamedQueries({
@@ -31,11 +34,13 @@ public class TakenExam {
 	@Column(name="TAKEN_EXAM_ID")
 	@SequenceGenerator(name="TAKEN_EXAM", sequenceName="TAKEN_EXAM_PK_SEQ", initialValue=1, allocationSize=1)
 	@GeneratedValue(generator="TAKEN_EXAM", strategy=GenerationType.SEQUENCE)
+	@JsonIgnore
 	private int takenExamId;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="EXAM_ID")
-	private Exam exam;
+	private Exam takenExam;
 	
 	@ManyToOne
 	@JoinColumn(name="STUDENT_ID")
@@ -48,14 +53,15 @@ public class TakenExam {
 	private Timestamp timeTaken;
 	
 	/*denise added to mapp to AnsweredQuestions*/
-	@OneToMany(mappedBy = "takenExam")
+	@JsonIgnore
+	@OneToMany(mappedBy = "takenExam", fetch=FetchType.EAGER)
 	private Set<AnsweredQuestion> answeredQuestions = new HashSet<AnsweredQuestion>();
 	
 	public TakenExam() {}
 
 	public TakenExam(Exam exam, Student student, int score, Timestamp timeTaken) {
 		super();
-		this.exam = exam;
+		this.takenExam = exam;
 		this.student = student;
 		this.score = score;
 		this.timeTaken = timeTaken;
@@ -70,11 +76,11 @@ public class TakenExam {
 	}
 
 	public Exam getExam() {
-		return exam;
+		return takenExam;
 	}
 
 	public void setExam(Exam exam) {
-		this.exam = exam;
+		this.takenExam = exam;
 	}
 
 	public Student getStudent() {

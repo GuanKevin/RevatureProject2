@@ -89,6 +89,9 @@ public class Facade implements AutoCloseable {
 					// found in the database that is related to the username
 					// TODO Don't allow teacher to login
 				}
+				else {
+					System.out.println(teacher.getUserName() + " logged in");
+				}
 			}
 		} else {
 			Student student;

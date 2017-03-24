@@ -13,7 +13,6 @@ import com.mathMaster.model.Teacher;
 import com.mathMaster.util.Facade;
 
 @Controller
-@RequestMapping(value = "Teacher")
 public class TeacherController {
 
 	/**
@@ -22,7 +21,7 @@ public class TeacherController {
 	 * @param username
 	 * @return
 	 */
-	@RequestMapping(value = "{username}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "Teacher/{username}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<Teacher> getTeacherByUsername(@PathVariable String username) throws Exception {
 		Facade facade = new Facade();
@@ -30,6 +29,4 @@ public class TeacherController {
 		facade.close();
 		return new ResponseEntity<Teacher>(teacher, HttpStatus.OK);
 	}
-	
-	
 }

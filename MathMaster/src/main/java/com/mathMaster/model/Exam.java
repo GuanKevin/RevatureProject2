@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -45,18 +46,15 @@ public class Exam {
 	@Column(name="EXAM_END")
 	private Timestamp end;
 	
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="COURSE_ID")
 	private Course course;
 
-	@JsonIgnore
-	@OneToMany(mappedBy="exam") 
-	private Set<Question> questions = new HashSet<Question>();
+	@OneToMany(mappedBy="examQuestion", fetch=FetchType.EAGER) 
+	private Set<Question> questionSet = new HashSet<Question>();
 		
-	@JsonIgnore
-	@OneToMany(mappedBy="exam")
-	private Set<TakenExam> takenExam = new HashSet<TakenExam>();
+	@OneToMany(mappedBy="takenExam", fetch=FetchType.EAGER)
+	private Set<TakenExam> takenExamSet = new HashSet<TakenExam>();
 	
 	public Exam() {
 		super();
@@ -114,37 +112,37 @@ public class Exam {
 
 	@JsonProperty
 	public Set<Question> getQuestions() {
-		return questions;
+		return questionSet;
 	}
 
 	@JsonIgnore
-	public void setQuestions(Set<Question> questions) {
-		this.questions = questions;
+	public void setQuestions(Set<Question> question) {
+		this.questionSet = question;
 	}
 
 	@JsonProperty
 	public Set<TakenExam> getTakenExams() {
-		return takenExam;
+		return takenExamSet;
 	}
 
 	@JsonIgnore
 	public void setTakenExams(Set<TakenExam> takenExams) {
-		this.takenExam = takenExams;
+		this.takenExamSet = takenExams;
 	}
 
 	@JsonProperty
 	public Set<TakenExam> getTakenExam() {
-		return takenExam;
+		return takenExamSet;
 	}
 
 	@JsonIgnore
 	public void setTakenExam(Set<TakenExam> takenExam) {
-		this.takenExam = takenExam;
+		this.takenExamSet = takenExam;
 	}
 
 	@Override
 	public String toString() {
 		return "Exam [examId=" + examId + ", name=" + name + ", start=" + start + ", end=" + end + ", course=" + course
-				+ ", questions=" + questions + ", takenExam=" + takenExam + "]";
+				+ ", questions=" + questionSet + ", takenExam=" + takenExamSet + "]";
 	}
 }
