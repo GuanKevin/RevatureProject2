@@ -1,5 +1,7 @@
 package com.mathMaster.controller;
 
+import java.util.Set;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mathMaster.model.Exam;
-import com.mathMaster.model.Teacher;
+import com.mathMaster.model.Question;
 import com.mathMaster.util.Facade;
 
 @Controller
@@ -25,32 +27,27 @@ public class ExamController {
 		System.out.println("Looking for exam id: " + examId);
 		Exam exam = facade.getExamById(examId);
 		System.out.println(exam);
+		facade.close();
 		return new ResponseEntity<Exam>(exam, HttpStatus.OK);
 	}
 	
-	@SuppressWarnings("resource")
 	@RequestMapping(value="create/{courseId}", method={RequestMethod.GET, RequestMethod.POST}, consumes=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<Exam> createExam(@RequestBody Exam exam, @PathVariable int courseId) throws Exception {
 		Facade facade = new Facade();
 		exam.setCourse(facade.getCourseById(courseId));
 		facade.createExam(exam);
+		facade.close();
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	
-	@RequestMapping(value="teacher/{username}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="{examId}/index", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<Teacher> getExamById(@PathVariable String username) throws Exception {
+	public ResponseEntity<Set<Question>> getAllQuestionByExamId(@PathVariable int examId) throws Exception {
 		Facade facade = new Facade();
-		Teacher teacher = facade.getTeacherByUserName(username);
-		return new ResponseEntity<Teacher>(teacher, HttpStatus.OK);
+		Exam exam = facade.getExamById(examId);
+		facade.close();
+		return new ResponseEntity<Set<Question>>(exam.getQuestions(), HttpStatus.OK);
 	}
 	
-//	@RequestMapping(value="create", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
-//	@ResponseBody
-//	public ResponseEntity<Exam> createExam(@RequestBody Exam exam) throws Exception {
-//		Facade facade = new Facade();
-//		facade.createExam(exam);
-//		return new ResponseEntity<>(HttpStatus.CREATED);
-//	}
 }
