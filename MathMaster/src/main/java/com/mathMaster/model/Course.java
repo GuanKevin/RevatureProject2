@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 //DENISE TEST
 @Entity
 @Table(name="M2_COURSE")
@@ -77,11 +79,11 @@ public class Course {
 	public void setSubjectName(String subjectName) {
 		this.subjectName = subjectName;
 	}
-
+	
+	@JsonIgnore
 	public Set<Student> getStudents() {
 		return students;
 	}
-
 	public void setStudents(Set<Student> students) {
 		this.students = students;
 	}

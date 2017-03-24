@@ -108,7 +108,7 @@ public class Teacher {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	@JsonIgnore
+	
 	public Set<Course> getCourses() {
 		return courses;
 	}
