@@ -18,18 +18,18 @@ import com.mathMaster.util.Facade;
 @Controller
 @RequestMapping(value = "answeredQuestion")
 public class AnsweredQuestionController {
-	private List<AnsweredQuestion> answeredQuestions = new ArrayList<AnsweredQuestion>(); 
+	private List<AnsweredQuestion> aq = new ArrayList<AnsweredQuestion>(); 
 	
 	/**
 	 * Saves  AnsweredQuestion to the List (I commented out to save a answered question directly to the DB)
 	 */
 	@RequestMapping(value = "new", method =  RequestMethod.POST, consumes =  MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<String> addAnsweredQuestion(@RequestBody final AnsweredQuestion ansQuestion) { 
-		System.out.println("Add answered question: " + ansQuestion);
+	public ResponseEntity<String> addAnsweredQuestion(@RequestBody final AnsweredQuestion ansQues) { 
+		System.out.println("Add answered question: " + ansQues);
 		
 		//adding it to the answeredQuestions list to later save the whole list of answeredQuestions at once
-		answeredQuestions.add(ansQuestion);
+		aq.add(ansQues);
 		
 		// saving the question directly to the database
 		 /*Facade facade =  new Facade();
@@ -44,11 +44,11 @@ public class AnsweredQuestionController {
 	@SuppressWarnings("resource")
 	@RequestMapping(value = "submit", method =  RequestMethod.POST, consumes =  MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<String> addAllAnsweredQuestions() { 
+	public ResponseEntity<String> addAllAnsweredQuestions(@RequestBody final List<AnsweredQuestion> ansQuests) { 
 		
 		Facade facade = new Facade();
 		
-		facade.insertAnsweredQuestions(answeredQuestions);
+		facade.insertAnsweredQuestions(ansQuests);
 		
 		return new ResponseEntity<String>("Sucess all Answered Questions have been added! ", HttpStatus.CREATED);
 	}
