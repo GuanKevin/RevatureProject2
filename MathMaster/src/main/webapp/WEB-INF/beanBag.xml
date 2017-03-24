@@ -15,5 +15,6 @@
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/pages/" />
 	</bean>
+	
 
 </beans>
