@@ -19,7 +19,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @NamedQueries({
 	
@@ -45,15 +45,15 @@ public class Exam {
 	@Column(name="EXAM_END")
 	private Timestamp end;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="COURSE_ID")
 	private Course course;
 
-	@JsonManagedReference
 	@OneToMany(mappedBy="examQuestion", fetch=FetchType.EAGER, cascade = CascadeType.ALL) 
 	private Set<Question> questionSet = new HashSet<Question>();
 		
-	@JsonManagedReference
+	@JsonIgnore
 	@OneToMany(mappedBy="takenExam", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<TakenExam> takenExamSet = new HashSet<TakenExam>();
 	

@@ -38,11 +38,4 @@ public class ExamController {
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	
-	@RequestMapping(value="teacher/{username}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public ResponseEntity<Teacher> getExamById(@PathVariable String username) throws Exception {
-		Facade facade = new Facade();
-		Teacher teacher = facade.getTeacherByUserName(username);
-		return new ResponseEntity<Teacher>(teacher, HttpStatus.OK);
-	}
 }
