@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,7 +19,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 
 @NamedQueries({
@@ -34,15 +35,15 @@ public class TakenExam {
 	@Column(name="TAKEN_EXAM_ID")
 	@SequenceGenerator(name="TAKEN_EXAM", sequenceName="TAKEN_EXAM_PK_SEQ", initialValue=1, allocationSize=1)
 	@GeneratedValue(generator="TAKEN_EXAM", strategy=GenerationType.SEQUENCE)
-	@JsonIgnore
 	private int takenExamId;
 	
-	@JsonIgnore
-	@ManyToOne
+	@JsonBackReference
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="EXAM_ID")
 	private Exam takenExam;
 	
-	@ManyToOne
+	@JsonBackReference
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="STUDENT_ID")
 	private Student student;
 	
@@ -53,9 +54,8 @@ public class TakenExam {
 	private Timestamp timeTaken;
 	
 	/*denise added to mapp to AnsweredQuestions*/
-	@JsonIgnore
-	@OneToMany(mappedBy = "takenExam", fetch=FetchType.EAGER)
-	private Set<AnsweredQuestion> answeredQuestions = new HashSet<AnsweredQuestion>();
+	@OneToMany(mappedBy = "takenExamQuestion", fetch=FetchType.EAGER)
+	private Set<AnsweredQuestion> answeredQuestionSet = new HashSet<AnsweredQuestion>();
 	
 	public TakenExam() {}
 
@@ -75,11 +75,11 @@ public class TakenExam {
 		this.takenExamId = takenExamId;
 	}
 
-	public Exam getExam() {
+	public Exam getTakenExam() {
 		return takenExam;
 	}
 
-	public void setExam(Exam exam) {
+	public void setTakenExam(Exam exam) {
 		this.takenExam = exam;
 	}
 
@@ -107,11 +107,11 @@ public class TakenExam {
 		this.timeTaken = timeTaken;
 	}
 
-	public Set<AnsweredQuestion> getAnsweredQuestions() {
-		return answeredQuestions;
+	public Set<AnsweredQuestion> getAnsweredQuestionSet() {
+		return answeredQuestionSet;
 	}
 
-	public void setAnsweredQuestions(Set<AnsweredQuestion> answeredQuestions) {
-		this.answeredQuestions = answeredQuestions;
+	public void setAnsweredQuestionSet(Set<AnsweredQuestion> answeredQuestions) {
+		this.answeredQuestionSet = answeredQuestions;
 	}
 }

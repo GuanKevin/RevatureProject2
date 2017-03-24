@@ -17,21 +17,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
- 
 /**
  * 
  * @author Denise
  *
  */
 
-@NamedQueries({
-	
-})
-@NamedNativeQueries({
-	
-})
+
 @Entity
 @Table(name="M2_QUESTION")
 public class Question {
@@ -40,7 +32,6 @@ public class Question {
 	@SequenceGenerator(name="QUESTION", sequenceName="QUESTION_PK_SEQ", initialValue=1, allocationSize=1)
 	@GeneratedValue(generator="QUESTION", strategy=GenerationType.SEQUENCE)
 	private int questionId;
-
 
 	@ManyToOne
 	@JoinColumn(name="EXAM_ID")
@@ -140,11 +131,11 @@ public class Question {
 		this.choiceThree = choiceThree;
 	}
 
-	public Exam getExam() {
+	public Exam getExamQuestion() {
 		return examQuestion;
 	}
 
-	public void setExam(Exam exam) {
+	public void setExamQuestion(Exam exam) {
 		this.examQuestion = exam;
 	}
 
@@ -164,6 +155,5 @@ public class Question {
 	}
 
 
-	
 	
 }
