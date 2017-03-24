@@ -9,17 +9,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mathMaster.model.TakenExam;
+import com.mathMaster.model.Teacher;
 import com.mathMaster.util.Facade;
 
 @Controller
-public class TakenExamController {
-	@RequestMapping(value={"exam/takenExam/{takenExamId}"}, method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+public class TeacherController {
+
+	/**
+	 * localhost:7001/MathMaster/Teacher/Code_Blooded_KG
+	 * 
+	 * @param username
+	 * @return
+	 */
+	@RequestMapping(value = "Teacher/{username}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<TakenExam> getTakenExamById(@PathVariable int takenExamId) throws Exception {
+	public ResponseEntity<Teacher> getTeacherByUsername(@PathVariable String username) throws Exception {
 		Facade facade = new Facade();
-		TakenExam takenExam = facade.getTakenExamById(takenExamId);
+		Teacher teacher = facade.getTeacherByUserName(username);
 		facade.close();
-		return new ResponseEntity<>(takenExam, HttpStatus.OK);
+		return new ResponseEntity<Teacher>(teacher, HttpStatus.OK);
 	}
 }

@@ -4,8 +4,10 @@ import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,9 +19,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @NamedQueries({
 	
@@ -45,18 +45,17 @@ public class Exam {
 	@Column(name="EXAM_END")
 	private Timestamp end;
 	
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="COURSE_ID")
 	private Course course;
 
-	@JsonIgnore
-	@OneToMany(mappedBy="exam") 
-	private Set<Question> questions = new HashSet<Question>();
+	@JsonManagedReference
+	@OneToMany(mappedBy="examQuestion", fetch=FetchType.EAGER, cascade = CascadeType.ALL) 
+	private Set<Question> questionSet = new HashSet<Question>();
 		
-	@JsonIgnore
-	@OneToMany(mappedBy="exam")
-	private Set<TakenExam> takenExam = new HashSet<TakenExam>();
+	@JsonManagedReference
+	@OneToMany(mappedBy="takenExam", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	private Set<TakenExam> takenExamSet = new HashSet<TakenExam>();
 	
 	public Exam() {
 		super();
@@ -107,44 +106,37 @@ public class Exam {
 		return course;
 	}
 	
-	@JsonIgnore
 	public void setCourse(Course course) {
 		this.course = course;
 	}
 
-	@JsonProperty
 	public Set<Question> getQuestions() {
-		return questions;
+		return questionSet;
 	}
 
-	@JsonIgnore
-	public void setQuestions(Set<Question> questions) {
-		this.questions = questions;
+	public void setQuestions(Set<Question> question) {
+		this.questionSet = question;
 	}
 
-	@JsonProperty
 	public Set<TakenExam> getTakenExams() {
-		return takenExam;
+		return takenExamSet;
 	}
 
-	@JsonIgnore
 	public void setTakenExams(Set<TakenExam> takenExams) {
-		this.takenExam = takenExams;
+		this.takenExamSet = takenExams;
 	}
 
-	@JsonProperty
 	public Set<TakenExam> getTakenExam() {
-		return takenExam;
+		return takenExamSet;
 	}
 
-	@JsonIgnore
 	public void setTakenExam(Set<TakenExam> takenExam) {
-		this.takenExam = takenExam;
+		this.takenExamSet = takenExam;
 	}
 
 	@Override
 	public String toString() {
 		return "Exam [examId=" + examId + ", name=" + name + ", start=" + start + ", end=" + end + ", course=" + course
-				+ ", questions=" + questions + ", takenExam=" + takenExam + "]";
+				+ ", questions=" + questionSet + ", takenExam=" + takenExamSet + "]";
 	}
 }

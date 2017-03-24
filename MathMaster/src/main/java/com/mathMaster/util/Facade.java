@@ -89,6 +89,9 @@ public class Facade implements AutoCloseable {
 					// found in the database that is related to the username
 					// TODO Don't allow teacher to login
 				}
+				else {
+					System.out.println(teacher.getUserName() + " logged in");
+				}
 			}
 		} else {
 			Student student;
@@ -109,6 +112,14 @@ public class Facade implements AutoCloseable {
 		return teacherDAO.getTeacherByUserName(username);
 	}
 
+	public boolean createTeacher(Teacher teacher) {
+		return teacherDAO.createTeacher(teacher);
+	}
+	
+	public boolean removeTeacher(Teacher teacher) {
+		return teacherDAO.removeTeacher(teacher);
+	}
+	
 	public Exam getExamById(int examId) {
 		return examDAO.getExamById(examId);
 	}

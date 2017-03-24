@@ -41,28 +41,30 @@ public class QuestionController {
 
 	/**
 	 * Add the list of questions when the submit button is pressed
+	 * @throws Exception 
 	 */
-	@SuppressWarnings("resource")
 	@RequestMapping(value = "submit", method =  RequestMethod.POST, consumes =  MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<String> addAllQuestions(@RequestBody final List<Question> question) { 
+	public ResponseEntity<String> addAllQuestions(@RequestBody final List<Question> ques) throws Exception { 
 				
 		Facade facade = new Facade();
-		facade.insertQuestions(question);
+		facade.insertQuestions(ques);
+		facade.close();
 		
 		return new ResponseEntity<String>("Sucess Questions have been added! ", HttpStatus.CREATED);
 	}
 	
 	
-	@SuppressWarnings("resource")
 	@RequestMapping(value = "{quesId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<Question> getQuestion(@PathVariable int quesId) {
-		
-		System.out.println("This is the question with question ID of " + quesId);
+	public ResponseEntity<Question> getQuestion(@PathVariable int quesId) throws Exception {
+
 		Facade facade = new Facade();
 		Question question = facade.getQuestionByQuestionId(quesId);
+		System.out.println("BOO");
+		System.out.println("This is the question with question ID of " + quesId);
 		System.out.println("[ THIS IS THE QUESTION ] " + question);
+		facade.close();
 		
 		return new ResponseEntity<Question>(question, HttpStatus.OK);
 	}

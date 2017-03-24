@@ -3,6 +3,7 @@ package com.mathMaster.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,6 +17,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 //DENISE TEST
 @Entity
@@ -27,7 +30,8 @@ public class Course {
 	@GeneratedValue(generator="COURSE", strategy=GenerationType.SEQUENCE)
 	private int courseId;
 	
-	@ManyToOne
+	@JsonBackReference
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="TEACHER_ID")
 	private Teacher teacher;
 	
@@ -37,7 +41,8 @@ public class Course {
 	@Column(name="SUBJECT_NAME")
 	private String subjectName;
 	
-	@ManyToMany(mappedBy = "courses", fetch=FetchType.EAGER)
+	@JsonManagedReference
+	@ManyToMany(mappedBy = "courses", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Student> students = new HashSet<Student>();
 
 	public Course () {}
@@ -84,6 +89,7 @@ public class Course {
 	public Set<Student> getStudents() {
 		return students;
 	}
+	
 	public void setStudents(Set<Student> students) {
 		this.students = students;
 	}

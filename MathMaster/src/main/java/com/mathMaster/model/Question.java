@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,20 +17,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 /**
  * 
  * @author Denise
  *
  */
 
-@NamedQueries({
-	
-})
-@NamedNativeQueries({
-	
-})
+
 @Entity
 @Table(name="M2_QUESTION")
 public class Question {
@@ -39,10 +33,9 @@ public class Question {
 	@GeneratedValue(generator="QUESTION", strategy=GenerationType.SEQUENCE)
 	private int questionId;
 
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="EXAM_ID")
-	private Exam exam;
+	private Exam examQuestion;
 	// level is a reserved word in db
 	@Column (name = "LVL")
 	private int level;
@@ -62,7 +55,7 @@ public class Question {
 	@Column (name = "CHOICE_THREE")
 	private String choiceThree;
 	
-	@OneToMany(mappedBy = "question")
+	@OneToMany(mappedBy = "question", fetch=FetchType.EAGER)
 	private Set<AnsweredQuestion> answeredQuestions = new HashSet<AnsweredQuestion>();
 	
 	
@@ -73,7 +66,7 @@ public class Question {
 	public Question(Exam exam, int level, String question, String answer, String choiceOne,
 			String choiceTwo, String choiceThree) {
 		super();
-		this.exam = exam;
+		this.examQuestion = exam;
 		this.level = level;
 		this.question = question;
 		this.answer = answer;
@@ -138,12 +131,12 @@ public class Question {
 		this.choiceThree = choiceThree;
 	}
 
-	public Exam getExam() {
-		return exam;
+	public Exam getExamQuestion() {
+		return examQuestion;
 	}
 
-	public void setExam(Exam exam) {
-		this.exam = exam;
+	public void setExamQuestion(Exam exam) {
+		this.examQuestion = exam;
 	}
 
 	public Set<AnsweredQuestion> getAnsweredQuestions() {
@@ -156,10 +149,11 @@ public class Question {
 
 	@Override
 	public String toString() {
-		return "Question [questionId=" + questionId + ", level=" + level + ", question=" + question + ", answer="
-				+ answer + ", choiceOne=" + choiceOne + ", choiceTwo=" + choiceTwo + ", choiceThree=" + choiceThree
-				+ "]";
+		return "Question [questionId=" + questionId /*+ ", examQuestion=" + examQuestion*/ + ", exam = " + examQuestion.getName() + ", level=" + level
+				+ ", question=" + question + ", answer=" + answer + ", choiceOne=" + choiceOne + ", choiceTwo="
+				+ choiceTwo + ", choiceThree=" + choiceThree + "]";
 	}
-	
+
+
 	
 }

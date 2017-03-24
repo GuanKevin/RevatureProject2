@@ -3,8 +3,10 @@ package com.mathMaster.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,9 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.codehaus.jackson.annotate.JsonBackReference;
-import org.codehaus.jackson.annotate.JsonIgnore;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name="M2_STUDENT")
@@ -42,13 +43,14 @@ public class Student {
 	@Column(name="EMAIL", unique=true)
 	private String email;
 	
-	@JsonIgnore
-	@ManyToMany
+
+	@JsonBackReference
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "STUDENT_COURSE")
 	private Set<Course> courses = new HashSet<Course>();
 	
-	@OneToMany(mappedBy="student")
-	private Set<TakenExam> takenExams = new HashSet<TakenExam>();
+	@OneToMany(mappedBy="student", fetch=FetchType.EAGER)
+	private Set<TakenExam> takenExamSet = new HashSet<TakenExam>();
 	
 	public Student() {}
 
@@ -118,11 +120,11 @@ public class Student {
 	}
 
 	public Set<TakenExam> getTakenExams() {
-		return takenExams;
+		return takenExamSet;
 	}
 
 	public void setTakenExams(Set<TakenExam> takenExams) {
-		this.takenExams = takenExams;
+		this.takenExamSet = takenExams;
 	}
 
 	@Override

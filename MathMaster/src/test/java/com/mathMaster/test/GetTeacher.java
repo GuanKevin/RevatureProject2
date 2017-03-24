@@ -6,13 +6,13 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.mathMaster.domain.TeacherDAO;
-import com.mathMaster.domain.TeacherDAOImpl;
+import com.mathMaster.util.Facade;
 import com.mathMaster.util.M2SessionFactory;
 
 /**
  * Get a teacher back from the database using
- * any fields that are in the teacher bean
+ * any fields that are available in the teacher bean
+ * Closes all session and facade when complete
  * 
  * @author kevgu
  *
@@ -20,23 +20,30 @@ import com.mathMaster.util.M2SessionFactory;
 public class GetTeacher {
 	private static SessionFactory sf;
 	private static Session session;
+	private static Facade facade;
 	
 	@BeforeClass
 	public static void startUp() {
 		sf = M2SessionFactory.getSessionFactory();
 		session = sf.openSession();
+		facade = new Facade();
 	}
 	
 	@Test
-	public void getATeacher() {
-		TeacherDAO teacher = new TeacherDAOImpl(session);
-		
-		System.out.println(teacher.getTeacherByUserName("Code_Blooded_KG"));
+	public void getATeacher() {		
+		System.out.println(facade.getTeacherByUserName("Code_Blooded_KG"));
 	}
 
 	@AfterClass
 	public static void closeSessions() {
 		session.close();
 		sf.close();
+		
+		try {
+			facade.close();
+		} catch (Exception e) {
+			System.out.println("Failed to close facade in GetTeacher test.");
+			e.printStackTrace();
+		}
 	}
 }
