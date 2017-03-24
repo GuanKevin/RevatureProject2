@@ -14,7 +14,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  * 
@@ -32,7 +34,7 @@ public class Question {
 	@GeneratedValue(generator="QUESTION", strategy=GenerationType.SEQUENCE)
 	private int questionId;
 
-	@JsonIgnore
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="EXAM_ID")
 	private Exam examQuestion;
@@ -55,7 +57,7 @@ public class Question {
 	@Column (name = "CHOICE_THREE")
 	private String choiceThree;
 	
-	@JsonIgnore
+	@JsonManagedReference
 	@OneToMany(mappedBy = "question", fetch=FetchType.EAGER)
 	private Set<AnsweredQuestion> answeredQuestions = new HashSet<AnsweredQuestion>();
 	
