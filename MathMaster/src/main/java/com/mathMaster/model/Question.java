@@ -19,6 +19,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+ 
 /**
  * 
  * @author Denise
@@ -40,7 +41,7 @@ public class Question {
 	@GeneratedValue(generator="QUESTION", strategy=GenerationType.SEQUENCE)
 	private int questionId;
 
-	@JsonIgnore
+
 	@ManyToOne
 	@JoinColumn(name="EXAM_ID")
 	private Exam examQuestion;
@@ -157,7 +158,7 @@ public class Question {
 
 	@Override
 	public String toString() {
-		return "Question [questionId=" + questionId + ", examQuestion=" + examQuestion + ", level=" + level
+		return "Question [questionId=" + questionId /*+ ", examQuestion=" + examQuestion*/ + ", exam = " + examQuestion.getName() + ", level=" + level
 				+ ", question=" + question + ", answer=" + answer + ", choiceOne=" + choiceOne + ", choiceTwo="
 				+ choiceTwo + ", choiceThree=" + choiceThree + "]";
 	}
