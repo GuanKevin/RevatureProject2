@@ -38,7 +38,7 @@ public class Course {
 	private Teacher teacher;
 	
 	@OneToMany(mappedBy="course", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Exam> exams = new ArrayList<>();
+	private Set<Exam> exams = new HashSet<Exam>();
 	
 	@Column(name="COURSE_NAME")
 	private String courseName;
@@ -89,6 +89,14 @@ public class Course {
 
 	public void setSubjectName(String subjectName) {
 		this.subjectName = subjectName;
+	}
+	
+	public Set<Exam> getExams() {
+		return exams;
+	}
+
+	public void setExams(Set<Exam> exams) {
+		this.exams = exams;
 	}
 
 	public Set<Student> getStudents() {
