@@ -11,11 +11,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedNativeQueries;
-import javax.persistence.NamedQueries;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  * 
@@ -33,6 +35,7 @@ public class Question {
 	@GeneratedValue(generator="QUESTION", strategy=GenerationType.SEQUENCE)
 	private int questionId;
 
+	@JsonManagedReference // Exams question set must be @JsonBackReference Change in qc
 	@ManyToOne
 	@JoinColumn(name="EXAM_ID")
 	private Exam examQuestion;
@@ -55,6 +58,7 @@ public class Question {
 	@Column (name = "CHOICE_THREE")
 	private String choiceThree;
 	
+	@JsonBackReference //come back and test.. i will need tis to retrieve all answered questions
 	@OneToMany(mappedBy = "question", fetch=FetchType.EAGER)
 	private Set<AnsweredQuestion> answeredQuestions = new HashSet<AnsweredQuestion>();
 	
@@ -63,6 +67,7 @@ public class Question {
 		super();
 	}
 	
+
 	public Question(Exam exam, int level, String question, String answer, String choiceOne,
 			String choiceTwo, String choiceThree) {
 		super();
