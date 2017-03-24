@@ -20,6 +20,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @NamedQueries({
 	
@@ -50,6 +51,7 @@ public class Exam {
 	@JoinColumn(name="COURSE_ID")
 	private Course course;
 
+	@JsonManagedReference
 	@OneToMany(mappedBy="examQuestion", fetch=FetchType.EAGER, cascade = CascadeType.ALL) 
 	private Set<Question> questionSet = new HashSet<Question>();
 		
@@ -137,6 +139,6 @@ public class Exam {
 	@Override
 	public String toString() {
 		return "Exam [examId=" + examId + ", name=" + name + ", start=" + start + ", end=" + end + ", course=" + course
-				+ ", questions=" + questionSet + ", takenExam=" + takenExamSet + "]";
+				+ ", takenExam=" + takenExamSet + "]";
 	}
 }

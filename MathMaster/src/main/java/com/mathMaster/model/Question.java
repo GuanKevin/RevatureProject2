@@ -14,10 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  * 
@@ -154,7 +151,7 @@ public class Question {
 
 	@Override
 	public String toString() {
-		return "Question [questionId=" + questionId /*+ ", examQuestion=" + examQuestion*/ + ", exam = " + examQuestion.getName() + ", level=" + level
+		return "Question [questionId=" + questionId + /*", examQuestion=" + examQuestion +*/ ", level=" + level
 				+ ", question=" + question + ", answer=" + answer + ", choiceOne=" + choiceOne + ", choiceTwo="
 				+ choiceTwo + ", choiceThree=" + choiceThree + "]";
 	}
