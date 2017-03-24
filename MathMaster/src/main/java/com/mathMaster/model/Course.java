@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,7 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 //DENISE TEST
 @Entity
@@ -36,7 +37,7 @@ public class Course {
 	@Column(name="SUBJECT_NAME")
 	private String subjectName;
 	
-	@ManyToMany(mappedBy = "courses")
+	@ManyToMany(mappedBy = "courses", fetch=FetchType.EAGER)
 	private Set<Student> students = new HashSet<Student>();
 
 	public Course () {}
@@ -79,8 +80,7 @@ public class Course {
 	public void setSubjectName(String subjectName) {
 		this.subjectName = subjectName;
 	}
-	
-	@JsonIgnore
+
 	public Set<Student> getStudents() {
 		return students;
 	}

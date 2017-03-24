@@ -57,6 +57,7 @@ public class CourseController {
 	public ResponseEntity<String> createCourse(@RequestBody Course course) {
 		Facade facade = new Facade();
 		facade.createCourse(course);
+		System.out.println(course);
         return new ResponseEntity<String>("Success!", HttpStatus.CREATED);
 		//return new ResponseEntity<Set<Course>>(teacher.getCourses(), HttpStatus.OK);
 	}

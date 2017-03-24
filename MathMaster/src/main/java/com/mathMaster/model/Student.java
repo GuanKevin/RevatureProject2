@@ -14,9 +14,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 
 @Entity
 @Table(name="M2_STUDENT")
@@ -42,6 +42,7 @@ public class Student {
 	@Column(name="EMAIL", unique=true)
 	private String email;
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "STUDENT_COURSE")
 	private Set<Course> courses = new HashSet<Course>();
@@ -107,7 +108,7 @@ public class Student {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	public Set<Course> getCourseSet() {
 		return courses;
 	}
