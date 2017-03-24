@@ -36,4 +36,13 @@ public class ExamController {
 		Teacher teacher = facade.getTeacherByUserName(username);
 		return new ResponseEntity<Teacher>(teacher, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<String> createExam(@RequestBody Exam exam) {
+		Facade facade = new Facade();
+		facade.createExam(exam);
+        return new ResponseEntity<String>("Success!", HttpStatus.CREATED);
+		//return new ResponseEntity<Set<Course>>(teacher.getCourses(), HttpStatus.OK);
+	}
 }

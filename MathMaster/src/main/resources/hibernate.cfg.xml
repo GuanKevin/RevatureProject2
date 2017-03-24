@@ -21,12 +21,12 @@
 		</property>
 
 		<!-- only recommended for dev/test -->
-	 	<!-- <property name="show_sql">
+	 	<property name="show_sql">
 			true
 		</property>
 		<property name="hibernate.hbm2ddl.auto">
 			update
-		</property>  -->
+		</property> 
 		<!-- only recommended for dev/test -->
 
 		<!-- hibernate mapping file -->
