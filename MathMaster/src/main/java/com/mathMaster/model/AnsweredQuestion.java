@@ -89,7 +89,4 @@ public class AnsweredQuestion {
 		return "AnsweredQuestions [ansQuesId=" + ansQuesId + ", answerChoosen=" + answerChoosen + ", question="
 				+ question + "]";
 	}
-	
-	
-	
 }
