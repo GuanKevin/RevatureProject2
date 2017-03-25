@@ -9,24 +9,26 @@
 		</property>
 		<property name="hibernate.connection.username">
 			RevatureKG
+			<!-- cunyuser -->
 		</property>
 		<property name="hibernate.connection.password">
 			welcome1
 		</property>
 		<property name="hibernate.connection.url">
 			jdbc:oracle:thin:@kevinguan.cst3hkeetcxn.us-west-2.rds.amazonaws.com:1521:orcl
+			<!-- jdbc:oracle:thin:@cuny1702.crfk7t7zxs9p.us-west-2.rds.amazonaws.com:1521:orcl -->
 		</property>
 		<property name="hibernate.dialect">
 			org.hibernate.dialect.Oracle10gDialect
 		</property>
 
 		<!-- only recommended for dev/test -->
-	 	<!-- <property name="show_sql">
+	 	<property name="show_sql">
 			true
 		</property>
 		<property name="hibernate.hbm2ddl.auto">
 			update
-		</property>  -->
+		</property> 
 		<!-- only recommended for dev/test -->
 
 		<!-- hibernate mapping file -->

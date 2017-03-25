@@ -1,31 +1,27 @@
 package com.mathMaster.domain;
 
 import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
 
 import com.mathMaster.model.Exam;
 
+@Repository(value="examDAO")
 public class ExamDAOImpl implements ExamDAO {
 	private Session session;
-
-	public ExamDAOImpl(Session session) {
+	
+	public void setSession(Session session) {
 		this.session = session;
 	}
 
 	public Exam getExamById(int examId) {
-		return (Exam) session.load(Exam.class, examId);
+		return (Exam) session.get(Exam.class, examId);
 	}
 
-	public boolean createExam(Exam exam) {
-		Transaction tx = session.beginTransaction();
-		try {
-			session.save(exam);
-			tx.commit();
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			tx.rollback();
-			return false;
-		}
+	public void createExam(Exam exam) {
+		session.saveOrUpdate(exam);
+	}
+
+	public ExamDAOImpl() {
+		super();
 	}
 }

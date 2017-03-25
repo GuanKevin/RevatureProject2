@@ -36,7 +36,7 @@ public class AnsweredQuestionController {
 		TakenExam takenExam = facade.getTakenExamById(takenExamId);
 		
 		// set of all the questions for the exam of this taken exam
-		Set<Question> questions = takenExam.getTakenExam().getQuestions(); 
+		Set<Question> questions = takenExam.getTakenExam().getQuestionSet(); 
 		
 		System.out.println(questions);
 		List<AnsweredQuestion> list = Arrays.asList(ansQues);

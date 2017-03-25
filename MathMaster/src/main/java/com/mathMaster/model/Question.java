@@ -15,7 +15,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
  * 
@@ -23,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  *
  */
 
-
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
 @Entity
 @Table(name="M2_QUESTION")
 public class Question {
@@ -34,7 +37,7 @@ public class Question {
 	private int questionId;
 
 	
-	@JsonIgnore
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="EXAM_ID")
 	private Exam examQuestion;
@@ -57,7 +60,7 @@ public class Question {
 	@Column (name = "CHOICE_THREE")
 	private String choiceThree;
 	
-	@JsonIgnore
+	@JsonManagedReference
 	@OneToMany(mappedBy = "question", fetch=FetchType.EAGER)
 	private Set<AnsweredQuestion> answeredQuestions = new HashSet<AnsweredQuestion>();
 	

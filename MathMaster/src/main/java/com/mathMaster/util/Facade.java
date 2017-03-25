@@ -5,22 +5,19 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.mathMaster.domain.AnsweredQuestionDAO;
-import com.mathMaster.domain.AnsweredQuestionDAOImpl;
 import com.mathMaster.domain.CourseDAO;
-import com.mathMaster.domain.CourseDAOImpl;
 import com.mathMaster.domain.ExamDAO;
-import com.mathMaster.domain.ExamDAOImpl;
 import com.mathMaster.domain.QuestionDAO;
-import com.mathMaster.domain.QuestionDAOImpl;
 import com.mathMaster.domain.StudentDAO;
-import com.mathMaster.domain.StudentDAOImpl;
 import com.mathMaster.domain.TakenExamDAO;
-import com.mathMaster.domain.TakenExamDAOImpl;
 import com.mathMaster.domain.TeacherDAO;
-import com.mathMaster.domain.TeacherDAOImpl;
 import com.mathMaster.model.AnsweredQuestion;
 import com.mathMaster.model.Course;
 import com.mathMaster.model.Exam;
@@ -29,33 +26,19 @@ import com.mathMaster.model.Student;
 import com.mathMaster.model.TakenExam;
 import com.mathMaster.model.Teacher;
 
+@Component(value="facade")
 public class Facade implements AutoCloseable {
 	private AnsweredQuestionDAO answeredQuestionDAO;
 	private CourseDAO courseDAO;
 	private ExamDAO examDAO;
 	private SessionFactory sf;
-	private Session session;
 	private StudentDAO studentDAO;
 	private TakenExamDAO takenExamDAO;
 	private TeacherDAO teacherDAO;
 	private QuestionDAO questionDAO;
 
 	public Facade() {
-		try {
-			sf = M2SessionFactory.getSessionFactory();
-			session = sf.openSession();
-
-			examDAO = new ExamDAOImpl(session);
-			takenExamDAO = new TakenExamDAOImpl(session);
-			teacherDAO = new TeacherDAOImpl(session);
-			studentDAO = new StudentDAOImpl(session);
-			courseDAO = new CourseDAOImpl(session);
-			answeredQuestionDAO = new AnsweredQuestionDAOImpl(session);
-			questionDAO = new QuestionDAOImpl(session);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		sf = new Configuration().configure().buildSessionFactory();;
 	}
 
 	/**
@@ -70,7 +53,7 @@ public class Facade implements AutoCloseable {
 	 * @param username
 	 * @param password
 	 */
-	public void login(boolean isTeacher, String username, String password) {
+	/*public void login(boolean isTeacher, String username, String password) {
 		boolean user = isTeacher;
 
 		if (username != null && password != null)
@@ -106,85 +89,242 @@ public class Facade implements AutoCloseable {
 				}
 			}
 		}
-	}
+	}*/
 
 	public Teacher getTeacherByUserName(String username) {
-		return teacherDAO.getTeacherByUserName(username);
+		Session session = sf.openSession();
+		teacherDAO.setSession(session);
+		Teacher teacher = teacherDAO.getTeacherByUserName(username);
+		session.close();
+		return teacher;
 	}
 
-	public boolean createTeacher(Teacher teacher) {
-		return teacherDAO.createTeacher(teacher);
+	public void createTeacher(Teacher teacher) {
+		Session session = sf.openSession();
+		teacherDAO.setSession(session);
+		Transaction tx = session.beginTransaction();
+		try{
+			teacherDAO.createTeacher(teacher);
+			tx.commit();
+		} catch(Exception e) {
+			tx.rollback();
+		}
+		session.close();
 	}
 	
-	public boolean removeTeacher(Teacher teacher) {
-		return teacherDAO.removeTeacher(teacher);
+	public void removeTeacher(Teacher teacher) {
+		Session session = sf.openSession();
+		teacherDAO.setSession(session);
+		Transaction tx = session.beginTransaction();
+		try{
+			teacherDAO.removeTeacher(teacher);
+			tx.commit();
+		} catch(Exception e) {
+			tx.rollback();
+		}
+		session.close();
 	}
 	
 	public Exam getExamById(int examId) {
-		return examDAO.getExamById(examId);
+		Session session = sf.openSession();
+		examDAO.setSession(session);
+		Exam exam = examDAO.getExamById(examId);
+		session.close();
+		return exam;
 	}
 
-	public boolean createExam(Exam exam) {
-		return examDAO.createExam(exam);
+	public void createExam(Exam exam) {
+		Session session = sf.openSession();
+		examDAO.setSession(session);
+		Transaction tx = session.beginTransaction();
+		try{
+			examDAO.createExam(exam);
+			tx.commit();
+		} catch(Exception e) {
+			tx.rollback();
+		}
+		session.close();
 	}
 
 	public TakenExam getTakenExamById(int takenExamId) {
-		return takenExamDAO.getTakenExamById(takenExamId);
+		Session session = sf.openSession();
+		takenExamDAO.setSession(session);
+		System.out.println("Here");
+		System.out.println(takenExamDAO.getTakenExamById(takenExamId));
+		TakenExam exam = takenExamDAO.getTakenExamById(takenExamId);
+		session.close();
+		return exam;
 	}
 
-	public boolean takeExam(Exam exam, Student student, int score, Timestamp timeTaken) {
-		return takenExamDAO.takeExam(exam, student, score, timeTaken);
+	public void takeExam(Exam exam, Student student, int score, Timestamp timeTaken) {
+		Session session = sf.openSession();
+		takenExamDAO.setSession(session);
+		Transaction tx = session.beginTransaction();
+		try{
+			takenExamDAO.takeExam(exam, student, score, timeTaken);
+			tx.commit();
+		} catch(Exception e) {
+			tx.rollback();
+		}
+		session.close();
 	}
 
-	public boolean updateScore(TakenExam takenExam, int score) {
-		return takenExamDAO.updateScore(takenExam, score);
+	public void updateScore(TakenExam takenExam, int score) {
+		Session session = sf.openSession();
+		takenExamDAO.setSession(session);
+		Transaction tx = session.beginTransaction();
+		try{
+			takenExamDAO.updateScore(takenExam, score);
+			tx.commit();
+		} catch(Exception e) {
+			tx.rollback();
+		}
+		session.close();
 	}
 
-	public boolean createCourse(Course course) {
-		return courseDAO.createCourse(course);
+	public void createCourse(Course course) {
+		Session session = sf.openSession();
+		courseDAO.setSession(session);
+		Transaction tx = session.beginTransaction();
+		try{
+			courseDAO.createCourse(course);
+			tx.commit();
+		} catch(Exception e) {
+			tx.rollback();
+		}
+		session.close();
 	}
 
 	public Course getCourseById(int id) {
-		return courseDAO.getCourseById(id);
+		Session session = sf.openSession();
+		courseDAO.setSession(session);
+		Course course = courseDAO.getCourseById(id);
+		session.close();
+		return course;
 	}
 
 	public Student getStudentByUsername(String username) {
-		return studentDAO.getStudentByUsername(username);
+		Session session = sf.openSession();
+		studentDAO.setSession(session);
+		Student student = studentDAO.getStudentByUsername(username);
+		session.close();
+		return student;
 	}
 
-	public boolean createStudent(Student student) {
-		return studentDAO.createStudent(student);
+	public void createStudent(Student student) {
+		Session session = sf.openSession();
+		studentDAO.setSession(session);
+		Transaction tx = session.beginTransaction();
+		try{
+			studentDAO.createStudent(student);
+			tx.commit();
+		} catch(Exception e) {
+			tx.rollback();
+		}
+		session.close();
 	}
 
-	public boolean removeStudent(Student student) {
-		return studentDAO.removeStudent(student);
+	public void removeStudent(Student student) {
+		Session session = sf.openSession();
+		studentDAO.setSession(session);
+		Transaction tx = session.beginTransaction();
+		try{
+			studentDAO.removeStudent(student);
+			tx.commit();
+		} catch(Exception e) {
+			tx.rollback();
+		}
+		session.close();
 	}
 
-	public boolean insertAnsweredQuestion(AnsweredQuestion answeredQuestion) {
-		return answeredQuestionDAO.insertAnsweredQuestion(answeredQuestion);
+	public void insertAnsweredQuestion(AnsweredQuestion answeredQuestion) {
+		Session session = sf.openSession();
+		answeredQuestionDAO.setSession(session);
+		answeredQuestionDAO.insertAnsweredQuestion(answeredQuestion);
+		session.close();
 	}
 
-	public boolean insertAnsweredQuestions(List<AnsweredQuestion> answeredQuestions) {
-		return answeredQuestionDAO.insertAnsweredQuestions(answeredQuestions);
+	public void insertAnsweredQuestions(List<AnsweredQuestion> answeredQuestions) {
+		Session session = sf.openSession();
+		answeredQuestionDAO.setSession(session);
+		answeredQuestionDAO.insertAnsweredQuestions(answeredQuestions);
+		session.close();
 	}
 
 	public Question getQuestionByQuestionId(int questionId) {
-		return questionDAO.getQuestionByQuestionId(questionId);
+		Session session = sf.openSession();
+		questionDAO.setSession(session);
+		Question question = questionDAO.getQuestionByQuestionId(questionId);
+		session.close();
+		return question;
 	}
 
-	public boolean insertQuestion(Question question) {
-		return questionDAO.insertQuestion(question);
+	public void insertQuestion(Question question) {
+		Session session = sf.openSession();
+		questionDAO.setSession(session);
+		Transaction tx = session.beginTransaction();
+		try{
+			questionDAO.insertQuestion(question);
+			tx.commit();
+		} catch(Exception e) {
+			tx.rollback();
+		}
+		session.close();
 	}
 
-	public boolean insertQuestions(List<Question> questions) {
-		return questionDAO.insertQuestions(questions);
+	public void insertQuestions(List<Question> questions) {
+		Session session = sf.openSession();
+		questionDAO.setSession(session);
+		Transaction tx = session.beginTransaction();
+		try{
+			questionDAO.insertQuestions(questions);
+			tx.commit();
+		} catch(Exception e) {
+			tx.rollback();
+		}
+		session.close();
 	}	
+	
+	@Autowired
+	public void setAnsweredQuestionDAO(AnsweredQuestionDAO answeredQuestionDAO) {
+		this.answeredQuestionDAO = answeredQuestionDAO;
+	}
+
+	@Autowired
+	public void setCourseDAO(CourseDAO courseDAO) {
+		this.courseDAO = courseDAO;
+	}
+
+	@Autowired
+	public void setExamDAO(ExamDAO examDAO) {
+		this.examDAO = examDAO;
+	}
+
+	@Autowired
+	public void setStudentDAO(StudentDAO studentDAO) {
+		this.studentDAO = studentDAO;
+	}
+
+	@Autowired
+	public void setTakenExamDAO(TakenExamDAO takenExamDAO) {
+		this.takenExamDAO = takenExamDAO;
+	}
+
+	@Autowired
+	public void setTeacherDAO(TeacherDAO teacherDAO) {
+		this.teacherDAO = teacherDAO;
+	}
+
+	@Autowired
+	public void setQuestionDAO(QuestionDAO questionDAO) {
+		this.questionDAO = questionDAO;
+	}
+
 	/**
 	 * TODO Figure out where all the sessions and the sessionfactory should be
 	 * called
 	 */
 	public void close() throws Exception {
 		sf.close();
-		session.close();
 	}
 }

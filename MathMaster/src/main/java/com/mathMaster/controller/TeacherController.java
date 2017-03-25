@@ -1,5 +1,6 @@
 package com.mathMaster.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -11,25 +12,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mathMaster.model.Course;
 import com.mathMaster.model.Teacher;
+import com.mathMaster.service.Delegate;
 import com.mathMaster.util.Facade;
 
 @Controller
 public class TeacherController {
+	private Delegate businessDelegate;
+	
+	@Autowired
+	public void setBusinessDelegate(Delegate businessDelegate) {
+		this.businessDelegate = businessDelegate;
+	}
 
-	/**
-	 * localhost:7001/MathMaster/Teacher/Code_Blooded_KG
-	 * Gets username from HTTP and returns user data
-	 * 
-	 * @param username
-	 * @return
-	 */
 	@RequestMapping(value = "Teacher/{username}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<Teacher> getTeacherByUsername(@PathVariable String username) throws Exception {
-		Facade facade = new Facade();
-		Teacher teacher = facade.getTeacherByUserName(username);
-		facade.close();
-		return new ResponseEntity<Teacher>(teacher, HttpStatus.OK);
+		return new ResponseEntity<Teacher>(businessDelegate.getTeacherByUserName(username), HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "Teacher/Course/{username}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

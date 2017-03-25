@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
 
 import com.mathMaster.model.Question;
 
+@Repository(value="questionDAO")
 public class QuestionDAOImpl implements QuestionDAO {
 
 	private Session session;
@@ -15,6 +17,10 @@ public class QuestionDAOImpl implements QuestionDAO {
 	}
 
 	public QuestionDAOImpl(Session session) {
+		this.session = session;
+	}
+	
+	public void setSession(Session session) {
 		this.session = session;
 	}
 

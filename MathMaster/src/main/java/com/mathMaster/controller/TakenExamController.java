@@ -3,51 +3,52 @@ package com.mathMaster.controller;
 import java.sql.Timestamp;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mathMaster.model.AnsweredQuestion;
 import com.mathMaster.model.Exam;
-import com.mathMaster.model.Student;
 import com.mathMaster.model.TakenExam;
-import com.mathMaster.util.Facade;
+import com.mathMaster.service.Delegate;
 
 @Controller
 @RequestMapping(value="TakenExam")
 public class TakenExamController {
 	
+	private Delegate businessDelegate;
+	
+	@Autowired
+	public void setBusinessDelegate(Delegate businessDelegate) {
+		this.businessDelegate = businessDelegate;
+	}
+	
+	// Get TakenExam
 	@RequestMapping(value={"{takenExamId}"}, method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<TakenExam> getTakenExamById(@PathVariable int takenExamId) throws Exception {
-		Facade facade = new Facade();
-		TakenExam takenExam = facade.getTakenExamById(takenExamId);
-		facade.close();
-		return new ResponseEntity<>(takenExam, HttpStatus.OK);
+		return new ResponseEntity<>(businessDelegate.getTakenExamById(takenExamId), HttpStatus.OK);
 	}
-	
+
+	// Get TakenExam Questions
 	@RequestMapping(value="{takenExamxamId}/index", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<Set<AnsweredQuestion>> getAllQuestionByTakenExamId(@PathVariable int takenExamId) throws Exception {
-		Facade facade = new Facade();
-		TakenExam takenExam = facade.getTakenExamById(takenExamId);
-		facade.close();
-		return new ResponseEntity<Set<AnsweredQuestion>>(takenExam.getAnsweredQuestionSet(), HttpStatus.OK);
+		return new ResponseEntity<Set<AnsweredQuestion>>(businessDelegate.getTakenExamById(takenExamId).getAnsweredQuestionSet(), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/{username}/{examId}", method={RequestMethod.GET, RequestMethod.POST}, consumes=MediaType.APPLICATION_JSON_VALUE)
+	// Take Exam
+	@RequestMapping(value="/{username}/{examId}", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<Exam> createExam(@PathVariable String username, @PathVariable int examId) throws Exception {
-		Facade facade = new Facade();
-		Exam exam = facade.getExamById(examId);
-		Student student = facade.getStudentByUsername(username);
-		facade.takeExam(exam, student, 0, new Timestamp(System.currentTimeMillis()));
-		facade.close();
+	public ResponseEntity<Exam> createExam(@PathVariable String username, @PathVariable int examId, @RequestBody Set<AnsweredQuestion> answeredQuestion) throws Exception {
+		businessDelegate.takeExam(businessDelegate.getExamById(examId), businessDelegate.getStudentByUsername(username), 0, new Timestamp(System.currentTimeMillis()));
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	

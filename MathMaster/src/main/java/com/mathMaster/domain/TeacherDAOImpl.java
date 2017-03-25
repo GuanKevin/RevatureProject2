@@ -4,9 +4,11 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.stereotype.Repository;
 
 import com.mathMaster.model.Teacher;
 
+@Repository(value="teacherDAO")
 public class TeacherDAOImpl implements TeacherDAO {
 	private Session session;
 
@@ -14,10 +16,10 @@ public class TeacherDAOImpl implements TeacherDAO {
 		super();
 	}
 
-	public TeacherDAOImpl(Session session) {
+	public void setSession(Session session) {
 		this.session = session;
 	}
-
+	
 	/**
 	 * Queries the database for a teacher with their unique user-name and
 	 * returns the user-name

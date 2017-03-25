@@ -17,8 +17,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
@@ -32,11 +34,12 @@ public class Course {
 	@GeneratedValue(generator="COURSE", strategy=GenerationType.SEQUENCE)
 	private int courseId;
 
+	@JsonBackReference
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="TEACHER_ID")
-	@JsonIgnore
 	private Teacher teacher;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy="course", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Exam> exams = new HashSet<Exam>();
 	
