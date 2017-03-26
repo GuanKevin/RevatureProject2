@@ -35,7 +35,7 @@ public class AnsweredQuestion {
 	@JoinColumn(name = "QUESTION_ID")
 	private Question question;
 
-	@JsonIgnore
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "TAKEN_EXAM_ID")
 	private TakenExam takenExamQuestion;
