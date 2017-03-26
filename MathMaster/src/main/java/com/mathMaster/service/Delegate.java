@@ -25,7 +25,7 @@ public class Delegate {
 	private TeacherService teacherService;
 	
 	public Exam getExamById(int examId) {
-			return examService.getExamById(examId);
+		return examService.getExamById(examId);
 	}
 
 	public void insertAnsweredQuestion(AnsweredQuestion answeredQuestion) {
@@ -76,8 +76,8 @@ public class Delegate {
 		return takenExamService.getTakenExamById(id);
 	}
 	
-	public void takeExam(Exam exam, Student student, int score, Timestamp timeTaken) {
-		takenExamService.takeExam(exam, student, score, timeTaken);
+	public void takeExam(TakenExam takenExam) {
+		takenExamService.takeExam(takenExam);
 	}
 
 	public void updateScore(TakenExam takenExam, int score) {

@@ -1,6 +1,5 @@
 package com.mathMaster.controller;
 
-import java.sql.Timestamp;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,8 +46,12 @@ public class TakenExamController {
 	// Take Exam
 	@RequestMapping(value="/{username}/{examId}", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<Exam> createExam(@PathVariable String username, @PathVariable int examId, @RequestBody Set<AnsweredQuestion> answeredQuestion) throws Exception {
-		businessDelegate.takeExam(businessDelegate.getExamById(examId), businessDelegate.getStudentByUsername(username), 0, new Timestamp(System.currentTimeMillis()));
+	public ResponseEntity<Exam> createExam(@PathVariable String username, @PathVariable int examId, @RequestBody TakenExam takenExam) throws Exception {
+		takenExam.setStudent(businessDelegate.getStudentByUsername(username));
+		takenExam.setTakenExam(businessDelegate.getExamById(examId));
+		takenExam.setTakenExamId(200);
+		System.out.println("controller: " + takenExam);
+		businessDelegate.takeExam(takenExam);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	

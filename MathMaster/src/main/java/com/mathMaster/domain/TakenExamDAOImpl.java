@@ -1,13 +1,9 @@
 package com.mathMaster.domain;
 
-import java.sql.Timestamp;
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
-import com.mathMaster.model.Exam;
-import com.mathMaster.model.Student;
 import com.mathMaster.model.TakenExam;
 
 @Repository(value="takenExamDAO")
@@ -26,9 +22,11 @@ public class TakenExamDAOImpl implements TakenExamDAO {
 		return (TakenExam) session.get(TakenExam.class, takenExamId);
 	}
 
-	public void takeExam(Exam exam, Student student, int score, Timestamp timeTaken) {
-		TakenExam takenExam = new TakenExam(exam, student, score, timeTaken);
-		session.saveOrUpdate(takenExam);
+	public void takeExam(TakenExam takenExam) {
+		System.out.println("saving");
+		System.out.println(takenExam);
+		session.save(takenExam);
+		System.out.println("save omplete");
 	}
 
 	public boolean updateScore(TakenExam takenExam, int score) {

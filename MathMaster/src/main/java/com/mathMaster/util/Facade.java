@@ -1,13 +1,11 @@
 package com.mathMaster.util;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -156,17 +154,21 @@ public class Facade implements AutoCloseable {
 		return exam;
 	}
 
-	public void takeExam(Exam exam, Student student, int score, Timestamp timeTaken) {
+	public void takeExam(TakenExam takenExam) {
 		Session session = sf.openSession();
 		takenExamDAO.setSession(session);
 		Transaction tx = session.beginTransaction();
 		try{
-			takenExamDAO.takeExam(exam, student, score, timeTaken);
+			takenExamDAO.takeExam(takenExam);
+			System.out.println("commited");
 			tx.commit();
 		} catch(Exception e) {
+			System.out.println("rolled back");
+			e.printStackTrace();
 			tx.rollback();
+		} finally {
+			session.close();
 		}
-		session.close();
 	}
 
 	public void updateScore(TakenExam takenExam, int score) {
