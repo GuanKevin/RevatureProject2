@@ -10,10 +10,13 @@
 
 	<mvc:annotation-driven />
 	<mvc:resources location="/pages/" mapping="/pages/**" />
+	<mvc:resources location="/resources/" mapping="/resources/**" />
+	
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/pages/" />
+		<!-- <property name="suffix" value=".html"></property> -->
 	</bean>
 
 </beans>

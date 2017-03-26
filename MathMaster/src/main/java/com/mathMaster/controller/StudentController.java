@@ -18,7 +18,7 @@ import com.mathMaster.util.Facade;
 
 @Controller
 @RequestMapping(value="Student")
-public class StudentController {
+public class StudentController { 
 	
 	@RequestMapping(value="{username}", method=RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
@@ -46,9 +46,16 @@ public class StudentController {
 	
 	@RequestMapping(value="{username}/Course/{courseId}/Exam/{examId}", method=RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<Exam> getExamByStudentCourse(@PathVariable String username, @PathVariable int courseId, @PathVariable int examId) throws Exception {
+	public ResponseEntity<Exam> getExamByStudentCourse(@PathVariable String username, @PathVariable int courseId, @PathVariable int examId) {
 		Facade fa = new Facade();
-		Exam exams = fa.getExamById(examId);
-		return new ResponseEntity<Exam>(exams, HttpStatus.OK);
+		try {
+			Exam exam = fa.getExamById(examId);
+			System.out.println(exam);
+			return new ResponseEntity<Exam>(exam, HttpStatus.OK);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<Exam>(HttpStatus.NOT_FOUND);
+		}
+		
 	}
 }

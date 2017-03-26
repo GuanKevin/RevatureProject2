@@ -46,7 +46,9 @@ public class Course {
 	@Column(name="SUBJECT_NAME")
 	private String subjectName;
 	
+	
 	@ManyToMany(mappedBy = "courses", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JsonIgnore
 	private Set<Student> students = new HashSet<Student>();
 
 	public Course () {}
