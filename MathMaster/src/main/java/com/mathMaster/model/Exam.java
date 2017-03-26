@@ -23,12 +23,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-@NamedQueries({
-	
-})
-@NamedNativeQueries({
-	
-})
 @Entity
 @Table(name = "M2_EXAM")
 public class Exam {
@@ -118,14 +112,6 @@ public class Exam {
 
 	public void setQuestions(Set<Question> question) {
 		this.questionSet = question;
-	}
-
-	public Set<TakenExam> getTakenExams() {
-		return takenExamSet;
-	}
-
-	public void setTakenExams(Set<TakenExam> takenExams) {
-		this.takenExamSet = takenExams;
 	}
 
 	public Set<TakenExam> getTakenExam() {
