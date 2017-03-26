@@ -20,6 +20,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @NamedQueries({
 	
@@ -52,7 +54,7 @@ public class TakenExam {
 	@Column(name="TIME_TAKEN")
 	private Timestamp timeTaken;
 	
-	/*denise added to mapp to AnsweredQuestions*/
+	@JsonManagedReference
 	@OneToMany(mappedBy = "takenExamQuestion", fetch=FetchType.EAGER)
 	private Set<AnsweredQuestion> answeredQuestionSet = new HashSet<AnsweredQuestion>();
 	

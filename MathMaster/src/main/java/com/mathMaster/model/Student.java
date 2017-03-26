@@ -16,9 +16,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
 @Entity
 @Table(name="M2_STUDENT")
 public class Student {
@@ -43,10 +45,10 @@ public class Student {
 	@Column(name="EMAIL", unique=true)
 	private String email;
 	
-	@JsonBackReference
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "STUDENT_COURSE")
 	private Set<Course> courses = new HashSet<Course>();
+	
 	
 	@OneToMany(mappedBy="student", fetch=FetchType.EAGER)
 	private Set<TakenExam> takenExamSet = new HashSet<TakenExam>();
