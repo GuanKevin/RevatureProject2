@@ -18,5 +18,6 @@
 		<property name="prefix" value="/pages/" />
 		<!-- <property name="suffix" value=".html"></property> -->
 	</bean>
+	
 
 </beans>

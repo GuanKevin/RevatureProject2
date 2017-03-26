@@ -31,14 +31,14 @@ public class ExamController {
 		return new ResponseEntity<Exam>(exam, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="create/{courseId}", method={RequestMethod.GET, RequestMethod.POST}, consumes=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="create", method = RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<Exam> createExam(@RequestBody Exam exam, @PathVariable int courseId) throws Exception {
+	public ResponseEntity<String> createExam(@RequestBody Exam exam) throws Exception {
+		System.out.println(exam);
 		Facade facade = new Facade();
-		exam.setCourse(facade.getCourseById(courseId));
 		facade.createExam(exam);
 		facade.close();
-		return new ResponseEntity<>(HttpStatus.CREATED);
+		return new ResponseEntity<String>("Success", HttpStatus.CREATED);
 	}
 	
 	@RequestMapping(value="{examId}/index", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)

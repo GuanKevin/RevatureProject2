@@ -25,13 +25,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-@NamedQueries({
-	
-})
-@NamedNativeQueries({
-	
-})
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
 @Entity
 @Table(name = "M2_EXAM")
 public class Exam {
@@ -120,14 +113,6 @@ public class Exam {
 
 	public void setQuestions(Set<Question> question) {
 		this.questionSet = question;
-	}
-
-	public Set<TakenExam> getTakenExams() {
-		return takenExamSet;
-	}
-
-	public void setTakenExams(Set<TakenExam> takenExams) {
-		this.takenExamSet = takenExams;
 	}
 
 	public Set<TakenExam> getTakenExam() {

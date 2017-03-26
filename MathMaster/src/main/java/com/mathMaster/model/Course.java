@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -34,7 +35,6 @@ public class Course {
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="TEACHER_ID")
-	@JsonIgnore
 	private Teacher teacher;
 	
 	@OneToMany(mappedBy="course", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
@@ -46,9 +46,7 @@ public class Course {
 	@Column(name="SUBJECT_NAME")
 	private String subjectName;
 	
-	
 	@ManyToMany(mappedBy = "courses", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JsonIgnore
 	private Set<Student> students = new HashSet<Student>();
 
 	public Course () {}
