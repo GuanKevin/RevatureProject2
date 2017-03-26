@@ -40,18 +40,19 @@ public class AnsweredQuestionController {
 		
 		System.out.println(questions);
 		List<AnsweredQuestion> list = Arrays.asList(ansQues);
-		
+		System.out.println(list);
 		Iterator<Question> it = questions.iterator();
 	     
 	     
-		for(AnsweredQuestion ansquest: list){
+	/*	for(AnsweredQuestion ansquest: list){
 		     Question question = it.next();
 			ansquest.setTakenExamQuestion(takenExam);
 			ansquest.setQuestion(question);
-		}
+		}*/
 		
-		System.out.println(takenExam);
-		facade.insertAnsweredQuestions(list);
+		System.out.println("[   TAKEN EXAM   ]    " + takenExam);
+		System.out.println("[   LIST OF ANSWERED QUESTIONS   ]    " + list);
+		//facade.insertAnsweredQuestions(list);
 
 		
 		try {
