@@ -52,7 +52,6 @@ public class Student {
 	@JsonManagedReference
 	@OneToMany(mappedBy="student", fetch=FetchType.EAGER)
 	private Set<TakenExam> takenExamSet = new HashSet<TakenExam>();
-	
 	public Student() {}
 
 	public Student(String userName, String password, String firstName, String lastName, String email) {

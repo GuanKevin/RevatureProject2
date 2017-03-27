@@ -24,47 +24,47 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
 	crossorigin="anonymous"></script>
-	
-	
+
+
 </head>
 <body>
-<h3>Enter a new question</h3>
+	<h3>Enter a new question</h3>
 	<form action="#">
-		<input type="text" id="level" placeholder="LEVEL">
-		<input type="text" id="question" placeholder="QUESTION">
-		<input type="text" id="answer" placeholder="ANSWER">
-		<input type="text" id="choiceOne" placeholder="CHOICE ONE">
-		<input type="text" id="choiceTwo" placeholder="CHOICE TWO">
-		<input type="text" id="choiceThree" placeholder="CHOICE THREE">
+		<input type="text" id="level" placeholder="LEVEL"> <input
+			type="text" id="question" placeholder="QUESTION"> <input
+			type="text" id="answer" placeholder="ANSWER"> <input
+			type="text" id="choiceOne" placeholder="CHOICE ONE"> <input
+			type="text" id="choiceTwo" placeholder="CHOICE TWO"> <input
+			type="text" id="choiceThree" placeholder="CHOICE THREE">
 		<button id="add" class="btn btn-success">Add</button>
 	</form>
-	
-	<div class="col-md-6">
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>Level</th>
-						<th>Question</th>
-						<th>Answer</th>
-						<th>Choice One</th>
-						<th>Choice Two</th>
-						<th>Choice Three</th>
-					</tr>
-				</thead>
-				<tbody>
-				</tbody>
-			</table>
-		</div>
 
-	<form action="question/create" method="post">
-		<input type="submit">
-	</form>
+	<div class="col-md-6">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Level</th>
+					<th>Question</th>
+					<th>Answer</th>
+					<th>Choice One</th>
+					<th>Choice Two</th>
+					<th>Choice Three</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+
+
+	<!-- HERE MAKE SURE AFTER SUBMITING TO GO CLEAR PAGE AND LOAD THE COURSE VIEW -->
+	<button id="submit" class="btn btn-success">Submit</button>
 </body>
 <script type="text/javascript">
 	$(document).ready(function() {
 		refresh();
 		
-		function Question(level,question, answer, choiceOne, choiceTwo, choiceThree) {
+		function QuestionObj(level,question, answer, choiceOne, choiceTwo, choiceThree) {
 			this.level = level;
 			this.question = question;
 			this.answer = answer;
@@ -73,9 +73,22 @@
 			this.choiceThree = choiceThree;
 		}
 		
+	/*  HERE CHANGE IT TO CLEAR THE VIEW AND LOAD THE COURSES VIEW */
+	    $("#submit").click(function(){
+	    
+			$.ajax("http://localhost:7001/MathMaster/Tquestion/create", {
+				method : "POST",
+				success : function() {
+					tablewipe();
+					/* should clear view */
+					console.log("good job denise");
+				}
+			});
+		}) 
+		
 		// when add is clicked it will add a question to the list in the controller
 		$("#add").click(function() {
-			$("#add").prop("disabled", true);
+		    $("#add").prop("disabled", true); 
 			var level = $("#level").val();
 			var question = $("#question").val();
 			var answer = $("#answer").val();
@@ -83,37 +96,44 @@
 			var choiceTwo = $("#choiceTwo").val();
 			var choiceThree = $("#choiceThree").val();
 			
-			var questionCreated = new Question(level, question, answer, choiceOne, choiceTwo, choiceThree);
-			console.log(questionCreated);
-		    console.log(JSON.stringify(questionCreated));
+			var questionCreated = new QuestionObj(level, question, answer, choiceOne, choiceTwo, choiceThree);
+	
 			$.ajax("http://localhost:7001/MathMaster/Tquestion/new/87", {/* 87 is the exam ID */
 				method : "POST",
+				data : JSON.stringify(questionCreated),
 				headers : {
-					"Accept" : "application/json",
+					/* "Accept" : "application/json", */
 					"Content-Type" : "application/json"
 				},
-				data : JSON.stringify(questionCreated),
 				success : function(response) {
-					/* $(".alert-success").text(response);
+				    $(".alert-success").text(response);
 					$(".alert-success").fadeIn();
 					window.setTimeout(function(response) {
 						$(".alert-success").fadeOut();
 						$("#add").prop("disabled", false);
-					}, 3000); */
+					}, 3000);
 					$("form")[0].reset(); //reset form fields in the form
 					refresh();
+				},
+				error: function() {
+					$(".alert-danger").fadeIn();
+					window.setTimeout(function(response) {
+						$(".alert-danger").fadeOut();
+						$("#add").prop("disabled", false);
+					}, 3000);
 				}
 			});
-			return false; 
+		    return false; 
 		});
+		
  		function refresh() {
 			$.ajax("http://localhost:7001/MathMaster/Tquestion/all", {
 				method : "GET",
 				headers : {
 					"Accept" : "application/json"
 				},
-				dataType : "json",
-				success : function(response) {
+/* 				dataType : "json",
+ */				success : function(response) {
 					console.log(response);
 					tablewipe();
 					tableload(response);
@@ -135,8 +155,7 @@
 				$(".table tbody").append("<td>" + temp.choiceTwo + "</td>");
 				$(".table tbody").append("<td>" + temp.choiceThree + "</td>");
 				$(".table tbody").append("</tr>");
-			})
-			return false;
+			});
 		}
 	});
 </script>

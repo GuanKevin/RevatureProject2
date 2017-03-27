@@ -3,6 +3,10 @@ package com.mathMaster.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,13 +19,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mathMaster.model.Exam;
 import com.mathMaster.model.Question;
-import com.mathMaster.util.Facade;
+import com.mathMaster.service.Delegate;
 
 @Controller
 @RequestMapping(value = "Tquestion")
 public class TESTQuestionController {
 
 	private List<Question> questions = new ArrayList<Question>(); 
+	private Delegate businessDelegate;
+	
+	@Autowired
+	public void setBusinessDelegate(Delegate businessDelegate) {
+		this.businessDelegate = businessDelegate;
+	}
 	
 	/**
 	 * Saves  Question to the List (I commented out to save a question directly to the DB)
@@ -31,23 +41,18 @@ public class TESTQuestionController {
 	public ResponseEntity<String> addQuestion(@RequestBody Question question, @PathVariable int examId) { 
 		System.out.println("Add question: " + question);
 		
-		//adding it to the questions list to later save the whole list of questions at once
-		Facade facade = new Facade();
 		
-		Exam exam = facade.getExamById(examId);
+		Exam exam =  businessDelegate.getExamById(examId);
 		
+		System.out.println("[     THIS IS THE EXAM ]" + exam);
 		// Completing the question object with the exam object
 		question.setExamQuestion(exam);
 		
+		System.out.println("[   this is the question with the exam ]" + question);
 		// adding the new question to the list
 		questions.add(question);
 		
 		System.out.println("the question is now added to the list");
-		try {
-			facade.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		
 		return new ResponseEntity<String>("Sucess! ", HttpStatus.CREATED);
 	}
@@ -60,26 +65,22 @@ public class TESTQuestionController {
 		return new ResponseEntity<List<Question>>(questions, HttpStatus.OK);
 	}
 	
-	/**
-	 * Add the list of questions when the submit button is pressed
-	 * @throws Exception 
-	 */
-	@RequestMapping(value = "create", method = RequestMethod.POST, consumes =  MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public ResponseEntity<Question> addAllQuestions(){
-		System.out.println("about to submit the list of questions to the database");
-		Facade facade = new Facade();
+
 	
-		facade.insertQuestions(questions);
-		
-		try {
-			facade.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	
+	@RequestMapping(value = "create", method = RequestMethod.POST)
+	@ResponseBody
+	public String addAllQuestions(HttpServletRequest req,
+			HttpServletResponse resp){
+		System.out.println("about to submit the list of questions to the database");
+			
+		businessDelegate.insertQuestions(questions);
 		
 		System.out.println("sucessfully submited the list to the database---CHECK THE DATABASE to see if the questions are there");
-		return new ResponseEntity<>(HttpStatus.CREATED);
+		
+		questions = null;
+		
+		return "redirect:mgr";
 	}
 	
 	@RequestMapping(value="page", method=RequestMethod.GET)
