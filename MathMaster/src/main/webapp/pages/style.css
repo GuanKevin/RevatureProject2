@@ -32,7 +32,8 @@ input[type="radio"] {
 }
 .panel {
   border-radius: 0;
-  min-height: 500px;
+  min-height: 703px;
+  margin: 0;
 }
 .sidebar {
 	text-align: center;
@@ -47,10 +48,11 @@ input[type="radio"] {
 	margin: 0;
 }
 .panel>.list-group .list-group-item {
-	padding: 15px 0;
+	padding: 0;
 	border-width: 0;
 	border: 0;
 }
+
 .list-group-item {
 	border: 0;
 }
@@ -58,10 +60,24 @@ input[type="radio"] {
 	color: #fff;
 	background-color: #777;
 	border-top: 1px solid;
+	padding: 15px 0;
 }
 .panel-heading+.list-group .exams:first-child {
 	border-top: 1px solid;
 }
 .panel>.list-group:last-child .exams:last-child {
 	border-bottom: 1px solid;
+}
+.courses {
+	border-bottom: 2px solid #777;
+	border-radius: 0;
+    color: #fff;
+    background-color: #2a2d2c;
+}
+.courses:hover {
+	background-color: #49504e;
+}
+.page-header {
+	text-align: center;
+	margin-bottom: 0;
 }
