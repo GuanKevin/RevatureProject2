@@ -7,6 +7,28 @@ $(document).ready(function() {
  *    - h4 class name
  *   - div class="collapse" id="classes1">
  */
+	function getExam(exam) {
+		var html = "";
+		html += "<div>Name: " + exam.name + "</div>"
+				+ "<div>Start: " +  new Date(exam.start) + "</div>"
+				+ "<div>End: " + new Date(exam.end) + "</div>"
+				+ "<div>Questions:</div>";
+		html += "<ol>"
+		$.each(exam.questionSet, function(index, temp) {
+			html += "<li>"
+					+"<div>Level: " + temp.level + "</div>"
+					+"<div>Question : " + temp.question + "</div>"
+					+"<div>Answer : " + temp.answer + "</div>"
+					+"<div>Choice 1: " + temp.choiceOne + "</div>"
+					+"<div>Choice 2: " + temp.choiceTwo + "</div>"
+					+"<div>Choice 3: " + temp.choiceThree + "</div>"
+					+"</li>";
+		});
+		html += "</ol>";
+		$("#body").append(html);
+	}
+	
+	
 	function insertClasses(allCourses){
 		var courseCon = $("#sidebarMenu");
 		var html = "";
@@ -19,7 +41,8 @@ $(document).ready(function() {
 			html += "<div class='collapse' id='course" + i + "'>";
 			html += "<ul class='list-group'>";
 			for(var j = 0; j < allCourseExams.length; j++){
-				html += "<li class='list-group-item exams'>" + allCourseExams[j].name + "</li>";
+				html += "<li class='list-group-item exams' id=" + allCourseExams[j].id + ">" + allCourseExams[j].name + "</li>";
+				$(".list-group-item exams").click(getExam(allCourseExams[j]));
 			}
 			html += "</ul>";
 			html += "</div>";
@@ -29,7 +52,7 @@ $(document).ready(function() {
 	};
 		
 	var studentUsername = "Student001";
-	  $.ajax("http://localhost:8081/MathMaster/Student/"+ studentUsername, {
+	$.ajax("http://localhost:8081/MathMaster/Student/"+ studentUsername, {
 	    method : 'GET',
 	    dataType : 'json',
 	    success : function(response) {
@@ -42,7 +65,7 @@ $(document).ready(function() {
 		
 	      console.log(response.courseSet);
 	    }
-	  });
+	});
 	
 	
 	
