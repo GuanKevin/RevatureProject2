@@ -78,18 +78,8 @@ public class Facade implements AutoCloseable {
 	public Teacher getTeacherByUserName(String username) {
 		Session session = sf.openSession();
 		teacherDAO.setSession(session);
-		Transaction tx = session.beginTransaction();
-
-		Teacher teacher = null;
-
-		try {
-			teacherDAO.getTeacherByUserName(username);
-			tx.commit();
-		} catch (Exception e) {
-			tx.rollback();
-		} finally {
-			session.close();
-		}
+		Teacher teacher = teacherDAO.getTeacherByUserName(username);
+		session.close();
 
 		return teacher;
 
@@ -130,19 +120,8 @@ public class Facade implements AutoCloseable {
 	public Exam getExamById(int examId) {
 		Session session = sf.openSession();
 		examDAO.setSession(session);
-		Transaction tx = session.beginTransaction();
-
-		Exam exam = null;
-
-		try {
-			exam = examDAO.getExamById(examId);
-			tx.commit();
-		} catch (Exception e) {
-			tx.rollback();
-		} finally {
-			session.close();
-		}
-
+		Exam exam = examDAO.getExamById(examId);
+		session.close();
 		return exam;
 	}
 
@@ -165,21 +144,12 @@ public class Facade implements AutoCloseable {
 	public TakenExam getTakenExamById(int takenExamId) {
 		Session session = sf.openSession();
 		takenExamDAO.setSession(session);
-		Transaction tx = session.beginTransaction();
 
 		System.out.println("Here");
 		System.out.println(takenExamDAO.getTakenExamById(takenExamId));
 
-		TakenExam exam = null;
-
-		try {
-			takenExamDAO.getTakenExamById(takenExamId);
-			tx.commit();
-		} catch (Exception e) {
-			tx.rollback();
-		} finally {
-			session.close();
-		}
+		TakenExam exam = takenExamDAO.getTakenExamById(takenExamId);
+		session.close();
 
 		return exam;
 	}
@@ -238,17 +208,8 @@ public class Facade implements AutoCloseable {
 	public Course getCourseById(int id) {
 		Session session = sf.openSession();
 		courseDAO.setSession(session);
-		Transaction tx = session.beginTransaction();
-		Course course = null;
-
-		try {
-			course = courseDAO.getCourseById(id);
-			tx.commit();
-		} catch (Exception e) {
-			tx.rollback();
-		} finally {
-			session.close();
-		}
+		Course course = courseDAO.getCourseById(id);
+		session.close();
 
 		return course;
 	}
@@ -256,19 +217,8 @@ public class Facade implements AutoCloseable {
 	public Student getStudentByUsername(String username) {
 		Session session = sf.openSession();
 		studentDAO.setSession(session);
-		Transaction tx = session.beginTransaction();
-
-		Student student = null;
-
-		try {
-			student = studentDAO.getStudentByUsername(username);
-			tx.commit();
-		} catch (Exception e) {
-			tx.rollback();
-		} finally {
-			session.close();
-		}
-
+		Student student =  studentDAO.getStudentByUsername(username);
+		session.close();
 		return student;
 	}
 
@@ -342,18 +292,8 @@ public class Facade implements AutoCloseable {
 	public Question getQuestionByQuestionId(int questionId) {
 		Session session = sf.openSession();
 		questionDAO.setSession(session);
-		Transaction tx = session.beginTransaction();
-
-		Question question = null;
-
-		try {
-			question = questionDAO.getQuestionByQuestionId(questionId);
-			tx.commit();
-		} catch (Exception e) {
-			tx.rollback();
-		} finally {
-			session.close();
-		}
+		Question question = questionDAO.getQuestionByQuestionId(questionId);
+		session.close();
 
 		return question;
 	}
