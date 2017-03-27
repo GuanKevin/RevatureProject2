@@ -3,12 +3,11 @@ package com.mathMaster.domain;
 import java.util.List;
 
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import com.mathMaster.model.Question;
 
-@Repository(value="questionDAO")
+@Repository(value = "questionDAO")
 public class QuestionDAOImpl implements QuestionDAO {
 
 	private Session session;
@@ -19,7 +18,7 @@ public class QuestionDAOImpl implements QuestionDAO {
 	public QuestionDAOImpl(Session session) {
 		this.session = session;
 	}
-	
+
 	public void setSession(Session session) {
 		this.session = session;
 	}
@@ -30,34 +29,20 @@ public class QuestionDAOImpl implements QuestionDAO {
 	}
 
 	public boolean insertQuestion(Question question) {
-		Transaction tx = session.beginTransaction();
-		try {
-			session.save(question);
-			tx.commit();
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			tx.rollback();
-			return false;
-		}
+		session.save(question);
+
+		return true;
 	}
 
 	public boolean insertQuestions(List<Question> questions) {
 		System.out.println("[     IN QUESTION DAO     ]");
-		Transaction tx = session.beginTransaction();
-		try {
-			for (Question question : questions) {
-				session.save(question);
-			}
-			tx.commit();
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			tx.rollback();
-			return false;
-		}finally {
-			System.out.println("[     EXITING QUESTION DAO     ]");
+
+		for (Question question : questions) {
+			session.saveOrUpdate(question);
 		}
+		System.out.println("[     EXITING QUESTION DAO     ]");
+		
+		return true;
 	}
 
 }
