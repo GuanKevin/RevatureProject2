@@ -1,0 +1,36 @@
+.panel-title {
+  font-size: 25px;
+}
+.well {}
+.question {
+  margin-top: 25px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #000;
+}
+.radio-label {
+  display: block;
+}
+input[type="radio"] {
+  margin-right: 10px;
+}
+
+#timer {
+  text-align: center;
+  font-size: 65px;
+}
+#timer-container {
+  position: absolute;
+  right: 0;
+  position: fixed;
+}
+/****************************/
+.col {
+  padding: 0;
+}
+.panel-body {
+  min-height: 75px;
+}
+.panel {
+  border-radius: 0;
+  min-height: 500px;
+}

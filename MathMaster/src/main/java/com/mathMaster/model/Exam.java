@@ -19,7 +19,6 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @JsonIgnoreProperties({"course", "takenExamSet"})
@@ -42,6 +41,8 @@ public class Exam {
 	@Column(name="EXAM_END")
 	private Timestamp end;
 	
+
+	//@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="COURSE_ID")
 	private Course course;

@@ -76,7 +76,7 @@
 	/*  HERE CHANGE IT TO CLEAR THE VIEW AND LOAD THE COURSES VIEW */
 	    $("#submit").click(function(){
 	    
-			$.ajax("http://localhost:7001/MathMaster/Tquestion/create", {
+			$.ajax("http://localhost:7001/MathMaster/question/create", {
 				method : "POST",
 				success : function() {
 					tablewipe();
@@ -98,7 +98,7 @@
 			
 			var questionCreated = new QuestionObj(level, question, answer, choiceOne, choiceTwo, choiceThree);
 	
-			$.ajax("http://localhost:7001/MathMaster/Tquestion/new/87", {/* 87 is the exam ID */
+			$.ajax("http://localhost:7001/MathMaster/question/new/87", {/* 87 is the exam ID */
 				method : "POST",
 				data : JSON.stringify(questionCreated),
 				headers : {
@@ -127,7 +127,7 @@
 		});
 		
  		function refresh() {
-			$.ajax("http://localhost:7001/MathMaster/Tquestion/all", {
+			$.ajax("http://localhost:7001/MathMaster/question/all", {
 				method : "GET",
 				headers : {
 					"Accept" : "application/json"

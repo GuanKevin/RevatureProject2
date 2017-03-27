@@ -7,8 +7,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class HomeController {
 	
-	@RequestMapping(value="home", method = RequestMethod.GET)
-	public String home() {
+	@RequestMapping(value="homie", method = RequestMethod.GET)
+	public String homie() {
 		return "pierhome.html";
 	}
+	@RequestMapping(value="home", method=RequestMethod.GET)
+	public String startHtml(){
+	    return "studentHome.html";
+	} 
 }

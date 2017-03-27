@@ -32,19 +32,21 @@ $(document).ready(function() {
 	function insertClasses(allCourses){
 		var courseCon = $("#sidebarMenu");
 		var html = "";
+
 		for(var i = 0; i < allCourses.length; i++){
 			var allCourseExams = allCourses[i].exams;
 			html += "<li class='list-group-item'>";				
-			html += "<div class='panel-heading' data-toggle='collapse' data-target='#course" + i + "'>";
+			html += "<div class='panel-heading courses' data-toggle='collapse' data-target='#course" + i + "'>";
 			html += "<h4>" + allCourses[i].courseName + "</h4>";
 			html += "</div>";
 			html += "<div class='collapse' id='course" + i + "'>";
-			html += "<ul class='list-group'>";
-			for(var j = 0; j < allCourseExams.length; j++){
-				html += "<li class='list-group-item exams' id=" + allCourseExams[j].id + ">" + allCourseExams[j].name + "</li>";
-				$(".list-group-item exams").click(getExam(allCourseExams[j]));
+			if(allCourseExams != undefined) {
+				html += "<ul class='list-group'>";
+				for(var j = 0; j < allCourseExams.length; j++){
+					html += "<li class='list-group-item exams' id='exam" + allCourseExams[j].id + "'>" + allCourseExams[j].name + "</li>";
+				}
+				html += "</ul>";
 			}
-			html += "</ul>";
 			html += "</div>";
 			html += "</li>";
 		}
@@ -57,13 +59,13 @@ $(document).ready(function() {
 	    dataType : 'json',
 	    success : function(response) {
 	      $("#id").append("<p>" + response + "</p>");
-
+	      $("#displayUser h4").text(response.firstName + " " + response.lastName)
 	      var allCourses = response.courseSet;
 	      var allTakenExams = response.takenExams;
 		
 	      insertClasses(allCourses);
-		
-	      console.log(response.courseSet);
+	      
+	      console.log(response);
 	    }
 	});
 	
