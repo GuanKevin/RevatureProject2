@@ -21,7 +21,7 @@ public class QuestionDAOImpl implements QuestionDAO {
 
 	public void setSession(Session session) {
 		this.session = session;
-	}
+	} 
 
 	public Question getQuestionByQuestionId(int questionId) {
 		Question question = (Question) session.load(Question.class, questionId);
