@@ -23,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @JsonIgnoreProperties({"course", "takenExamSet"})
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)\
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
 @Entity
 @Table(name = "M2_EXAM")
 public class Exam {
