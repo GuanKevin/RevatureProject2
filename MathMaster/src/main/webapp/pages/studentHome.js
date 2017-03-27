@@ -1,15 +1,5 @@
 $(document).ready(function() {
-
-/**
- * sidebarMenu
- *  - li class list group item
- *   - div class="panel-heading" data-toggle="collapse" data-target="#classes1"
- *    - h4 class name
- *   - div class="collapse" id="classes1">
- */
-	function sayHi(id, obect){
-		alert()
-	}
+	
 	function getExam(exam) {
 		var html = "";
 		html += "<div>Name: " + exam.name + "</div>"
@@ -35,44 +25,57 @@ $(document).ready(function() {
 	function insertClasses(allCourses){
 		var courseCon = $("#sidebarMenu");
 		var html = "";
-
-		for(var i = 0; i < allCourses.length; i++){
-			var allCourseExams = allCourses[i].exams;
+		
+		$.each(allCourses, function(index, course) {
+			var exams = course.exams;
 			html += "<li class='list-group-item'>";				
-			html += "<div class='panel-heading courses' data-toggle='collapse' data-target='#course" + i + "'>";
-			html += "<h4>" + allCourses[i].courseName + "</h4>";
+			html += "<div class='panel-heading courses' data-toggle='collapse' data-target='#course" + index + "'>";
+			html += "<h4>" + course.courseName + "</h4>";
 			html += "</div>";
-			html += "<div class='collapse' id='course" + i + "'>";
-			if(allCourseExams != undefined) {
+			html += "<div class='collapse' id='course" + index + "'>";
+			if(exams != undefined) {
 				html += "<ul class='list-group'>";
-				for(var j = 0; j < allCourseExams.length; j++){
-					html += "<li class='list-group-item exams' id='exam" + allCourseExams[j].id + "'>" + allCourseExams[j].name + "</li>";
-				}
+				$.each(exams, function(index, exam) {
+					html += "<li class='list-group-item exams' id='" + exam.id + "'>" + exam.name + "</li>";
+				});
 				html += "</ul>";
 			}
 			html += "</div>";
 			html += "</li>";
-		}
+			})	
 		$(courseCon).append(html);
 	};
 		
-	var studentUsername = "Student001";
-
-	$.ajax("http://localhost:8081/MathMaster/Student/"+ studentUsername, {
-	    method : 'GET',
-	    dataType : 'json',
-	    success : function(response) {
-	      $("#id").append("<p>" + response + "</p>");
-	      $("#displayUser h4").text(response.firstName + " " + response.lastName)
-	      var allCourses = response.courseSet;
-	      var allTakenExams = response.takenExams;
-		
-	      insertClasses(allCourses);
-	      
-	      console.log(response);
-	    }
-	});
 	
+	function displayExam(exam){
+		$("mainBody").append(exam.name);
+	}
+	
+		var studentUsername = "Student001";
+		$.ajax("http://localhost:7001/MathMaster/Student/"+ studentUsername, {
+		    method : 'GET',
+		    dataType : 'json',
+		    success : function(response) {
+		      $("#id").append("<p>" + response + "</p>");
+		      $("#displayUser h4").text(response.firstName + " " + response.lastName)
+		      var allCourses = response.courseSet;
+		      var allTakenExams = response.takenExams;
+			
+		      insertClasses(allCourses);
+		      
+		      $('body').on('click', 'li.exams', function() {
+		    	var examId = $(this).attr('id');
+		  		$.each(allCourses, function(index, course) {
+		  			$.each(course.exams, function(index, exam) {
+		  				if(exam.id == examId) {
+		  					$('#mainBody').html(examId);
+		  				}
+		  			})
+		  		} )
+		  	  });
+		      console.log(response);
+		    }
+		});
 	
 	
 //	function Question(level,question, answer, choiceOne, choiceTwo, choiceThree) {

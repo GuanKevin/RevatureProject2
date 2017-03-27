@@ -23,7 +23,6 @@ public class CourseDAOImpl implements CourseDAO {
 		this.session = session;
 	}
 	
-	@Autowired
 	public void setSession(Session session) {
 		this.session = session;
 	}
