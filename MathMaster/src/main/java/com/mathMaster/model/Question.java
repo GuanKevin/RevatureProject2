@@ -60,7 +60,6 @@ public class Question {
 	@Column (name = "CHOICE_THREE")
 	private String choiceThree;
 	
-	@JsonManagedReference
 	@OneToMany(mappedBy = "question", fetch=FetchType.EAGER)
 	private Set<AnsweredQuestion> answeredQuestions = new HashSet<AnsweredQuestion>();
 	

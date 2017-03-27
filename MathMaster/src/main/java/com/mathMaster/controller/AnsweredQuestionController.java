@@ -23,7 +23,8 @@ import com.mathMaster.util.Facade;
 @Controller
 @RequestMapping(value = "answeredQuestion")
 public class AnsweredQuestionController {
-
+	///////////////////////// TESTING PURPOSE... IDEALLY THE QUESTION OBJECT SHOULD BE IN THE JSON FOR EACH SUMBITTED ANSWER
+	// REMOVE THE ENTERING QUESTION OBJECT ..it should be entered in the json in the front end
 	/**
 	 * Add the list of questions when the submit button is pressed
 	 */
@@ -38,20 +39,25 @@ public class AnsweredQuestionController {
 		// set of all the questions for the exam of this taken exam
 		Set<Question> questions = takenExam.getTakenExam().getQuestionSet(); 
 		
-		System.out.println(questions);
+		System.out.println("[  SET OF QUESTIONS   ]" + questions);
 		List<AnsweredQuestion> list = Arrays.asList(ansQues);
-		
+		System.out.println(list);
 		Iterator<Question> it = questions.iterator();
 	     
-	     
-		for(AnsweredQuestion ansquest: list){
+	     // this is where i will i will set taken exam and question to each answered question
+	    // ideally in the front end the question should be insereted in the JSON before sending
+		// the list to be submmited
+		
+		// this is for testing purposes
+	/*	for(AnsweredQuestion ansquest: list){
 		     Question question = it.next();
 			ansquest.setTakenExamQuestion(takenExam);
 			ansquest.setQuestion(question);
-		}
+		}*/
 		
-		System.out.println(takenExam);
-		facade.insertAnsweredQuestions(list);
+		System.out.println("[   TAKEN EXAM   ]    " + takenExam);
+		System.out.println("[   LIST OF ANSWERED QUESTIONS   ]    " + list);
+		//facade.insertAnsweredQuestions(list);
 
 		
 		try {
