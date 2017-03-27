@@ -2,6 +2,7 @@ package com.mathMaster.domain;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mathMaster.model.Course;
@@ -22,6 +23,7 @@ public class CourseDAOImpl implements CourseDAO {
 		this.session = session;
 	}
 	
+	@Autowired
 	public void setSession(Session session) {
 		this.session = session;
 	}

@@ -7,6 +7,9 @@ $(document).ready(function() {
  *    - h4 class name
  *   - div class="collapse" id="classes1">
  */
+	function sayHi(id, obect){
+		alert()
+	}
 	function insertClasses(allCourses){
 		var courseCon = $("#sidebarMenu");
 		var html = "";
@@ -32,7 +35,7 @@ $(document).ready(function() {
 	};
 		
 	var studentUsername = "Student001";
-	  $.ajax("http://localhost:8081/MathMaster/Student/"+ studentUsername, {
+	  $.ajax("http://localhost:7001/MathMaster/Student/"+ studentUsername, {
 	    method : 'GET',
 	    dataType : 'json',
 	    success : function(response) {
