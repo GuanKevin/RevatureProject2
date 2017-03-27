@@ -13,16 +13,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedNativeQueries;
-import javax.persistence.NamedQueries;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties({"takenExam", "student", "answeredQuestionSet"})
 @Entity
 @Table(name="M2_TAKEN_EXAM")
 public class TakenExam {
@@ -32,12 +29,10 @@ public class TakenExam {
 	@GeneratedValue(generator="TAKEN_EXAM", strategy=GenerationType.SEQUENCE)
 	private int takenExamId;
 	
-	@JsonBackReference
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="EXAM_ID")
 	private Exam takenExam;
 	
-	@JsonBackReference
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="STUDENT_ID")
 	private Student student;
@@ -48,7 +43,6 @@ public class TakenExam {
 	@Column(name="TIME_TAKEN")
 	private Timestamp timeTaken;
 	
-	@JsonManagedReference
 	@OneToMany(mappedBy = "takenExamQuestion", fetch=FetchType.EAGER)
 	private Set<AnsweredQuestion> answeredQuestionSet = new HashSet<AnsweredQuestion>();
 	

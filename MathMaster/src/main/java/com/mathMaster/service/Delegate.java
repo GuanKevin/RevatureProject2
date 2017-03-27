@@ -32,7 +32,9 @@ public class Delegate {
 	}
 
 	public void insertAnsweredQuestions(List<AnsweredQuestion> answeredQuestions) {
+		System.out.println("[     IN DELEGATE    ]");
 		answeredQuestionService.insertAnsweredQuestions(answeredQuestions);
+		System.out.println("[    EXITING DELEGATE   ]");
 	}
 	
 	public Course getCourseById(int id) {

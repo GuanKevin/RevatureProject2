@@ -1,10 +1,12 @@
 package com.mathMaster.domain;
 
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
+import com.mathMaster.model.Exam;
 import com.mathMaster.model.Question;
 
 @Repository(value = "questionDAO")
@@ -44,5 +46,4 @@ public class QuestionDAOImpl implements QuestionDAO {
 		
 		return true;
 	}
-
 }

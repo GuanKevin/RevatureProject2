@@ -19,7 +19,7 @@ import com.mathMaster.service.Delegate;
 
 @Controller
 @RequestMapping(value="Student")
-public class StudentController {
+public class StudentController { 
 	
 	private Delegate businessDelegate;
 	
