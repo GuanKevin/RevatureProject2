@@ -1,6 +1,5 @@
 package com.mathMaster.service;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +56,9 @@ public class Delegate {
 	}
 
 	public void insertQuestions(List<Question> questions) {
-		questionService.insertQuestions(questions);;
+		System.out.println("[     IN DELEGATE    ]");
+		questionService.insertQuestions(questions);
+		System.out.println("[    EXITING DELEGATE   ]");
 	}	
 	
 	public Student getStudentByUsername(String username) {

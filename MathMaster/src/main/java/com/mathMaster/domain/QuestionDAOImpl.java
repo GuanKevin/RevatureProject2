@@ -43,6 +43,7 @@ public class QuestionDAOImpl implements QuestionDAO {
 	}
 
 	public boolean insertQuestions(List<Question> questions) {
+		System.out.println("[     IN QUESTION DAO     ]");
 		Transaction tx = session.beginTransaction();
 		try {
 			for (Question question : questions) {
@@ -54,6 +55,8 @@ public class QuestionDAOImpl implements QuestionDAO {
 			e.printStackTrace();
 			tx.rollback();
 			return false;
+		}finally {
+			System.out.println("[     EXITING QUESTION DAO     ]");
 		}
 	}
 

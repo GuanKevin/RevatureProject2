@@ -85,7 +85,6 @@ public class QuestionController {
 		try {
 			facade.close();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
