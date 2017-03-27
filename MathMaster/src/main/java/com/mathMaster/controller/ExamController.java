@@ -27,6 +27,11 @@ public class ExamController {
 	public void setBusinessDelegate(Delegate businessDelegate) {
 		this.businessDelegate = businessDelegate;
 	}
+	
+	@RequestMapping(value="home", method=RequestMethod.GET)
+	public String spa(){
+		return "exam.html";
+	}
 
 	// Get Exam
 	@RequestMapping(value="{examId}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)

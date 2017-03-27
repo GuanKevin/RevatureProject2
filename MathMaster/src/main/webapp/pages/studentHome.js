@@ -29,7 +29,7 @@ $(document).ready(function() {
 	};
 		
 	var studentUsername = "Student001";
-	  $.ajax("http://localhost:7001/MathMaster/Student/"+ studentUsername, {
+	  $.ajax("http://localhost:8081/MathMaster/Student/"+ studentUsername, {
 	    method : 'GET',
 	    dataType : 'json',
 	    success : function(response) {
