@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping(value="login")
-public class loginController {
+public class LoginController {
 	@RequestMapping(value = "home", method = RequestMethod.GET)
 	public String welcomePage() {
 		System.out.println("here");
