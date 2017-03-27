@@ -247,10 +247,20 @@ public class Facade implements AutoCloseable {
 	}
 
 	public void insertAnsweredQuestions(List<AnsweredQuestion> answeredQuestions) {
+		System.out.println("[       IN THE FACADE   ]");
+
 		Session session = sf.openSession();
 		answeredQuestionDAO.setSession(session);
-		answeredQuestionDAO.insertAnsweredQuestions(answeredQuestions);
+		Transaction tx = session.beginTransaction();
+		
+		try{
+			answeredQuestionDAO.insertAnsweredQuestions(answeredQuestions);
+			tx.commit();
+		} catch(Exception e) {
+			tx.rollback();
+		}
 		session.close();
+		System.out.println("[       EXITING THE FACADE   ]");
 	}
 
 	public Question getQuestionByQuestionId(int questionId) {
