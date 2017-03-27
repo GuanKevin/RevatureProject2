@@ -37,12 +37,6 @@ public class AnsweredQuestionController {
 		TakenExam takenExam = facade.getTakenExamById(takenExamId);
 		
 		// set of all the questions for the exam of this taken exam
-		Set<Question> questions = takenExam.getTakenExam().getQuestions(); 
-		System.out.println("[  SET OF QUESTIONS   ]" + questions);
-		
-		List<AnsweredQuestion> list = Arrays.asList(ansQues);
-		System.out.println(list);
-		Iterator<Question> it = questions.iterator();
 	     
 	     // this is where i will i will set taken exam and question to each answered question
 	    // ideally in the front end the question should be insereted in the JSON before sending
@@ -55,8 +49,8 @@ public class AnsweredQuestionController {
 			ansquest.setQuestion(question);
 		}*/
 		
-		System.out.println("[   TAKEN EXAM   ]    " + takenExam);
-		System.out.println("[   LIST OF ANSWERED QUESTIONS   ]    " + list);
+/*		System.out.println("[   TAKEN EXAM   ]    " + takenExam);
+		System.out.println("[   LIST OF ANSWERED QUESTIONS   ]    " + list);*/
 		//facade.insertAnsweredQuestions(list);
 
 		

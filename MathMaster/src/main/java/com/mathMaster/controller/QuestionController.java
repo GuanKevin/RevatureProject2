@@ -2,6 +2,7 @@ package com.mathMaster.controller;
 
 import java.util.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mathMaster.model.Exam;
 import com.mathMaster.model.Question;
+import com.mathMaster.service.Delegate;
 import com.mathMaster.util.Facade;
 
 
@@ -21,6 +23,23 @@ import com.mathMaster.util.Facade;
 @RequestMapping(value = "question")
 public class QuestionController {
 
+	private Delegate businessDelegate;
+	
+	@Autowired
+	public void setBusinessDelegate(Delegate businessDelegate) {
+		this.businessDelegate = businessDelegate;
+	}
+	
+	@RequestMapping(value = "new/{examId}", method =  RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<String> addQuestion(@RequestBody Question question, @PathVariable int examId) { 
+		List<Question> questions = new ArrayList<Question>(); 
+		Exam exam = businessDelegate.getExamById(examId);
+		question.setExamQuestion(exam);
+		questions.add(question);
+		
+		return new ResponseEntity<String>("Sucess! ", HttpStatus.CREATED);
+	}
 	/**
 	 * Add the list of questions when the submit button is pressed
 	 * @throws Exception 

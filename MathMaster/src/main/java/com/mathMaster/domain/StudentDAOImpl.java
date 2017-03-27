@@ -5,18 +5,29 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.stereotype.Repository;
 
 import com.mathMaster.model.Student;
 /**
  * 
  * @author Pier Yos
  */
+@Repository(value="studentDAO")
 public class StudentDAOImpl implements StudentDAO {
 
 	private Session session;
 	
+	public StudentDAOImpl() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public StudentDAOImpl(Session session) {
 		super();
+		this.session = session;
+	}
+	
+	public void setSession(Session session) {
 		this.session = session;
 	}
 

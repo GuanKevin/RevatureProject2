@@ -2,6 +2,8 @@ package com.mathMaster.domain;
 
 import java.util.List;
 
+import org.hibernate.Session;
+
 import com.mathMaster.model.AnsweredQuestion;
 
 /**
@@ -24,4 +26,6 @@ public interface AnsweredQuestionDAO {
 	 * 						return boolean for testing
 	 */
 	public boolean insertAnsweredQuestions(List<AnsweredQuestion> answeredQuestions);
+	
+	public void setSession(Session session);
 }

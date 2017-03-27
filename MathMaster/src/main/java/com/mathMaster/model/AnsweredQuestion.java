@@ -11,7 +11,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 
 /**
@@ -19,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * @author Denise
  *
  */
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
 @Entity
 @Table(name="M2_ANSWERED_QUESTION")
 public class AnsweredQuestion {

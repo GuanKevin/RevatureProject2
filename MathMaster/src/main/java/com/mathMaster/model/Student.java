@@ -49,10 +49,9 @@ public class Student {
 	@JoinTable(name = "STUDENT_COURSE")
 	private Set<Course> courses = new HashSet<Course>();
 	
-	
+	@JsonManagedReference
 	@OneToMany(mappedBy="student", fetch=FetchType.EAGER)
 	private Set<TakenExam> takenExamSet = new HashSet<TakenExam>();
-	
 	public Student() {}
 
 	public Student(String userName, String password, String firstName, String lastName, String email) {

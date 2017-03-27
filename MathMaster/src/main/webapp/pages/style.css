@@ -1,0 +1,67 @@
+.panel-title {
+  font-size: 25px;
+}
+.well {}
+.question {
+  margin-top: 25px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #000;
+}
+.radio-label {
+  display: block;
+}
+input[type="radio"] {
+  margin-right: 10px;
+}
+
+#timer {
+  text-align: center;
+  font-size: 65px;
+}
+#timer-container {
+  position: absolute;
+  right: 0;
+  position: fixed;
+}
+/****************************/
+.col {
+  padding: 0;
+}
+.panel-body {
+  min-height: 50px;
+}
+.panel {
+  border-radius: 0;
+  min-height: 500px;
+}
+.sidebar {
+	text-align: center;
+}
+.exams {
+	border: 0;
+}
+.panel>.list-group .exams:hover {
+	border-right: 5px solid #4b940e;
+}
+.list-group {
+	margin: 0;
+}
+.panel>.list-group .list-group-item {
+	padding: 15px 0;
+	border-width: 0;
+	border: 0;
+}
+.list-group-item {
+	border: 0;
+}
+.panel>.list-group .exams {
+	color: #fff;
+	background-color: #777;
+	border-top: 1px solid;
+}
+.panel-heading+.list-group .exams:first-child {
+	border-top: 1px solid;
+}
+.panel>.list-group:last-child .exams:last-child {
+	border-bottom: 1px solid;
+}

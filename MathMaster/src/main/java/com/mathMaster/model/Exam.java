@@ -13,16 +13,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedNativeQueries;
-import javax.persistence.NamedQueries;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+@JsonIgnoreProperties({"course", "takenExamSet"})
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
 @Entity
 @Table(name = "M2_EXAM")
 public class Exam {
@@ -30,7 +31,7 @@ public class Exam {
 	@Column(name="EXAM_ID")
 	@SequenceGenerator(name="EXAM", sequenceName="EXAM_PK_SEQ", initialValue=1, allocationSize=1)
 	@GeneratedValue(generator="EXAM", strategy=GenerationType.SEQUENCE)
-	private int examId;
+	private int id;
 	
 	@Column(name="NAME")
 	private String name;
@@ -41,15 +42,14 @@ public class Exam {
 	@Column(name="EXAM_END")
 	private Timestamp end;
 	
-	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="COURSE_ID")
 	private Course course;
 
+	//@JsonManagedReference
 	@OneToMany(mappedBy="examQuestion", fetch=FetchType.EAGER, cascade = CascadeType.ALL) 
 	private Set<Question> questionSet = new HashSet<Question>();
 		
-	@JsonManagedReference
 	@OneToMany(mappedBy="takenExam", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<TakenExam> takenExamSet = new HashSet<TakenExam>();
 	
@@ -57,20 +57,19 @@ public class Exam {
 		super();
 	}
 
-	public Exam(String name, Course course, Timestamp start, Timestamp end) {
+	public Exam(String name, Timestamp start, Timestamp end) {
 		super();
 		this.name = name;
-		this.course = course;
 		this.start = start;
 		this.end = end;
 	}
 
 	public int getId() {
-		return examId;
+		return id;
 	}
 
 	public void setId(int id) {
-		this.examId = id;
+		this.id = id;
 	}
 
 	public String getName() {
@@ -80,7 +79,7 @@ public class Exam {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public Timestamp getStart() {
 		return start;
 	}
@@ -97,34 +96,33 @@ public class Exam {
 		this.end = end;
 	}
 
-	
 	public Course getCourse() {
 		return course;
 	}
-	
+
 	public void setCourse(Course course) {
 		this.course = course;
 	}
 
-	public Set<Question> getQuestions() {
+	public Set<Question> getQuestionSet() {
 		return questionSet;
 	}
 
-	public void setQuestions(Set<Question> question) {
-		this.questionSet = question;
+	public void setQuestionSet(Set<Question> questionSet) {
+		this.questionSet = questionSet;
 	}
 
-	public Set<TakenExam> getTakenExam() {
+	public Set<TakenExam> getTakenExamSet() {
 		return takenExamSet;
 	}
 
-	public void setTakenExam(Set<TakenExam> takenExam) {
-		this.takenExamSet = takenExam;
+	public void setTakenExamSet(Set<TakenExam> takenExamSet) {
+		this.takenExamSet = takenExamSet;
 	}
 
 	@Override
 	public String toString() {
-		return "Exam [examId=" + examId + ", name=" + name + ", start=" + start + ", end=" + end + ", course=" + course
+		return "Exam [id=" + id + ", name=" + name + ", start=" + start + ", end=" + end + ", course=" + course
 				+ ", takenExam=" + takenExamSet + "]";
 	}
 }

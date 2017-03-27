@@ -53,6 +53,7 @@ public class Teacher {
 	@Column(name="EMAIL", unique=true)
 	private String email;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "teacher", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Course> courses = new HashSet<Course>();
 	
