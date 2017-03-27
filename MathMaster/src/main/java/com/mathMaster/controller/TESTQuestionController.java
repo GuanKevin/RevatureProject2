@@ -3,6 +3,9 @@ package com.mathMaster.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -35,10 +38,11 @@ public class TESTQuestionController {
 		Facade facade = new Facade();
 		
 		Exam exam = facade.getExamById(examId);
-		
+		System.out.println("[     THIS IS THE EXAM ]" + exam);
 		// Completing the question object with the exam object
 		question.setExamQuestion(exam);
 		
+		System.out.println("[   this is the question with the exam ]" + question);
 		// adding the new question to the list
 		questions.add(question);
 		
@@ -64,7 +68,7 @@ public class TESTQuestionController {
 	 * Add the list of questions when the submit button is pressed
 	 * @throws Exception 
 	 */
-	@RequestMapping(value = "create", method = RequestMethod.POST, consumes =  MediaType.APPLICATION_JSON_VALUE)
+/*	@RequestMapping(value = "create", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<Question> addAllQuestions(){
 		System.out.println("about to submit the list of questions to the database");
@@ -72,14 +76,41 @@ public class TESTQuestionController {
 	
 		facade.insertQuestions(questions);
 		
-		try {
+		try { 
 			facade.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		System.out.println("sucessfully submited the list to the database---CHECK THE DATABASE to see if the questions are there");
+		
+		questions = null;
+		
 		return new ResponseEntity<>(HttpStatus.CREATED);
+		
+	}*/
+	
+	
+	@RequestMapping(value = "create", method = RequestMethod.POST)
+	@ResponseBody
+	public String addAllQuestions(HttpServletRequest req,
+			HttpServletResponse resp){
+		System.out.println("about to submit the list of questions to the database");
+		Facade facade = new Facade();
+	
+		facade.insertQuestions(questions);
+		
+		try { 
+			facade.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("sucessfully submited the list to the database---CHECK THE DATABASE to see if the questions are there");
+		
+		questions = null;
+		
+		return "redirect:mgr";
 	}
 	
 	@RequestMapping(value="page", method=RequestMethod.GET)
