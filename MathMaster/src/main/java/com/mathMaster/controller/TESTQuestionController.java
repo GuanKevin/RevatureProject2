@@ -64,31 +64,7 @@ public class TESTQuestionController {
 		return new ResponseEntity<List<Question>>(questions, HttpStatus.OK);
 	}
 	
-	/**
-	 * Add the list of questions when the submit button is pressed
-	 * @throws Exception 
-	 */
-/*	@RequestMapping(value = "create", method = RequestMethod.POST)
-	@ResponseBody
-	public ResponseEntity<Question> addAllQuestions(){
-		System.out.println("about to submit the list of questions to the database");
-		Facade facade = new Facade();
-	
-		facade.insertQuestions(questions);
-		
-		try { 
-			facade.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		System.out.println("sucessfully submited the list to the database---CHECK THE DATABASE to see if the questions are there");
-		
-		questions = null;
-		
-		return new ResponseEntity<>(HttpStatus.CREATED);
-		
-	}*/
+
 	
 	
 	@RequestMapping(value = "create", method = RequestMethod.POST)

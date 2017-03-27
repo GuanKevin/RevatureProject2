@@ -31,11 +31,12 @@ public class AnsweredQuestion {
 	@Column(name = "ANSWER_CHOOSEN")
 	private String answerChoosen;
 	
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "QUESTION_ID")
 	private Question question;
 
-
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "TAKEN_EXAM_ID")
 	private TakenExam takenExamQuestion;

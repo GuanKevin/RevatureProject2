@@ -38,8 +38,8 @@ public class AnsweredQuestionController {
 		
 		// set of all the questions for the exam of this taken exam
 		Set<Question> questions = takenExam.getTakenExam().getQuestions(); 
-		
 		System.out.println("[  SET OF QUESTIONS   ]" + questions);
+		
 		List<AnsweredQuestion> list = Arrays.asList(ansQues);
 		System.out.println(list);
 		Iterator<Question> it = questions.iterator();

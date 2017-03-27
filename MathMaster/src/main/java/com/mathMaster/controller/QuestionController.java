@@ -21,25 +21,6 @@ import com.mathMaster.util.Facade;
 @RequestMapping(value = "question")
 public class QuestionController {
 
-	//private List<Question> questions = new ArrayList<Question>(); 
-	/**
-	 * Saves  Question to the List (I commented out to save a question directly to the DB)
-	 */
-/*	@RequestMapping(value = "new", method =  RequestMethod.POST, consumes =  MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public ResponseEntity<String> addQuestion(@RequestBody final Question question) { 
-		System.out.println("Add question: " + question);
-		
-		//adding it to the questions list to later save the whole list of questions at once
-		questions.add(question);
-		
-		// saving the question directly to the database
-		 Facade facade =  new Facade();
-		 facade.insertQuestion(question);
-		
-		return new ResponseEntity<String>("Sucess! ", HttpStatus.CREATED);
-	}*/
-
 	/**
 	 * Add the list of questions when the submit button is pressed
 	 * @throws Exception 
@@ -85,7 +66,6 @@ public class QuestionController {
 		try {
 			facade.close();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
