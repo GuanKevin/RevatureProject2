@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,16 +13,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedQueries;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-@JsonIgnoreProperties()
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
 @Entity
 @Table(name="M2_TAKEN_EXAM")
 public class TakenExam {
@@ -31,11 +32,13 @@ public class TakenExam {
 	@GeneratedValue(generator="TAKEN_EXAM", strategy=GenerationType.SEQUENCE)
 	private int takenExamId;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@JsonBackReference
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="EXAM_ID")
 	private Exam takenExam;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@JsonBackReference
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="STUDENT_ID")
 	private Student student;
 	
@@ -45,6 +48,7 @@ public class TakenExam {
 	@Column(name="TIME_TAKEN")
 	private Timestamp timeTaken;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "takenExamQuestion", fetch=FetchType.EAGER)
 	private Set<AnsweredQuestion> answeredQuestionSet = new HashSet<AnsweredQuestion>();
 	
