@@ -65,15 +65,48 @@ $(document).ready(function() {
 		      
 		      $('body').on('click', 'li.exams', function() {
 		    	var examId = $(this).attr('id');
+		    	var html = "";
 		  		$.each(allCourses, function(index, course) {
 		  			$.each(course.exams, function(index, exam) {
 		  				if(exam.id == examId) {
-		  					$('#mainBody').html(examId);
+		  					html = '<div class="row">';
+		  					html += '<div class="container" style="width:100%">';
+		  					$.each(exam.questionSet, function(index, question){
+		  						html += '<div class="col col-md-10 col-md-offset-1 question panel-primary">';
+		  							html += '<div class="panel-heading">';
+		  								html += '<h5 class="panel-title" ' + 'id="question' + question.questionId + '">' + question.question + '</h5>';
+		  							html += '</div>';
+		  							html += '<div class="panel-body">';
+		  								html += '<div class="radio">';
+		  									html += '<label> <input type="radio" name="optionsRadios' + question.questionId + '"';
+		  									html += ' id="optionsRadios' + question.questionId + "_" + index++ + '">' + question.choiceOne;
+		  									html += '</label>';
+		  								html += '</div>';
+		  								html += '<div class="radio">';
+		  									html += '<label> <input type="radio" name="optionsRadios' + question.questionId + '"';
+		  									html += ' id="optionsRadios' + question.questionId + "_" + index++ + '">' + question.choiceTwo;
+		  									html += '</label>';
+		  								html += '</div>';
+		  								html += '<div class="radio">';
+		  									html += '<label> <input type="radio" name="optionsRadios' + question.questionId + '"';
+		  									html += ' id="optionsRadios' + question.questionId + "_" + index++ + '">' + question.choiceThree;
+		  									html += '</label>';
+		  								html += '</div>';
+		  								html += '<div class="radio">';
+	  										html += '<label> <input type="radio" name="optionsRadios' + question.questionId + '"';
+	  										html += ' id="optionsRadios' + question.questionId + "_" + index++ + '">' + question.answer;
+	  										html += '</label>';
+	  									html += '</div>';
+									html += '</div>';
+								html += '</div>'+
+									'</div>' +
+								'</div>';
+		  					});
+		  					$('#mainBody').html(html);
 		  				}
 		  			})
 		  		} )
 		  	  });
-		      console.log(response);
 		    }
 		});
 	
