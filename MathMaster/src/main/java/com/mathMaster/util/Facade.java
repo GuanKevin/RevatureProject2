@@ -275,6 +275,8 @@ public class Facade implements AutoCloseable {
 	}
 
 	public void insertQuestions(List<Question> questions) {
+		
+		System.out.println("[       IN THE FACADE   ]");
 		Session session = sf.openSession();
 		questionDAO.setSession(session);
 		Transaction tx = session.beginTransaction();
@@ -285,6 +287,8 @@ public class Facade implements AutoCloseable {
 			tx.rollback();
 		}
 		session.close();
+		System.out.println("[       EXITING THE FACADE   ]");
+
 	}	
 	
 	@Autowired

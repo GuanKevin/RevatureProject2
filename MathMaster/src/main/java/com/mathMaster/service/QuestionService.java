@@ -26,6 +26,9 @@ public class QuestionService {
 	}
 
 	public void insertQuestions(List<Question> questions) {
-		facade.insertQuestions(questions);;
+		System.out.println("[      IN QUESTION SERVICE ABOUT TO USE CALL THE FACADE    ]"); 
+		facade.insertQuestions(questions);
+		System.out.println("[      IN QUESTION SERVICE ABOUT TO EXIT    ]"); 
+
 	}	
 }

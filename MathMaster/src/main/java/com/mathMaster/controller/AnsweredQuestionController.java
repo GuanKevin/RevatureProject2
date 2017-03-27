@@ -21,7 +21,7 @@ import com.mathMaster.model.TakenExam;
 import com.mathMaster.util.Facade;
 
 @Controller
-@RequestMapping(value = "answeredQuestion")
+@RequestMapping(value = "answeredQuestion") 
 public class AnsweredQuestionController {
 	///////////////////////// TESTING PURPOSE... IDEALLY THE QUESTION OBJECT SHOULD BE IN THE JSON FOR EACH SUMBITTED ANSWER
 	// REMOVE THE ENTERING QUESTION OBJECT ..it should be entered in the json in the front end
