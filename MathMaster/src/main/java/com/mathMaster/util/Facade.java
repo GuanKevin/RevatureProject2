@@ -24,7 +24,7 @@ import com.mathMaster.model.Student;
 import com.mathMaster.model.TakenExam;
 import com.mathMaster.model.Teacher;
 
-@Component(value="facade")
+@Component(value = "facade")
 public class Facade implements AutoCloseable {
 	private AnsweredQuestionDAO answeredQuestionDAO;
 	private CourseDAO courseDAO;
@@ -36,7 +36,8 @@ public class Facade implements AutoCloseable {
 	private QuestionDAO questionDAO;
 
 	public Facade() {
-		sf = new Configuration().configure().buildSessionFactory();;
+		sf = new Configuration().configure().buildSessionFactory();
+		;
 	}
 
 	/**
@@ -51,83 +52,97 @@ public class Facade implements AutoCloseable {
 	 * @param username
 	 * @param password
 	 */
-	/*public void login(boolean isTeacher, String username, String password) {
-		boolean user = isTeacher;
-
-		if (username != null && password != null)
-			user = isTeacher;
-		else
-		// TODO User is missing username or password field and need to fill it
-
-		if (user) {
-			Teacher teacher;
-			teacher = teacherDAO.getTeacherByUserName(username);
-
-			if (teacher != null) {
-				if (!BCrypt.checkpw(password, teacher.getPassword())) {
-					// Gets in here if password entered does not matches the
-					// password
-					// found in the database that is related to the username
-					// TODO Don't allow teacher to login
-				}
-				else {
-					System.out.println(teacher.getUserName() + " logged in");
-				}
-			}
-		} else {
-			Student student;
-			student = studentDAO.getStudentByUsername(username);
-
-			if (student != null) {
-				if (!BCrypt.checkpw(password, student.getPassword())) {
-					// Gets in here if password entered does not matches the
-					// password
-					// found in the database that is related to the username
-					// TODO Don't allow teacher to login
-				}
-			}
-		}
-	}*/
+	/*
+	 * public void login(boolean isTeacher, String username, String password) {
+	 * boolean user = isTeacher;
+	 * 
+	 * if (username != null && password != null) user = isTeacher; else // TODO
+	 * User is missing username or password field and need to fill it
+	 * 
+	 * if (user) { Teacher teacher; teacher =
+	 * teacherDAO.getTeacherByUserName(username);
+	 * 
+	 * if (teacher != null) { if (!BCrypt.checkpw(password,
+	 * teacher.getPassword())) { // Gets in here if password entered does not
+	 * matches the // password // found in the database that is related to the
+	 * username // TODO Don't allow teacher to login } else {
+	 * System.out.println(teacher.getUserName() + " logged in"); } } } else {
+	 * Student student; student = studentDAO.getStudentByUsername(username);
+	 * 
+	 * if (student != null) { if (!BCrypt.checkpw(password,
+	 * student.getPassword())) { // Gets in here if password entered does not
+	 * matches the // password // found in the database that is related to the
+	 * username // TODO Don't allow teacher to login } } } }
+	 */
 
 	public Teacher getTeacherByUserName(String username) {
 		Session session = sf.openSession();
 		teacherDAO.setSession(session);
-		Teacher teacher = teacherDAO.getTeacherByUserName(username);
-		session.close();
+		Transaction tx = session.beginTransaction();
+
+		Teacher teacher = null;
+
+		try {
+			teacherDAO.getTeacherByUserName(username);
+			tx.commit();
+		} catch (Exception e) {
+			tx.rollback();
+		} finally {
+			session.close();
+		}
+
 		return teacher;
+
 	}
 
 	public void createTeacher(Teacher teacher) {
 		Session session = sf.openSession();
 		teacherDAO.setSession(session);
 		Transaction tx = session.beginTransaction();
-		try{
+
+		try {
 			teacherDAO.createTeacher(teacher);
 			tx.commit();
-		} catch(Exception e) {
+		} catch (Exception e) {
 			tx.rollback();
+		} finally {
+			session.close();
 		}
-		session.close();
+
 	}
-	
+
 	public void removeTeacher(Teacher teacher) {
 		Session session = sf.openSession();
 		teacherDAO.setSession(session);
 		Transaction tx = session.beginTransaction();
-		try{
+
+		try {
 			teacherDAO.removeTeacher(teacher);
 			tx.commit();
-		} catch(Exception e) {
+		} catch (Exception e) {
 			tx.rollback();
+		} finally {
+			session.close();
 		}
-		session.close();
+
 	}
-	
+
 	public Exam getExamById(int examId) {
 		Session session = sf.openSession();
 		examDAO.setSession(session);
-		Exam exam = examDAO.getExamById(examId);
-		session.close();
+		Transaction tx = session.beginTransaction();
+
+		Exam exam = null;
+
+		try {
+			exam = examDAO.getExamById(examId);
+			tx.commit();
+		} catch (Exception e) {
+			tx.rollback();
+		} finally {
+			session.close();
+		}
+
 		return exam;
 	}
 
@@ -135,22 +150,37 @@ public class Facade implements AutoCloseable {
 		Session session = sf.openSession();
 		examDAO.setSession(session);
 		Transaction tx = session.beginTransaction();
-		try{
+
+		try {
 			examDAO.createExam(exam);
 			tx.commit();
-		} catch(Exception e) {
+		} catch (Exception e) {
 			tx.rollback();
+		} finally {
+			session.close();
 		}
-		session.close();
+
 	}
 
 	public TakenExam getTakenExamById(int takenExamId) {
 		Session session = sf.openSession();
 		takenExamDAO.setSession(session);
+		Transaction tx = session.beginTransaction();
+
 		System.out.println("Here");
 		System.out.println(takenExamDAO.getTakenExamById(takenExamId));
-		TakenExam exam = takenExamDAO.getTakenExamById(takenExamId);
-		session.close();
+
+		TakenExam exam = null;
+
+		try {
+			takenExamDAO.getTakenExamById(takenExamId);
+			tx.commit();
+		} catch (Exception e) {
+			tx.rollback();
+		} finally {
+			session.close();
+		}
+
 		return exam;
 	}
 
@@ -158,58 +188,87 @@ public class Facade implements AutoCloseable {
 		Session session = sf.openSession();
 		takenExamDAO.setSession(session);
 		Transaction tx = session.beginTransaction();
-		try{
+
+		try {
 			takenExamDAO.takeExam(takenExam);
 			System.out.println("commited");
 			tx.commit();
-		} catch(Exception e) {
+		} catch (Exception e) {
 			System.out.println("rolled back");
 			e.printStackTrace();
 			tx.rollback();
 		} finally {
 			session.close();
 		}
+
 	}
 
 	public void updateScore(TakenExam takenExam, int score) {
 		Session session = sf.openSession();
 		takenExamDAO.setSession(session);
 		Transaction tx = session.beginTransaction();
-		try{
+
+		try {
 			takenExamDAO.updateScore(takenExam, score);
 			tx.commit();
-		} catch(Exception e) {
+		} catch (Exception e) {
 			tx.rollback();
+		} finally {
+			session.close();
 		}
-		session.close();
+
 	}
 
 	public void createCourse(Course course) {
 		Session session = sf.openSession();
 		courseDAO.setSession(session);
 		Transaction tx = session.beginTransaction();
-		try{
+
+		try {
 			courseDAO.createCourse(course);
 			tx.commit();
-		} catch(Exception e) {
+		} catch (Exception e) {
 			tx.rollback();
+		} finally {
+			session.close();
 		}
-		session.close();
+
 	}
 
 	public Course getCourseById(int id) {
 		Session session = sf.openSession();
 		courseDAO.setSession(session);
-		Course course = courseDAO.getCourseById(id);
-		session.close();
+		Transaction tx = session.beginTransaction();
+		Course course = null;
+
+		try {
+			course = courseDAO.getCourseById(id);
+			tx.commit();
+		} catch (Exception e) {
+			tx.rollback();
+		} finally {
+			session.close();
+		}
+
 		return course;
 	}
 
 	public Student getStudentByUsername(String username) {
 		Session session = sf.openSession();
 		studentDAO.setSession(session);
-		Student student = studentDAO.getStudentByUsername(username);
-		session.close();
+		Transaction tx = session.beginTransaction();
+
+		Student student = null;
+
+		try {
+			student = studentDAO.getStudentByUsername(username);
+			tx.commit();
+		} catch (Exception e) {
+			tx.rollback();
+		} finally {
+			session.close();
+		}
+
 		return student;
 	}
 
@@ -217,47 +276,85 @@ public class Facade implements AutoCloseable {
 		Session session = sf.openSession();
 		studentDAO.setSession(session);
 		Transaction tx = session.beginTransaction();
-		try{
+
+		try {
 			studentDAO.createStudent(student);
 			tx.commit();
-		} catch(Exception e) {
+		} catch (Exception e) {
 			tx.rollback();
+		} finally {
+			session.close();
 		}
-		session.close();
+
 	}
 
 	public void removeStudent(Student student) {
 		Session session = sf.openSession();
 		studentDAO.setSession(session);
 		Transaction tx = session.beginTransaction();
-		try{
+
+		try {
 			studentDAO.removeStudent(student);
 			tx.commit();
-		} catch(Exception e) {
+		} catch (Exception e) {
 			tx.rollback();
+		} finally {
+			session.close();
 		}
-		session.close();
+
 	}
 
 	public void insertAnsweredQuestion(AnsweredQuestion answeredQuestion) {
 		Session session = sf.openSession();
 		answeredQuestionDAO.setSession(session);
-		answeredQuestionDAO.insertAnsweredQuestion(answeredQuestion);
-		session.close();
+		Transaction tx = session.beginTransaction();
+
+		try {
+			answeredQuestionDAO.insertAnsweredQuestion(answeredQuestion);
+			tx.commit();
+		} catch (Exception e) {
+			tx.rollback();
+		} finally {
+			session.close();
+		}
+
 	}
 
 	public void insertAnsweredQuestions(List<AnsweredQuestion> answeredQuestions) {
+		System.out.println("[       IN THE FACADE   ]");
+
 		Session session = sf.openSession();
 		answeredQuestionDAO.setSession(session);
-		answeredQuestionDAO.insertAnsweredQuestions(answeredQuestions);
-		session.close();
+		Transaction tx = session.beginTransaction();
+
+		try {
+			answeredQuestionDAO.insertAnsweredQuestions(answeredQuestions);
+			tx.commit();
+		} catch (Exception e) {
+			tx.rollback();
+		} finally {
+			session.close();
+		}
+
+		System.out.println("[       EXITING THE FACADE   ]");
 	}
 
 	public Question getQuestionByQuestionId(int questionId) {
 		Session session = sf.openSession();
 		questionDAO.setSession(session);
-		Question question = questionDAO.getQuestionByQuestionId(questionId);
-		session.close();
+		Transaction tx = session.beginTransaction();
+
+		Question question = null;
+
+		try {
+			question = questionDAO.getQuestionByQuestionId(questionId);
+			tx.commit();
+		} catch (Exception e) {
+			tx.rollback();
+		} finally {
+			session.close();
+		}
+
 		return question;
 	}
 
@@ -265,32 +362,37 @@ public class Facade implements AutoCloseable {
 		Session session = sf.openSession();
 		questionDAO.setSession(session);
 		Transaction tx = session.beginTransaction();
-		try{
+
+		try {
 			questionDAO.insertQuestion(question);
 			tx.commit();
-		} catch(Exception e) {
+		} catch (Exception e) {
 			tx.rollback();
+		} finally {
+			session.close();
 		}
-		session.close();
 	}
 
 	public void insertQuestions(List<Question> questions) {
-		
+
 		System.out.println("[       IN THE FACADE   ]");
 		Session session = sf.openSession();
 		questionDAO.setSession(session);
 		Transaction tx = session.beginTransaction();
-		try{
+
+		try {
 			questionDAO.insertQuestions(questions);
 			tx.commit();
-		} catch(Exception e) {
+		} catch (Exception e) {
 			tx.rollback();
+		} finally {
+			session.close();
 		}
-		session.close();
+		
 		System.out.println("[       EXITING THE FACADE   ]");
 
-	}	
-	
+	}
+
 	@Autowired
 	public void setAnsweredQuestionDAO(AnsweredQuestionDAO answeredQuestionDAO) {
 		this.answeredQuestionDAO = answeredQuestionDAO;
