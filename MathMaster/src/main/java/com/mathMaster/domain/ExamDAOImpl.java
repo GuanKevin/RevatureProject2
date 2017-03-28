@@ -2,6 +2,7 @@ package com.mathMaster.domain;
 
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mathMaster.model.Exam;
 
@@ -16,7 +17,8 @@ public class ExamDAOImpl implements ExamDAO {
 	public Exam getExamById(int examId) {
 		return (Exam) session.get(Exam.class, examId);
 	}
-
+	
+	@Transactional
 	public void createExam(Exam exam) {
 		session.saveOrUpdate(exam);
 	}

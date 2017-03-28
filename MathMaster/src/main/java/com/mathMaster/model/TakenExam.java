@@ -46,7 +46,9 @@ public class TakenExam {
 	@OneToMany(mappedBy = "takenExamQuestion", fetch=FetchType.EAGER)
 	private Set<AnsweredQuestion> answeredQuestionSet = new HashSet<AnsweredQuestion>();
 	
-	public TakenExam() {}
+	public TakenExam() {
+		super();
+	}
 
 	public TakenExam(Exam exam, Student student, int score, Timestamp timeTaken) {
 		super();

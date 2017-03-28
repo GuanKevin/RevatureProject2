@@ -109,10 +109,10 @@ public class Course {
 		this.students = students;
 	}
 
-	@Override
-	public String toString() {
-		return "Course [courseId=" + courseId + ", teacher=" + teacher + ", courseName=" + courseName + ", subjectName="
-				+ subjectName + ", students=" + students + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Course [courseId=" + courseId + ", teacher=" + teacher + ", courseName=" + courseName + ", subjectName="
+//				+ subjectName + ", students=" + students + "]";
+//	}
 
 }

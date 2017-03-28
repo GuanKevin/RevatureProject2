@@ -44,7 +44,10 @@ public class ExamController {
 	@RequestMapping(value="create/{courseId}", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<Exam> createExam(@RequestBody Exam exam, @PathVariable int courseId) throws Exception {
+		
 		exam.setCourse(businessDelegate.getCourseById(courseId));
+		System.out.println(exam);
+		System.out.println(businessDelegate.getCourseById(courseId));
 		businessDelegate.createExam(exam);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}

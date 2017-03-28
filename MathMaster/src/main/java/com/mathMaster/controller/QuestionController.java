@@ -47,14 +47,14 @@ public class QuestionController {
 		System.out.println("[     THIS IS THE EXAM ]" + exam);
 		// Completing the question object with the exam object
 		question.setExamQuestion(exam);
-		
+		System.out.println(question.getQuestionId());
 		System.out.println("[   this is the question with the exam ]" + question);
 		// adding the new question to the list
 		questions.add(question);
 		
 		System.out.println("the question is now added to the list");
 		
-		return new ResponseEntity<String>("Sucess! ", HttpStatus.CREATED);
+		return new ResponseEntity<String>("Success! ", HttpStatus.CREATED);
 	}
 
 	// it will return the list of questions as JSON objects
