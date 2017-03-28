@@ -37,7 +37,6 @@ public class Facade implements AutoCloseable {
 
 	public Facade() {
 		sf = new Configuration().configure().buildSessionFactory();
-		;
 	}
 
 	/**
@@ -154,13 +153,13 @@ public class Facade implements AutoCloseable {
 		return exam;
 	}
 
-	public void takeExam(TakenExam takenExam) {
+	public void createTakenExam(TakenExam takenExam) {
 		Session session = sf.openSession();
 		takenExamDAO.setSession(session);
 		Transaction tx = session.beginTransaction();
 
 		try {
-			takenExamDAO.takeExam(takenExam);
+			takenExamDAO.createTakenExam(takenExam);
 			System.out.println("commited");
 			tx.commit();
 		} catch (Exception e) {
