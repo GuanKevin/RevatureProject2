@@ -49,9 +49,9 @@ public class TakenExamController {
 	public ResponseEntity<Exam> createExam(@PathVariable String username, @PathVariable int examId, @RequestBody TakenExam takenExam) throws Exception {
 		takenExam.setStudent(businessDelegate.getStudentByUsername(username));
 		takenExam.setTakenExam(businessDelegate.getExamById(examId));
-		takenExam.setTakenExamId(200);
-		System.out.println("controller: " + takenExam);
-		businessDelegate.takeExam(takenExam);
+		System.out.println("takenExamId: " + takenExam.getTakenExamId());
+		businessDelegate.createTakenExam(takenExam);
+		System.out.println(takenExam.getTakenExamId());
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	

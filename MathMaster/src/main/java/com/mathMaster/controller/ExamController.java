@@ -45,7 +45,9 @@ public class ExamController {
 	@ResponseBody
 	public ResponseEntity<Exam> createExam(@RequestBody Exam exam, @PathVariable int courseId) throws Exception {
 		exam.setCourse(businessDelegate.getCourseById(courseId));
+		System.out.println(exam.getId());
 		businessDelegate.createExam(exam);
+		System.out.println(exam.getId());
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	
