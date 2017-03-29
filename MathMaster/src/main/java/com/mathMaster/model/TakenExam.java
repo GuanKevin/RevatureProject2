@@ -29,11 +29,11 @@ public class TakenExam {
 	@GeneratedValue(generator="TAKEN_EXAM", strategy=GenerationType.SEQUENCE)
 	private int takenExamId;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="EXAM_ID")
 	private Exam takenExam;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="STUDENT_ID")
 	private Student student;
 	
