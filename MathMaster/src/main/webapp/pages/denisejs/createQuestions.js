@@ -1,8 +1,34 @@
 	$(document).ready(function() {
 		refresh();
 		
+		function Exam(name, start, end) {
+			this.name = name;
+			this.start = start;
+			this.end = end;
+		}
+		
+		var exam = new Exam("Exam Test", 1490543129564, 1490543129564);
+		var examId;
+		
 		//here change it with my new html and css stuff
-/*		$("#new-exam").click(function() {
+		$("#new-exam").click(function() {
+	    	$.ajax("http://localhost:7001/MathMaster/Exam/create/3", {
+				method : "POST",
+				data : JSON.stringify(exam),
+				headers : {
+					"Accept" : "application/json", 
+					"Content-Type" : "application/json"
+				},
+				success : function(response) {
+					console.log("response: " + response);
+					examId = response;
+					console.log("examId: " + examId);
+				},
+				error : function() {
+					console.log("error");
+				}
+			});
+			
 			$('#mainBody').append(
 					'<h4>Enter a new question</h4>'+
 					'<form action="#">'+
@@ -18,27 +44,19 @@
 					'<th>Choice One</th><th>Choice Two</th><th>Choice Three</th>'+
 					'</tr></thead><tbody></tbody></table></div>'+
 					'<button id="submit-exam">Submit</button>');
-		})*/	
-		
-		
-		$("#new-exam").click(function() {
-			$('#mainBody').append(
-					'');
 		})
-		
 	
 		function QuestionObj(level,question, answer, choiceOne, choiceTwo, choiceThree) {
 			this.level = level;
 			this.question = question;
 			this.answer = answer;
 			this.choiceOne = choiceOne;
-			this.choiceTwo = choiceTwo;
+			this.choiceTwo = choiceTwo
 			this.choiceThree = choiceThree;
 		}
 		
 	/*  HERE CHANGE IT TO CLEAR THE VIEW AND LOAD THE COURSES VIEW */
 	    $("#submit-exam").click(function(){
-	    
 			$.ajax("http://localhost:7001/MathMaster/question/create", {
 				method : "POST",
 				success : function() {
@@ -51,6 +69,8 @@
 		
 		// when add is clicked it will add a question to the list in the controller
 		$("#add-question").click(function() {
+			console.log("added question");
+			console.log("examId: " + examId);
 		    $("#add-question").prop("disabled", true); 
 			var level = $("#level").val();
 			var question = $("#question").val();
@@ -60,8 +80,8 @@
 			var choiceThree = $("#choiceThree").val();
 			
 			var questionCreated = new QuestionObj(level, question, answer, choiceOne, choiceTwo, choiceThree);
-	
-			$.ajax("http://localhost:7001/MathMaster/question/new/141", {/* 87 is the exam ID */
+			
+			$.ajax("http://localhost:7001/MathMaster/question/new/" + examId, {/* 87 is the exam ID */
 				method : "POST",
 				data : JSON.stringify(questionCreated),
 				headers : {
