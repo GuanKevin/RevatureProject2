@@ -41,14 +41,14 @@ public class ExamController {
 	}
 	
 	// Create Exam
-	@RequestMapping(value="create/{courseId}", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="create/{courseId}", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<Exam> createExam(@RequestBody Exam exam, @PathVariable int courseId) throws Exception {
+	public ResponseEntity<Integer> createExam(@RequestBody Exam exam, @PathVariable int courseId) throws Exception {
 		
 		exam.setCourse(businessDelegate.getCourseById(courseId));
 		businessDelegate.createExam(exam);
 		System.out.println(exam.getId());
-		return new ResponseEntity<>(HttpStatus.CREATED);
+		return new ResponseEntity<Integer>(exam.getId(), HttpStatus.CREATED);
 	}
 	
 	// Get Exam Questions
