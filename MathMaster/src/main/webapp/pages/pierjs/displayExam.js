@@ -12,10 +12,12 @@ $(document).ready(function() {
 		function displayQues(questions) {
 			var html = $('<div>').attr({'class' : 'row'});
 			var quesCon = $('<div>').attr({'class' : 'container quesContainer'});
+			
+			
 			$.each(questions, function( index, question) {
 				var wrapper = $('<div>').attr({'class' : 'col-md-10 col-md-offset-1 question panel-primary'});
-				wrapper.append($('<div>').attr({'class' : 'panel-heading'}).append($('<h5>').attr({'class' : 'panel-title', 'id' : 'question' + question.questionId }).text(question.question)));
-
+				wrapper.append($('<div>').attr({'class' : 'panel-heading questions', 'data-id' : '1'}).append($('<h5>').attr({'class' : 'panel-title', 'id' : 'question' + question.questionId }).text(question.question)));
+								
 				var choiceHtml = $('<div>').attr({'class' : 'radio'});
 
 				var input = $('<input>').attr({'type' : 'radio', 'name' : 'optionsRadios' + question.questionId, 'value' : question.choiceOne});
@@ -31,7 +33,25 @@ $(document).ready(function() {
 				quesCon.append(wrapper);
 				html.append(quesCon);
 			});
+			
+			html.append('<button id="enter-exam">Submit</button>');
 			$('#mainBody').html(html);
+			
+			$("#mainBody").on("click", "#enter-exam", function() {
+				var questionID = $('.questions');
+				
+				$.each(questionID,function(index, question){
+					
+					console.log(question.data('id'));
+					
+					var quesID = question.data('id');
+					
+					var radioValue = $("input[name='optionsRadios"+ quesID +"']:checked").val();
+					
+					console.log(radioValue);
+				})
+			})
+
 		}
 	})
 });
