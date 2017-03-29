@@ -19,7 +19,7 @@ $(document).ready(function() {
 			var quesCon = $('<div>').attr({'class' : 'container quesContainer'});
 			$.each(questions, function( index, question) {
 				var wrapper = $('<div>').attr({'class' : 'col-md-10 col-md-offset-1 question panel-primary'});
-				wrapper.append($('<div>').attr({'class' : 'panel-heading'}).append($('<h5>').attr({'class' : 'panel-title', 'id' : 'question' + question.questionId }).text(question.question)));
+				wrapper.append($('<div>').attr({'class' : 'panel-heading'}).append($('<h5>').attr({'class' : 'panel-title', 'id' : 'question' + question.questionId, 'data-id' :  question.questionId}).text(question.question)));
 
 				var choiceHtml = $('<div>').attr({'class' : 'radio'});
 
@@ -34,8 +34,11 @@ $(document).ready(function() {
 
 				wrapper.append(choiceHtml);
 				quesCon.append(wrapper);
-				html.append(quesCon);
+				
+				
 			});
+			var submitBtn = $('<button>').attr({'class' : 'btn btn-primary', 'id' : 'submitTest'});
+			html.append(quesCon.append(submitBtn));
 			$('#mainBody').html(html);
 		}
 	})

@@ -32,6 +32,7 @@ $(document).ready(function() {
 				var li = $('<li>').attr('class', 'list-group-item').append(
 						$('<div>').attr({
 							'class' : 'panel-heading courses',
+							'data-id' : '23',
 							'data-toggle' : 'collapse',
 							'data-target' : '#course' + index
 						}).append($('<h4>').text(course.courseName)));
