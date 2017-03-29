@@ -37,7 +37,7 @@ public class TakenExamController {
 	}
 
 	// Get TakenExam Questions
-	@RequestMapping(value="{takenExamxamId}/index", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="{takenExamId}/index", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<Set<AnsweredQuestion>> getAllQuestionByTakenExamId(@PathVariable int takenExamId) throws Exception {
 		return new ResponseEntity<Set<AnsweredQuestion>>(businessDelegate.getTakenExamById(takenExamId).getAnsweredQuestionSet(), HttpStatus.OK);

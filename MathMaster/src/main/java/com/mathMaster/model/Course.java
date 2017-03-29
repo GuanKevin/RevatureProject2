@@ -19,11 +19,10 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
+//@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
 //DENISE TEST
 @Entity
 @Table(name="M2_COURSE")
@@ -33,14 +32,14 @@ public class Course {
 	@SequenceGenerator(name="COURSE", sequenceName="COURSE_PK_SEQ", initialValue=1, allocationSize=1)
 	@GeneratedValue(generator="COURSE", strategy=GenerationType.SEQUENCE)
 	private int courseId;
-
+	
 	@JsonBackReference
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="TEACHER_ID")
 	private Teacher teacher;
 	
 	@JsonManagedReference
-	@OneToMany(mappedBy="course", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="course", fetch=FetchType.EAGER)
 	private Set<Exam> exams = new HashSet<Exam>();
 	
 	@Column(name="COURSE_NAME")
@@ -49,7 +48,7 @@ public class Course {
 	@Column(name="SUBJECT_NAME")
 	private String subjectName;
 	
-	@ManyToMany(mappedBy = "courses", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy = "courses", fetch=FetchType.EAGER)
 	private Set<Student> students = new HashSet<Student>();
 
 	public Course () {}
