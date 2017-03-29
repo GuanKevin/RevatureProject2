@@ -3,7 +3,7 @@ $(document).ready(function() {
 		var examId = $(this).attr('id');
 		$.ajax("http://localhost:7001/MathMaster/Exam/" + examId + "/index", {
 			method : 'GET',
-			dataType : 'json',
+			dataType : 'JSON',
 			success : function(response) {
 				displayQues(response);
 			},

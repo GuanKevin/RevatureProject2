@@ -32,6 +32,6 @@ public class CourseDAOImpl implements CourseDAO {
 	}
 
 	public Course getCourseById(int id) {
-		return (Course) session.get(Course.class, id);
+		return (Course) session.load(Course.class, id);
 	}
 }

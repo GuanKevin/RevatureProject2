@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mathMaster.model.Course;
+import com.mathMaster.model.Exam;
 import com.mathMaster.model.Student;
 import com.mathMaster.service.Delegate;
 
@@ -39,5 +40,11 @@ public class CourseController {
 	@ResponseBody
 	public ResponseEntity<Set<Student>> getStudentsByCourseId(@PathVariable int courseId) {
 		return new ResponseEntity<Set<Student>>(businessDelegate.getCourseById(courseId).getStudents(), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "{courseId}/exams", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<Set<Exam>> getExamsByCourseId(@PathVariable int courseId) {
+		return new ResponseEntity<Set<Exam>>(businessDelegate.getCourseById(courseId).getExams(), HttpStatus.OK);
 	}
 }

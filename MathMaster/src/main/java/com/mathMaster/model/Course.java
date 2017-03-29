@@ -34,7 +34,6 @@ public class Course {
 	@JoinColumn(name="TEACHER_ID")
 	private Teacher teacher;
 	
-	@JsonManagedReference
 	@OneToMany(mappedBy="course", fetch=FetchType.EAGER)
 	private Set<Exam> exams = new HashSet<Exam>();
 	
