@@ -84,7 +84,7 @@ public class QuestionController {
 		}
 		questions = null;
 		
-		return "redirect:mgr";
+		return "";
 	}
 	
 	@RequestMapping(value="page", method=RequestMethod.GET)
