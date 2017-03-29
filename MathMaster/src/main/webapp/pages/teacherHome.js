@@ -1,11 +1,14 @@
 $(document).ready(function() {
+	$("body").addClass("loading");
 	console.log(teacherData);
+	
 			$('.username').text(teacherData.firstName + " " + teacherData.lastName);
 			var teacherCourses = teacherData.courses;
 			$.each(teacherCourses, function(index, course) {
 				var li = $('<li>').attr('class', 'list-group-item').append(
 						$('<div>').attr({
 							'class' : 'panel-heading courses',
+							'data-id' : course.courseId,
 							'data-toggle' : 'collapse',
 							'data-target' : '#course' + index
 						}).append($('<h4>').text(course.courseName)));
@@ -24,4 +27,6 @@ $(document).ready(function() {
 				li.append(liDivDiv);
 				$("#sidebarMenu").append(li);
 			})
+			
+		$("body").removeClass("loading");
 		})

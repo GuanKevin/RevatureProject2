@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	
 	var teacherUsername = "Code_Blooded_KG";
 	window.teacherData;
 	$.ajax("http://localhost:7001/MathMaster/Teacher/" + teacherUsername, {

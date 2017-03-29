@@ -7,8 +7,10 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
 	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 	crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="./pages/style.css"></link>
+<link rel="stylesheet" href="./pages/loadingAnimation.css"></link>
 <body>
 	<div id="app">
 		<div class="container-fluid">
@@ -49,9 +51,16 @@
 			</div>
 		</div>
 	</div>
+	<div class="modal"></div>
 </body>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="./pages/displayTeacher.js"></script>
+<script   
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("body").addClass("loading");
+	})
+</script>
 <script src="./pages/teacherData.js"></script>
+<script src="./pages/displayStudents.js"></script>
 <script src="./pages/teacherHome.js"></script>
 </html>

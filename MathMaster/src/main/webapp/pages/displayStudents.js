@@ -1,21 +1,36 @@
+/*
+$(document).on({
+    ajaxStart: function() { $body.addClass("loading");    },
+     ajaxStop: function() { $body.removeClass("loading"); }    
+});
+*/
 $(document).ready(function() {
-	// Ask Pier what li.exam refer to and if I can
-	// do li.students to refer to the list of studnts
-	$('body').on('click', 'li.students', function() {
-		var courseId = $(this).attr('id');
-		$.ajax("http://localhost:7001/MathMaster/Course/" + courseId, {
+	$('body').click(function(){
+	})     
+
+	$('body').on('click', 'li>.courses', function() {
+		$("body").addClass("loading");
+
+		var courseId = $(this).attr('courseId');
+		console.log($(this).attr('courseId'));
+		$.ajax("http://localhost:7001/MathMaster/Course/" + courseId + "/students", {
 			method : 'GET',
 			dataType : 'json',
 			success : function(response) {
 				console.log(response);
 				displayStudentsOnCourseId(response);
 			},
+			error : function() {
+				console.log("Error");
+			}
+		}).always(function(){
+			$("body").removeClass("loading");
 		})
 	
-		function displayStudentsOnCourseId(courseId) {
+		function displayStudentsOnCourseId(studentList) {
 			var html = $('<div>').attr({'class' : 'row'});
 			var stuCon = $('<div>').attr({'class' : 'container stuContainer'});
-			$.each(courseId, function( index, courseId) {
+			$.each(studentList, function(index, studentList) {
 				var wrapper = $('<div>').attr({'class' : 'col-md-10 col-md-offset-1 question panel-primary'});
 				wrapper.append($('<div>').attr({'class' : 'panel-heading'}).append($('<h5>').attr({'class' : 'panel-title', 'id' : 'question' + question.questionId }).text(question.question)));
 				
