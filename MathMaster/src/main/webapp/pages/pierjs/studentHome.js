@@ -43,7 +43,7 @@ $(document).ready(function() {
 					console.log(exam)
 				})
 				li.append(liDivDiv);
-				cliDivDiv.append(li);
+				cliDivDiv.html(li);
 				})
 			}
 //			$.each(stuCourses, function(index, course) {
