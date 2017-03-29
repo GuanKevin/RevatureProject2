@@ -2,7 +2,7 @@
 		refresh();
 		
 		//here change it with my new html and css stuff
-/*		$("#new-exam").click(function() {
+		$("#new-exam").click(function() {
 			$('#mainBody').append(
 					'<h4>Enter a new question</h4>'+
 					'<form action="#">'+
@@ -18,13 +18,8 @@
 					'<th>Choice One</th><th>Choice Two</th><th>Choice Three</th>'+
 					'</tr></thead><tbody></tbody></table></div>'+
 					'<button id="submit-exam">Submit</button>');
-		})*/	
-		
-		
-		$("#new-exam").click(function() {
-			$('#mainBody').append(
-					'');
 		})
+		
 		
 	
 		function QuestionObj(level,question, answer, choiceOne, choiceTwo, choiceThree) {
@@ -61,6 +56,7 @@
 			
 			var questionCreated = new QuestionObj(level, question, answer, choiceOne, choiceTwo, choiceThree);
 	
+			console.log(questionCreated);
 			$.ajax("http://localhost:7001/MathMaster/question/new/141", {/* 87 is the exam ID */
 				method : "POST",
 				data : JSON.stringify(questionCreated),
@@ -73,7 +69,7 @@
 					$(".alert-success").fadeIn();
 					window.setTimeout(function(response) {
 						$(".alert-success").fadeOut();
-						$("#add").prop("disabled", false);
+						$("#add-question").prop("disabled", false);
 					}, 3000);
 					$("form")[0].reset(); //reset form fields in the form
 					refresh();
@@ -82,7 +78,7 @@
 					$(".alert-danger").fadeIn();
 					window.setTimeout(function(response) {
 						$(".alert-danger").fadeOut();
-						$("#add").prop("disabled", false);
+						$("#add-question").prop("disabled", false);
 					}, 3000);
 				}
 			});
