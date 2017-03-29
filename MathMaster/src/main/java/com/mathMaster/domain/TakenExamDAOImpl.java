@@ -21,11 +21,11 @@ public class TakenExamDAOImpl implements TakenExamDAO {
 		return (TakenExam) session.get(TakenExam.class, takenExamId);
 	}
 
-	public void takeExam(TakenExam takenExam) {
+	public void createTakenExam(TakenExam takenExam) {
 		System.out.println("saving");
 		System.out.println(takenExam);
-		session.save(takenExam);
-		System.out.println("save omplete");
+		session.saveOrUpdate(takenExam);
+		System.out.println("save complete");
 	}
 
 	public boolean updateScore(TakenExam takenExam, int score) {

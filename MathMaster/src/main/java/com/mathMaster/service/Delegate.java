@@ -79,8 +79,8 @@ public class Delegate {
 		return takenExamService.getTakenExamById(id);
 	}
 	
-	public void takeExam(TakenExam takenExam) {
-		takenExamService.takeExam(takenExam);
+	public void createTakenExam(TakenExam takenExam) {
+		takenExamService.createTakenExam(takenExam);
 	}
 
 	public void updateScore(TakenExam takenExam, int score) {
