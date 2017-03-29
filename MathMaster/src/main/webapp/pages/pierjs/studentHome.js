@@ -9,17 +9,24 @@ $(document).ready(function() {
 			var cliDivDiv = $('<ul>').attr({
 				'class' : 'list-group'
 			});
+			
 			$("#sidebarMenu").append(coursesLi.append(cliDivDiv));
 			$('body').on('click', 'div#courseList', function() {
+				$("body").addClass("loading");
+				$(cliDivDiv).empty();
 				$.ajax('http://localhost:7001/MathMaster/Student/' + stu + '/Course', {
 					method: 'GET',
 					dataType : 'JSON',
 					success : function(response) {
-						console.log(response);
 						displayCourses(response);
+					},
+					complete: function() {
+						$("body").removeClass("loading");
 					}
+				
 				})
 			})
+			
 			function displayCourses(stuCourses) {
 				$.each(stuCourses, function(index, course) {
 				var li = $('<li>').attr('class', 'list-group-item').append(
@@ -28,7 +35,7 @@ $(document).ready(function() {
 							'data-toggle' : 'collapse',
 							'data-target' : '#course' + index
 						}).append($('<h4>').text(course.courseName)));
-				
+
 				var liDivDiv = $('<div>').attr({
 					'class' : 'collapse',
 					'id' : 'course' + index
@@ -43,31 +50,7 @@ $(document).ready(function() {
 					console.log(exam)
 				})
 				li.append(liDivDiv);
-				cliDivDiv.html(li);
+				cliDivDiv.append(li);
 				})
 			}
-//			$.each(stuCourses, function(index, course) {
-//				var li = $('<li>').attr('class', 'list-group-item').append(
-//						$('<div>').attr({
-//							'class' : 'panel-heading courses',
-//							'data-toggle' : 'collapse',
-//							'data-target' : '#course' + index
-//						}).append($('<h4>').text(course.courseName)));
-//				
-//				
-//				var liDivDiv = $('<div>').attr({
-//					'class' : 'collapse',
-//					'id' : 'course' + index
-//				}).append($('<ul>').attr({
-//					'class' : 'list-group'
-//				}));
-//				$.each(course.exams, function(index, exam) {
-//					liDivDiv.append($('<li>').attr({
-//						'class' : 'list-group-item exams',
-//						'id' : exam.id
-//					}).text(exam.name));
-//				})
-				//li.append(liDivDiv);
-				
-//			})
-		})
+})
