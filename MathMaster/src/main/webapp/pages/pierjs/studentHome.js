@@ -1,6 +1,8 @@
 $(document).ready(function() {
 			$('.username').text(data.firstName + " " + data.lastName);
 			var stuCourses = data.courseSet;
+			var coursesLi = $('<li>').attr({'class' : 'list-group-item', 'id' : 'coursesMenu'}).text('Courses');
+			$('#sidebarMenu').append(coursesLi)
 			$.each(stuCourses, function(index, course) {
 				var li = $('<li>').attr('class', 'list-group-item').append(
 						$('<div>').attr({
