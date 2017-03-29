@@ -16,40 +16,7 @@ $(document).ready(function() {
     			'<input type="datetime-local" id="start">'+
     			'<input type="datetime-local" id="end">'+
     			'<button id="create-exam">Submit</button>');
-		
-    	/*$.ajax("http://localhost:7001/MathMaster/Exam/create/3", {
-			method : "POST",
-			data : JSON.stringify(exam),
-			headers : {
-				"Accept" : "application/json", 
-				"Content-Type" : "application/json"
-			},
-			success : function(response) {
-				console.log("response: " + response);
-				examId = response;
-				console.log("examId: " + examId);
-			},
-			error : function() {
-				console.log("error");
-			}
-		});*/
-		
-		/*$('#mainBody').append(
-			'<h4>Enter a new question</h4>'+
-			'<form action="#">'+
-			'<input type="text" id="level" placeholder="LEVEL">'+
-			'<input type="text" id="question" placeholder="QUESTION">'+ '<br/>'+
-			'<input type="text" id="answer" placeholder="ANSWER">'+
-			'<input type="text" id="choiceOne" placeholder="CHOICE ONE">'+
-			'<input type="text" id="choiceTwo" placeholder="CHOICE TWO">'+
-			'<input type="text" id="choiceThree" placeholder="CHOICE THREE">'+
-			'<button id="add-question">Add</button></form>'+
-			'<div class="col-md-12"><table class="table table-striped">'+
-			'<thead><tr><th>Level</th><th>Question</th><th>Answer</th>'+
-			'<th>Choice One</th><th>Choice Two</th><th>Choice Three</th>'+
-			'</tr></thead><tbody></tbody></table></div>'+
-			'<button id="submit-exam">Submit</button>');*/
-	})
+		})
 
 	$("#mainBody").on("click", "#create-exam", function(){
 		console.log("name: " + $("#name").val());
