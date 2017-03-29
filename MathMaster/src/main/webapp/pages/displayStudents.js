@@ -1,9 +1,4 @@
-/*
-$(document).on({
-    ajaxStart: function() { $body.addClass("loading");    },
-     ajaxStop: function() { $body.removeClass("loading"); }    
-});
-*/
+
 $(document).ready(function() {
 	$('body').click(function(){
 	})     
@@ -11,8 +6,8 @@ $(document).ready(function() {
 	$('body').on('click', 'li>.courses', function() {
 		$("body").addClass("loading");
 
-		var courseId = $(this).attr('courseId');
-		console.log($(this).attr('courseId'));
+		var courseId = $(this).attr('data-courseid');
+		console.log($(this).attr('data-courseid'));
 		$.ajax("http://localhost:7001/MathMaster/Course/" + courseId + "/students", {
 			method : 'GET',
 			dataType : 'json',
@@ -28,28 +23,13 @@ $(document).ready(function() {
 		})
 	
 		function displayStudentsOnCourseId(studentList) {
-			var html = $('<div>').attr({'class' : 'row'});
-			var stuCon = $('<div>').attr({'class' : 'container stuContainer'});
-			$.each(studentList, function(index, studentList) {
-				var wrapper = $('<div>').attr({'class' : 'col-md-10 col-md-offset-1 question panel-primary'});
-				wrapper.append($('<div>').attr({'class' : 'panel-heading'}).append($('<h5>').attr({'class' : 'panel-title', 'id' : 'question' + question.questionId }).text(question.question)));
-				
-				var choiceHtml = $('<div>').attr({'class' : 'radio'});
-				
-				var input = $('<input>').attr({'type' : 'radio', 'name' : 'optionsRadios' + question.questionId, 'value' : question.choiceOne});
-				choiceHtml.append($('<label>').append(input).append(question.choiceOne));
-				var input = $('<input>').attr({'type' : 'radio', 'name' : 'optionsRadios' + question.questionId, 'value' : question.choiceTwo});
-				choiceHtml.append($('<label>').append(input).append(question.choiceTwo));
-				var input = $('<input>').attr({'type' : 'radio', 'name' : 'optionsRadios' + question.questionId, 'value' : question.choiceThree});
-				choiceHtml.append($('<label>').append(input).append(question.choiceThree));
-				var input = $('<input>').attr({'type' : 'radio', 'name' : 'optionsRadios' + question.questionId, 'value' : question.answer});
-				choiceHtml.append($('<label>').append(input).append(question.answer));
-
-				wrapper.append(choiceHtml);
-				stuCon.append(wrapper);
-				html.append(stuCon);
+			$.each(studentList, function(index, stuList) {
+				$(".table tbody").append("<tr>");
+				$(".table tbody").append("<td>" + stuList.firstName + "</td>");
+				$(".table tbody").append("<td>" + stuList.lastName + "</td>");
+				$(".table tbody").append("<td>" + stuList.email + "</td>");
+				$(".table tbody").append("</tr>");
 			});
-			$('#mainBody').html(html);
 		}
 	})
 });
