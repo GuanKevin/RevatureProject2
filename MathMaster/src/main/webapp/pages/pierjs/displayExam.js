@@ -13,7 +13,6 @@ $(document).ready(function() {
 			var html = $('<div>').attr({'class' : 'row'});
 			var quesCon = $('<div>').attr({'class' : 'container quesContainer'});
 			
-			
 			$.each(questions, function( index, question) {
 				var wrapper = $('<div>').attr({'class' : 'col-md-10 col-md-offset-1 question panel-primary'});
 				wrapper.append($('<div>').attr({'class' : 'panel-heading questions', 'data-id' : '1'}).append($('<h5>').attr({'class' : 'panel-title', 'id' : 'question' + question.questionId }).text(question.question)));
