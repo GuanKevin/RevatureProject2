@@ -30,14 +30,14 @@
 			$('#mainBody').append(
 				'<h4>Enter a new question</h4>'+
 				'<form action="#">'+
-				'<input type="text" id="level" placeholder="LEVEL">'+
-				'<input type="text" id="question" placeholder="QUESTION">'+ '<br/>'+
+				'<input size = "5" id="level" placeholder="LEVEL">'+
+				'<input type="text" id="question" placeholder="QUESTION">'+
 				'<input type="text" id="answer" placeholder="ANSWER">'+
 				'<input type="text" id="choiceOne" placeholder="CHOICE ONE">'+
 				'<input type="text" id="choiceTwo" placeholder="CHOICE TWO">'+
-				'<input type="text" id="choiceThree" placeholder="CHOICE THREE">'+
+				'<input type="text" id="choiceThree" placeholder="CHOICE THREE"><br/>'+
 				'<button id="add-question">Add</button></form>'+
-				'<div class="col-md-6"><table class="table table-striped">'+
+				'<div class="col-md-12"><table class="table table-striped">'+
 				'<thead><tr><th>Level</th><th>Question</th><th>Answer</th>'+
 				'<th>Choice One</th><th>Choice Two</th><th>Choice Three</th>'+
 				'</tr></thead><tbody></tbody></table></div>'+

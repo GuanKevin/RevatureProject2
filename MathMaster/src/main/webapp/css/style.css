@@ -1,6 +1,10 @@
 .panel-title {
   font-size: 25px;
 }
+
+.levelquestion{
+	width:10px;
+}
 .well {}
 .question {
   margin-top: 25px;
