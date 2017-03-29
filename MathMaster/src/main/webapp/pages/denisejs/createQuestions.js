@@ -27,7 +27,7 @@
 				}
 			});
 			
-			$('#mainBody').append(
+			$('#mainBody').html(
 				'<h4>Enter a new question</h4>'+
 				'<form action="#">'+
 				'<input size = "5" id="level" placeholder="LEVEL">'+
