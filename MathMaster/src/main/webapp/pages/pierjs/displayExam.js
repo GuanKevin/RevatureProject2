@@ -42,7 +42,7 @@ $(document).ready(function() {
 				
 				$.each(questionID,function(index, question){
 					
-					console.log(question.data('id'));
+					console.log(question);
 					
 					var quesID = question.data('id');
 					
