@@ -32,6 +32,7 @@ $(document).ready(function() {
 				var li = $('<li>').attr('class', 'list-group-item').append(
 						$('<div>').attr({
 							'class' : 'panel-heading courses',
+							'data-id' : '23',
 							'data-toggle' : 'collapse',
 							'data-target' : '#course' + index
 						}).append($('<h4>').text(course.courseName)));
@@ -42,12 +43,13 @@ $(document).ready(function() {
 				}).append($('<ul>').attr({
 					'class' : 'list-group'
 				}));
+				console.log(course);
 				$.each(course.exams, function(index, exam) {
 					liDivDiv.append($('<li>').attr({
 						'class' : 'list-group-item exams',
 						'id' : exam.id
 					}).text(exam.name));
-					console.log(exam)
+					console.log(exam.name)
 				})
 				li.append(liDivDiv);
 				cliDivDiv.append(li);
