@@ -1,6 +1,10 @@
 .panel-title {
   font-size: 25px;
 }
+
+.levelquestion{
+	width:10px;
+}
 .well {}
 .question {
   margin-top: 25px;
@@ -13,7 +17,13 @@
 input[type="radio"] {
   margin-right: 10px;
 }
+#submit-question{
+	float: right;
+}
 
+#submit-exam{
+	float:right;
+}
 #timer {
   text-align: center;
   font-size: 65px;
