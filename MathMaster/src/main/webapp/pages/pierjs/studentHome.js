@@ -42,12 +42,13 @@ $(document).ready(function() {
 				}).append($('<ul>').attr({
 					'class' : 'list-group'
 				}));
+				console.log(course);
 				$.each(course.exams, function(index, exam) {
 					liDivDiv.append($('<li>').attr({
 						'class' : 'list-group-item exams',
 						'id' : exam.id
 					}).text(exam.name));
-					console.log(exam)
+					console.log(exam.name)
 				})
 				li.append(liDivDiv);
 				cliDivDiv.append(li);

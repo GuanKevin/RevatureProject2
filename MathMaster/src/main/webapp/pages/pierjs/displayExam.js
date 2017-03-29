@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	$('body').on('click', 'li.exams', function() {
+		$("body").addClass("loading");
 		var examId = $(this).attr('id');
 		$.ajax("http://localhost:7001/MathMaster/Exam/" + examId + "/index", {
 			method : 'GET',
@@ -7,6 +8,10 @@ $(document).ready(function() {
 			success : function(response) {
 				displayQues(response);
 			},
+			complete: function() {
+				$("body").removeClass("loading");
+
+			}
 		})
 
 		function displayQues(questions) {

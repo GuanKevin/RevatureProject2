@@ -47,7 +47,6 @@ public class ExamController {
 		
 		exam.setCourse(businessDelegate.getCourseById(courseId));
 		businessDelegate.createExam(exam);
-		System.out.println(exam.getId());
 		return new ResponseEntity<Integer>(exam.getId(), HttpStatus.CREATED);
 	}
 	
