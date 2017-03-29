@@ -17,7 +17,13 @@
 input[type="radio"] {
   margin-right: 10px;
 }
+#submit-question{
+	float: right;
+}
 
+#submit-exam{
+	float:right;
+}
 #timer {
   text-align: center;
   font-size: 65px;

@@ -37,8 +37,8 @@ $(document).ready(function() {
 				$('#mainBody').html(
 						'<h4>Enter a new question</h4>'+
 						'<form action="#">'+
-						'<input type="text" id="level" placeholder="LEVEL">'+
-						'<input type="text" id="question" placeholder="QUESTION">'+ '<br/>'+
+						'<input size = 5 type="text" id="level" placeholder="LEVEL">'+
+						'<input type="text" id="question" placeholder="QUESTION">'+
 						'<input type="text" id="answer" placeholder="ANSWER">'+
 						'<input type="text" id="choiceOne" placeholder="CHOICE ONE">'+
 						'<input type="text" id="choiceTwo" placeholder="CHOICE TWO">'+
