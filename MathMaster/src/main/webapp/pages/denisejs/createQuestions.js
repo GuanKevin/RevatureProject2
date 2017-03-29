@@ -1,6 +1,4 @@
 	$(document).ready(function() {
-		refresh();
-		
 		function Exam(name, start, end) {
 			this.name = name;
 			this.start = start;
@@ -30,20 +28,20 @@
 			});
 			
 			$('#mainBody').append(
-					'<h4>Enter a new question</h4>'+
-					'<form action="#">'+
-					'<input type="text" id="level" placeholder="LEVEL">'+
-					'<input type="text" id="question" placeholder="QUESTION">'+ '<br/>'+
-					'<input type="text" id="answer" placeholder="ANSWER">'+
-					'<input type="text" id="choiceOne" placeholder="CHOICE ONE">'+
-					'<input type="text" id="choiceTwo" placeholder="CHOICE TWO">'+
-					'<input type="text" id="choiceThree" placeholder="CHOICE THREE">'+
-					'<button id="add-question">Add</button></form>'+
-					'<div class="col-md-6"><table class="table table-striped">'+
-					'<thead><tr><th>Level</th><th>Question</th><th>Answer</th>'+
-					'<th>Choice One</th><th>Choice Two</th><th>Choice Three</th>'+
-					'</tr></thead><tbody></tbody></table></div>'+
-					'<button id="submit-exam">Submit</button>');
+				'<h4>Enter a new question</h4>'+
+				'<form action="#">'+
+				'<input type="text" id="level" placeholder="LEVEL">'+
+				'<input type="text" id="question" placeholder="QUESTION">'+ '<br/>'+
+				'<input type="text" id="answer" placeholder="ANSWER">'+
+				'<input type="text" id="choiceOne" placeholder="CHOICE ONE">'+
+				'<input type="text" id="choiceTwo" placeholder="CHOICE TWO">'+
+				'<input type="text" id="choiceThree" placeholder="CHOICE THREE">'+
+				'<button id="add-question">Add</button></form>'+
+				'<div class="col-md-6"><table class="table table-striped">'+
+				'<thead><tr><th>Level</th><th>Question</th><th>Answer</th>'+
+				'<th>Choice One</th><th>Choice Two</th><th>Choice Three</th>'+
+				'</tr></thead><tbody></tbody></table></div>'+
+				'<button id="submit-exam">Submit</button>');
 		})
 
 	
@@ -57,7 +55,8 @@
 		}
 		
 	/*  HERE CHANGE IT TO CLEAR THE VIEW AND LOAD THE COURSES VIEW */
-	    $("#submit-exam").click(function(){
+	    $("#mainBody").on("click", "#submit-exam", function(){
+	    	console.log("submit");
 			$.ajax("http://localhost:7001/MathMaster/question/create", {
 				method : "POST",
 				success : function() {
@@ -69,7 +68,7 @@
 		}) 
 		
 		// when add is clicked it will add a question to the list in the controller
-		$("#add-question").click(function() {
+		$("#mainBody").on("click", "#add-question", function() {
 			console.log("added question");
 			console.log("examId: " + examId);
 		    $("#add-question").prop("disabled", true); 
@@ -81,14 +80,8 @@
 			var choiceThree = $("#choiceThree").val();
 			
 			var questionCreated = new QuestionObj(level, question, answer, choiceOne, choiceTwo, choiceThree);
-<<<<<<< HEAD
-	
-			console.log(questionCreated);
-			$.ajax("http://localhost:7001/MathMaster/question/new/141", {/* 87 is the exam ID */
-=======
 			
 			$.ajax("http://localhost:7001/MathMaster/question/new/" + examId, {/* 87 is the exam ID */
->>>>>>> dfde03c6cc17924db10ac80400f44ace0251ad89
 				method : "POST",
 				data : JSON.stringify(questionCreated),
 				headers : {
