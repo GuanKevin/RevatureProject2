@@ -21,7 +21,6 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
  * @author Denise
  *
  */
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
 @Entity
 @Table(name="M2_ANSWERED_QUESTION")
 public class AnsweredQuestion {

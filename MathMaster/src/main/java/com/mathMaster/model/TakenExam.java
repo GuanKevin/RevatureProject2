@@ -19,7 +19,6 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties({"takenExam", "student", "answeredQuestionSet"})
 @Entity
 @Table(name="M2_TAKEN_EXAM")
 public class TakenExam {
