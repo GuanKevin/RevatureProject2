@@ -25,7 +25,7 @@
 	<bean name="sf" 
 		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
 		<property name="dataSource" ref="ds" />
-		<property name="packagesToScan" value="com.MathMaster" />
+		<property name="packagesToScan" value="com.mathMaster.model" />
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">
