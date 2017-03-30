@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 //DENISE TEST
 @Entity
 @Table(name="M2_COURSE")
@@ -27,7 +27,7 @@ public class Course {
 	@GeneratedValue(generator="COURSE", strategy=GenerationType.SEQUENCE)
 	private int courseId;
 	
-	@JsonBackReference
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="TEACHER_ID")
 	private Teacher teacher;
