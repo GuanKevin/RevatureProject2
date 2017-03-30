@@ -1,9 +1,8 @@
 package com.mathMaster.domain;
 
 import java.util.List;
-import java.util.Set;
 
-import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import com.mathMaster.model.Question;
 
@@ -34,5 +33,5 @@ public interface QuestionDAO {
 	 *  					returns boolean for now for testing
 	 */
 	public boolean insertQuestions(List<Question> questions);
-	public void setSession(Session session);
+	public void setSessionFactory(SessionFactory sessionFactory);
 }

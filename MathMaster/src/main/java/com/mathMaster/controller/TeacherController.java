@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mathMaster.model.Course;
 import com.mathMaster.model.Teacher;
 import com.mathMaster.service.Delegate;
-import com.mathMaster.util.Facade;
 
 @Controller
 @RequestMapping(value = "Teacher")
@@ -48,9 +47,6 @@ public class TeacherController {
 	@RequestMapping(value = "Course/{username}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<Set<Course>> getAllCourseByTeacherUsername(@PathVariable String username) throws Exception {
-		Facade facade = new Facade();
-		Set<Course > courseSet= facade.getTeacherByUserName(username).getCourses();
-		facade.close();
-		return new ResponseEntity<Set<Course>>(courseSet, HttpStatus.OK);
+		return new ResponseEntity<Set<Course>>(businessDelegate.getTeacherByUserName(username).getCourses(), HttpStatus.OK);
 	}
 }
