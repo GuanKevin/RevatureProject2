@@ -2,7 +2,6 @@ package com.mathMaster.util;
 
 import java.util.List;
 
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -26,8 +25,7 @@ public class Facade {
 	private AnsweredQuestionDAO answeredQuestionDAO;
 	private CourseDAO courseDAO;
 	private ExamDAO examDAO;
-/*	private SessionFactory sf;
-*/	private StudentDAO studentDAO;
+	private StudentDAO studentDAO;
 	private TakenExamDAO takenExamDAO;
 	private TeacherDAO teacherDAO;
 	private QuestionDAO questionDAO;
