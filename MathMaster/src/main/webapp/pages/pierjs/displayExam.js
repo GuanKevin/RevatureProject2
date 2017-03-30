@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	console.log("HEY");
 	$('body').on('click', 'li.exams', function() {
 		$("body").addClass("loading");
 		var examId = $(this).data('id');
@@ -11,14 +12,11 @@ $(document).ready(function() {
 			},
 			complete: function() {
 				$("body").removeClass("loading");
-
 			}
 		})
 
 		function displayQues(questions) {
 			var html = $('<div>').attr({'class' : 'quesContainer'});
-
-			
 			$.each(questions, function( index, question) {
 				var wrapper = $('<div>').attr({'class' : 'question panel-primary'});
 				wrapper.append($('<div>').attr({'class' : 'panel-heading questions', 'data-id' : question.questionId}).append($('<h5>').attr({'class' : 'panel-title', 'id' : 'question' + question.questionId }).text(question.question)));				
@@ -39,10 +37,6 @@ $(document).ready(function() {
 			});
 			html.append($('<div>').append($('<button>').attr({'id' : 'enter-exam', 'class' : 'btn btn-primary'}).text('Submit')));
 			$('#mainBody').html(html);
-			
-//			$("#mainBody").on("click", "#enter-exam", function() {
-//				var questionID = $('.questions');
-//				
 //				$.each(questionID,function(index, question){
 //					
 //					console.log($(question).data('id'));
@@ -54,7 +48,6 @@ $(document).ready(function() {
 //					console.log(radioValue);
 //				})
 //			})
-
 		}
 	})
 });

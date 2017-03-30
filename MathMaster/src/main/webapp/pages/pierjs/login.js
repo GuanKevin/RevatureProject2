@@ -1,21 +1,14 @@
 $(document).ready(function() {
 	
 	window.data;
-	function UserInfo(username, password, role) {
-		this.username = username;
-		this.password = password;
-		this.role = role;
-	}
 	
 	$('body').on('click', '#loginBtn', function(e) {
 		e.preventDefault();
 		
 		$('body').addClass('loading');
-		var role = $("input[name='role']:checked").val();
-		var username = $('#username').val();
-		var password = $('#password').val();
-
-		var userinfo = new UserInfo(username, password, role);
+		role = $("input[name='role']:checked").val();
+		username = $('#username').val();
+		password = $('#password').val();
 
 		$.ajax('http://localhost:7001/MathMaster/login', {
 			method : "POST",
@@ -26,17 +19,26 @@ $(document).ready(function() {
 			},
 			success : function(response) {
 				window.data = response;
-				console.log(response);
-				$('#app').load('./pages/pierstudenthome.html', function(){
-					$('.username').text(data.firstName + " " + data.lastName);
-					var stu = data.userName;
-					var stuCourses = data.courseSet;
-					
-					displayCourses(stuCourses);
-				});
+				if (role == 'student' && response != null) {
+					$('#app').load('./pages/pierstudenthome.html', function(){
+						$('.username').text(data.firstName + " " + data.lastName);
+							var stu = data.userName;
+							var stuCourses = data.courseSet;
+							displayCourses(stuCourses);
+						});
+				} else if (role == 'teacher' && response != null) {
+					$('#app').load('./pages/teacherHome.html', function(){
+						$('.username').text(data.firstName + " " + data.lastName);
+							var teach = data.userName;
+							var teachCourses = data.courses;
+							displayCourses(teachCourses);
+							console.log(response);
+						})
+				}
 			},
 			complete : function() {
 				$('body').removeClass('loading');
+				$.getScript('./pages/denisejs/enterAnsweredQuestions.js');
 			}
 		})
 	})
@@ -45,20 +47,33 @@ $(document).ready(function() {
 	$('body').on('click', 'div#courseList', function() {
 		$("body").addClass("loading");
 		$('#sidebarMenu').empty();
-		$.ajax('http://localhost:7001/MathMaster/Student/' + data.userName + '/Course', {
-			method: 'GET',
-			dataType : 'JSON',
-			success : function(response) {
-				displayCourses(response);
-			},
-			complete: function() {
-				$("body").removeClass("loading");
-			}
-		
-		})
+		if(role == 'student') {
+			$.ajax('http://localhost:7001/MathMaster/Student/' + data.userName + '/Course', {
+				method: 'GET',
+				dataType : 'JSON',
+				success : function(response) {
+					displayCourses(response);
+				},
+				complete: function() {
+					$("body").removeClass("loading");
+				}
+			})
+		} else {
+			$.ajax('http://localhost:7001/MathMaster/Teacher/Course/' + data.userName, {
+				method: 'GET',
+				dataType : 'JSON',
+				success : function(response) {
+					displayCourses(response);
+				},
+				complete: function() {
+					$("body").removeClass("loading");
+				}
+			})
+		}
 	})
-	
-	function displayCourses(stuCourses){
+	function displayStudents(){};
+	function displayCourses(courses){
+		$('title').text('Home');
 		var coursesLi = $('<li>').attr('class', 'list-group-item').append(
 				$('<div>').attr({
 					'id' : 'courseList',
@@ -67,11 +82,12 @@ $(document).ready(function() {
 		var cliDivDiv = $('<ul>').attr({
 			'class' : 'list-group'
 		});
-		$.each(stuCourses, function(index, course) {
-			var li = $('<li>').attr('class', 'list-group-item').append(
+		$.each(courses, function(index, course) {
+			var li = $('<li>').attr({'class' : 'list-group-item'}).append(
 					$('<div>').attr({
 						'class' : 'panel-heading courses',
 						'data-toggle' : 'collapse',
+						'data-id' : course.id,
 						'data-target' : '#course' + index
 					}).append($('<h4>').text(course.courseName)));
 

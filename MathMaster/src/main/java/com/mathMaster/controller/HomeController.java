@@ -37,6 +37,6 @@ private Delegate businessDelegate;
 		for(String us : userinfo) {
 			System.out.println(us);
 		}
-		return new ResponseEntity<Object>(businessDelegate.getStudentByUsername("Student001"),HttpStatus.OK);
+		return new ResponseEntity<Object>(businessDelegate.getTeacherByUserName("Code_Blooded_KG"),HttpStatus.OK);
 	}
 }

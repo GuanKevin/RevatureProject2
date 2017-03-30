@@ -1,16 +1,14 @@
-$(document).ready(function() {
-	
+$(document).ready(function(){
+	console.log('HO');
 	function AnsweredQuestionObj(answerChoosen) {
 		this.answerChoosen = answerChoosen;
 	}
-	
 	function TakenExam(score, timeTaken) {
 		this.score = score;
 		this.timeTaken = timeTaken;
 	}
-
-	
 	$("#mainBody").on("click", "#enter-exam", function() {
+		console.log("HEY BRO")
 		var score = 90;      				// hard coded
 		var timeTaken = 1490543129564;      // hard coded
 		var studentUsername = "Student001"; // hard coded
@@ -86,5 +84,4 @@ $(document).ready(function() {
 		})	
 				
 	})// end of event listener
-	
-});
+})
