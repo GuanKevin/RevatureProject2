@@ -26,7 +26,7 @@ public class QuestionDAOImpl implements QuestionDAO {
 
 	@Transactional
 	public Question getQuestionByQuestionId(int questionId) {
-		Question question = (Question) sessionFactory.getCurrentSession().load(Question.class, questionId);
+		Question question = (Question) sessionFactory.getCurrentSession().get(Question.class, questionId);
 		return question;
 	}
 

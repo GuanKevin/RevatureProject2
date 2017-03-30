@@ -54,25 +54,25 @@ $(document).ready(function() {
 						},
 						success : function(response) {
 							console.log(response);
-							// this ajax call will enter the list of answered questions 
+/*							// this ajax call will enter the list of answered questions 
 							// in the controller to the database
 							$.ajax("http://localhost:7001/MathMaster/TansweredQuestion/submit", {
 								method : "POST",
 								success : function() {
 									console.log("answered questions have been inserted to the DB");
 								}
-							})
+							})*/
 						},
 						error : function() {
 							console.log("error");
 						}
-					})
+					})// end of ajax
 					
 				})// end of for each
 				
-/*				// this ajax call will enter the list of answered questions 
+				// this ajax call will enter the list of answered questions 
 				// in the controller to the database
-				$.ajax("http://localhost:7001/MathMaster/TansweredQuestion/submit", {
+				/*$.ajax("http://localhost:7001/MathMaster/TansweredQuestion/submit", {
 					method : "POST",
 					success : function() {
 						console.log("answered questions have been inserted to the DB");
