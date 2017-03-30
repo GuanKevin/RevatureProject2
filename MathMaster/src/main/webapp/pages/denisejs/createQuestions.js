@@ -17,6 +17,7 @@ $(document).ready(function() {
 		})
 
 	$("#mainBody").on("click", "#create-exam", function(){
+		$("body").addClass("loading");
 		console.log("name: " + $("#name").val());
 		console.log("start: " + new Date($("#start").val()).getTime());
 		console.log("end: " + new Date($("#start").val()).getTime());
@@ -48,6 +49,9 @@ $(document).ready(function() {
 						'</tr></thead><tbody></tbody></table></div>'+
 						'<button id="submit-exam">Submit</button>');
 			},
+			complete: function() {
+				$("body").removeClass("loading");
+			},
 			error : function() {
 				console.log("error");
 			}
@@ -65,6 +69,7 @@ $(document).ready(function() {
 	
 	/*  HERE CHANGE IT TO CLEAR THE VIEW AND LOAD THE COURSES VIEW */
     $("#mainBody").on("click", "#submit-exam", function(){
+    	$("body").addClass("loading");
     	console.log("submit");
 		$.ajax("http://localhost:7001/MathMaster/question/create", {
 			method : "POST",
@@ -72,12 +77,16 @@ $(document).ready(function() {
 				tablewipe();
 				/* should clear view */
 				console.log("good job denise");
+			},
+			complete: function() {
+				$("body").removeClass("loading");
 			}
 		});
 	}) 
 	
 	// when add is clicked it will add a question to the list in the controller
 	$("#mainBody").on("click", "#add-question", function() {
+		$("body").addClass("loading");
 		console.log("added question");
 		console.log("examId: " + examId);
 	    $("#add-question").prop("disabled", true); 
@@ -112,12 +121,16 @@ $(document).ready(function() {
 					$(".alert-danger").fadeOut();
 					$("#add-question").prop("disabled", false);
 				}, 3000);
+			},
+			complete: function() {
+				$("body").removeClass("loading");
 			}
 		});
 	    return false; 
 	});
 	
 	function refresh() {
+		$("body").addClass("loading");
 		$.ajax("http://localhost:7001/MathMaster/question/all", {
 			method : "GET",
 			headers : {
@@ -128,6 +141,8 @@ $(document).ready(function() {
 				console.log(response);
 				tablewipe();
 				tableload(response);
+			},complete: function() {
+				$("body").removeClass("loading");
 			}
 		});
 	} 
