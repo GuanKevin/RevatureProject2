@@ -43,7 +43,8 @@ public class TESTAnsweredQuestionController {
 	public ResponseEntity<String> addAnsweredQuestion(@RequestBody AnsweredQuestion ansques, @PathVariable int questionId, @PathVariable int takenExamId) { 
 		System.out.println("Addind answered question: " + ansques);
 		
-		Question question =  businessDelegate.getQuestionByQuestionId(questionId);
+		// commeneted out for testing
+/*		Question question =  businessDelegate.getQuestionByQuestionId(questionId);
 		TakenExam takenExam = businessDelegate.getTakenExamById(takenExamId);
 
 		System.out.println("[     THIS IS THE QUESTION    ]" + question);
@@ -54,7 +55,7 @@ public class TESTAnsweredQuestionController {
 		
 		answeredQuestions.add(ansques);
 
-		System.out.println("the answered question is now added to the list " + ansques);
+		System.out.println("the answered question is now added to the list " + ansques);*/
 		
 		return new ResponseEntity<String>("Success answered question has been added! ", HttpStatus.CREATED);
 	}
