@@ -75,6 +75,10 @@ public class Delegate {
 		studentService.removeStudent(student);
 	}
 	
+	public Student studentLogin(String username, String password) {
+		return studentService.studentLogin(username, password);
+	}
+	
 	public TakenExam getTakenExamById(int id) {
 		return takenExamService.getTakenExamById(id);
 	}
@@ -97,6 +101,10 @@ public class Delegate {
 	
 	public void removeTeacher(Teacher teacher) {
 		teacherService.removeTeacher(teacher);
+	}
+	
+	public Teacher teacherLogin(String username, String password) {
+		return teacherService.teacherLogin(username, password);
 	}
 	
 	// Setters

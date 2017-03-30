@@ -26,4 +26,8 @@ public class StudentService {
 	public void removeStudent(Student student) {
 		facade.removeStudent(student);
 	}
+	
+	public Student studentLogin(String username, String password) {
+		return facade.studentLogin(username, password);
+	}
 }

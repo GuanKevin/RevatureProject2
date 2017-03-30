@@ -38,7 +38,8 @@ $(document).ready(function() {
 			},
 			complete : function() {
 				$('body').removeClass('loading');
-				$.getScript('./pages/denisejs/enterAnsweredQuestions.js');
+				$.getScript("pages/denisejs/enterAnsweredQuestions.js");
+				$.getScript("pages/denisejs/createQuestions.js");
 			}
 		})
 	})

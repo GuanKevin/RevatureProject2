@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Login</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="pages/style.css"></link>
+<body>
+	<div id="app">
+		<div class="row">
+			<div class="col-md-6 centered form-con">
+				<div class="form-group text-center col-md-6 centered">
+					<div class="radio">
+						<label><input type="radio" name="role" value="student"
+							checked="checked">Student</label> <label><input
+							type="radio" name="role" value="teacher">Teacher</label>
+					</div>
+					<input id="username" name="username" type="text"
+						placeholder="Username" class="form-control input-md" required="">
+					<input id="password" name="password" type="password"
+						placeholder="Password" class="form-control input-md" required="">
+					<button id="loginBtn" name="loginBtn" class="btn btn-primary">Enter</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal"></div>
+</body>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./pages/denisejs/createQuestions.js"></script>	
+<script type="text/javascript" src="./pages/pierjs/login.js"></script>
+<!-- <script type="text/javascript" src="./pages/pierjs/studentHome.js"></script>
+ --><script type="text/javascript" src="./pages/pierjs/displayExam.js"></script>
+
+</html>

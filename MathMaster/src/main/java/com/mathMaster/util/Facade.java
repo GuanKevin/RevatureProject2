@@ -33,51 +33,25 @@ public class Facade {
 	private TakenExamDAO takenExamDAO;
 	private TeacherDAO teacherDAO;
 	private QuestionDAO questionDAO;
+	
+	public Teacher teacherLogin(String username, String password) {
+		Teacher teacher = getTeacherByUserName(username);
+		
+		if (BCrypt.checkpw(password, teacher.getPassword()))
+			return teacher;
+		else
+			return null;
+	}
+	
+	public Student studentLogin(String username, String password) {
+		Student student = getStudentByUsername(username);
+		
+		if (BCrypt.checkpw(password, student.getPassword()))
+			return student;
+		else
+			return null;
+	}
 
-	/**
-	 * isTeacher is a boolean variable that takes in true if the user that is
-	 * trying to sign in enter the buttons as a teacher, otherwise, it is false
-	 * and assumed that the user that is trying to sign in is a student. The
-	 * user is then verified by looking for the username in the teacher or
-	 * student table in the database and finally, their hashed password is
-	 * checked with the password entered.
-	 * 
-	 * @param isTeacher
-	 * @param username
-	 * @param password
-	 */
-	/*
-	 * public void login(boolean isTeacher, String username, String password) {
-	 * boolean user = isTeacher;
-	 * 
-	 * if (username != null && password != null) user = isTeacher; else // TODO
-	 * User is missing username or password field and need to fill it
-	 * 
-	 * if (user) { Teacher teacher; teacher =
-	 * teacherDAO.getTeacherByUserName(username);
-	 * 
-	 * if (teacher != null) { if (!BCrypt.checkpw(password,
-	 * teacher.getPassword())) { // Gets in here if password entered does not
-	 * matches the // password // found in the database that is related to the
-	 * username // TODO Don't allow teacher to login } else {
-	 * System.out.println(teacher.getUserName() + " logged in"); } } } else {
-	 * Student student; student = studentDAO.getStudentByUsername(username);
-	 * 
-	 * if (student != null) { if (!BCrypt.checkpw(password,
-	 * student.getPassword())) { // Gets in here if password entered does not
-	 * matches the // password // found in the database that is related to the
-	 * username // TODO Don't allow teacher to login } } } }
-	 */
-//	public Student authStudent(String username, String password){
-//		Session session = sf.openSession();
-//		studentDAO.setSession(session);
-//		Student student = studentDAO.getStudentByUsername(username);
-//		
-//		if(BCrypt.checkpw(password, student.getPassword())){
-//			return student;
-//		}
-//		return null;
-//	}
 	public Teacher getTeacherByUserName(String username) {
 		return teacherDAO.getTeacherByUserName(username);
 	}
@@ -126,7 +100,7 @@ public class Facade {
 	}
 
 	public Student getStudentByUsername(String username) {
-		return  studentDAO.getStudentByUsername(username);
+		return studentDAO.getStudentByUsername(username);
 	}
 
 	public void createStudent(Student student) {
