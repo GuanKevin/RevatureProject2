@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="M2_TEACHER")
@@ -40,7 +40,7 @@ public class Teacher {
 	@Column(name="EMAIL", unique=true)
 	private String email;
 	
-	@JsonManagedReference
+	@JsonIgnore
 	@OneToMany(mappedBy = "teacher", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Course> courses = new HashSet<Course>();
 	
