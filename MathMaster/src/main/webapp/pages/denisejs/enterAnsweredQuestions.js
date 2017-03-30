@@ -14,7 +14,7 @@ $(document).ready(function() {
 		var score = 90;      				// hard coded
 		var timeTaken = 1490543129564;      // hard coded
 		var studentUsername = "Student001"; // hard coded
-		
+		console.log("BOOOOOOO");
 		//var examId = $('li.exams').attr('id');    // the exam that has been choosen
 		var examId = 121;
 		var takenExamId;

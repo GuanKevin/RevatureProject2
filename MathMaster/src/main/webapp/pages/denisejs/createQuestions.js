@@ -5,7 +5,9 @@ $(document).ready(function() {
 		this.end = end;
 	}
 
-	
+	$("#mainBody").on("click", "#enter-exam", function() {
+		console.log('sdf')
+	})
 	//here change it with my new html and css stuff
 	$("#new-exam").click(function() {
 		$('#mainBody').html(
