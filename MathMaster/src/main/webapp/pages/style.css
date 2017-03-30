@@ -155,4 +155,5 @@ body.loading {
    modal element will be visible */
 body.loading .modal {
 	display: block;
+
 }

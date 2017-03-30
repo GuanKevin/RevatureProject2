@@ -1,46 +1,48 @@
 package com.mathMaster.domain;
 
 import java.util.List;
-import java.util.Set;
 
-import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.mathMaster.model.Exam;
 import com.mathMaster.model.Question;
 
-@Repository(value = "questionDAO")
+@Repository
 public class QuestionDAOImpl implements QuestionDAO {
 
-	private Session session;
+	private SessionFactory sessionFactory;
+
+	@Autowired
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 
 	public QuestionDAOImpl() {
 	}
 
-	public QuestionDAOImpl(Session session) {
-		this.session = session;
-	}
-
-	public void setSession(Session session) {
-		this.session = session;
-	}
-
+	@Transactional
 	public Question getQuestionByQuestionId(int questionId) {
-		Question question = (Question) session.load(Question.class, questionId);
+		Question question = (Question) sessionFactory.getCurrentSession().load(Question.class, questionId);
 		return question;
 	}
 
+	@Transactional(rollbackFor=Exception.class, propagation=Propagation.REQUIRES_NEW, isolation=Isolation.READ_COMMITTED)
 	public boolean insertQuestion(Question question) {
-		session.save(question);
+		sessionFactory.getCurrentSession().save(question);
 
 		return true;
 	}
 
+	@Transactional(rollbackFor=Exception.class, propagation=Propagation.REQUIRES_NEW, isolation=Isolation.READ_COMMITTED)
 	public boolean insertQuestions(List<Question> questions) {
 		System.out.println("[     IN QUESTION DAO     ]");
 
 		for (Question question : questions) {
-			session.saveOrUpdate(question);
+			sessionFactory.getCurrentSession().saveOrUpdate(question);
 		}
 		System.out.println("[     EXITING QUESTION DAO     ]");
 		

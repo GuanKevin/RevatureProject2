@@ -78,7 +78,7 @@ public class QuestionController {
 		
 		System.out.println("sucessfully submited the list to the database---CHECK THE DATABASE to see if the questions are there");
 		
-		
+		// testing purposes
 		for(Question question : questions){			
 			System.out.println("[   THIS IS THE ID FOR THE QUESTIONS   ]   :  "+ question.getQuestionId());
 		}

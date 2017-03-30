@@ -5,11 +5,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value="login")
+@RequestMapping("welcomePage")
 public class LoginController {
-	@RequestMapping(value = "home", method = RequestMethod.GET)
-	public String welcomePage() {
-		System.out.println("here");
+	
+	@RequestMapping(value="Login", method=RequestMethod.GET) 
+	public String welomePage() {
+
 		return "login.html";
 	}
 }

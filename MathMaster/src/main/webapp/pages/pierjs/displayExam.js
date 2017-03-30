@@ -17,6 +17,7 @@ $(document).ready(function() {
 
 		function displayQues(questions) {
 			var html = $('<div>').attr({'class' : 'quesContainer'});
+
 			
 			$.each(questions, function( index, question) {
 				var wrapper = $('<div>').attr({'class' : 'question panel-primary'});
