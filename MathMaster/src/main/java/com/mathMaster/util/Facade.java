@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -73,7 +74,16 @@ public class Facade implements AutoCloseable {
 	 * matches the // password // found in the database that is related to the
 	 * username // TODO Don't allow teacher to login } } } }
 	 */
-
+	public Student authStudent(String username, String password){
+		Session session = sf.openSession();
+		studentDAO.setSession(session);
+		Student student = studentDAO.getStudentByUsername(username);
+		
+		if(BCrypt.checkpw(password, student.getPassword())){
+			return student;
+		}
+		return null;
+	}
 	public Teacher getTeacherByUserName(String username) {
 		Session session = sf.openSession();
 		teacherDAO.setSession(session);
