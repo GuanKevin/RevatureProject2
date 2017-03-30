@@ -15,7 +15,8 @@
 	<!-- datasource -->
 	<bean name="ds" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
-		<property name="url" value="jdbc:oracle:thin:@kevinguan.cst3hkeetcxn.us-west-2.rds.amazonaws.com:1521:orcl" />
+		<property name="url"
+			value="jdbc:oracle:thin:@kevinguan.cst3hkeetcxn.us-west-2.rds.amazonaws.com:1521:orcl" />
 		<property name="username" value="RevatureKG" />
 		<property name="password" value="welcome1" />
 	</bean>
@@ -42,31 +43,18 @@
 	</bean>
 
 	<!-- dao -->
-	<!-- <bean class="com.mathMaster.domain.ExamDAOImpl">
-		<property name="sessionFactory" ref="sf" />
-	</bean>
-	<bean class="com.mathMaster.domain.AnsweredQuestionDAOImpl">
-		<property name="sessionFactory" ref="sf" />
-	</bean>
-	<bean class="com.mathMaster.domain.CourseDAOImpl">
-		<property name="sessionFactory" ref="sf" />
-	</bean>
-	<bean class="com.mathMaster.domain.QuestionDAOImpl">
-		<property name="sessionFactory" ref="sf" />
-	</bean>
-	<bean class="com.mathMaster.domain.StudentDAOImpl">
-		<property name="sessionFactory" ref="sf" />
-	</bean>
-	<bean class="com.mathMaster.domain.TakenExamDAOImpl">
-		<property name="sessionFactory" ref="sf" />
-	</bean>
-	<bean class="com.mathMaster.domain.TeacherDAOImpl">
-		<property name="sessionFactory" ref="sf" />
-	</bean> -->
+	<!-- <bean class="com.mathMaster.domain.ExamDAOImpl"> <property name="sessionFactory" 
+		ref="sf" /> </bean> <bean class="com.mathMaster.domain.AnsweredQuestionDAOImpl"> 
+		<property name="sessionFactory" ref="sf" /> </bean> <bean class="com.mathMaster.domain.CourseDAOImpl"> 
+		<property name="sessionFactory" ref="sf" /> </bean> <bean class="com.mathMaster.domain.QuestionDAOImpl"> 
+		<property name="sessionFactory" ref="sf" /> </bean> <bean class="com.mathMaster.domain.StudentDAOImpl"> 
+		<property name="sessionFactory" ref="sf" /> </bean> <bean class="com.mathMaster.domain.TakenExamDAOImpl"> 
+		<property name="sessionFactory" ref="sf" /> </bean> <bean class="com.mathMaster.domain.TeacherDAOImpl"> 
+		<property name="sessionFactory" ref="sf" /> </bean> -->
 	<context:annotation-config />
 
 	<context:component-scan base-package="com.mathMaster" />
-	
+
 
 	<mvc:annotation-driven />
 	<mvc:resources location="/pages/" mapping="/pages/**" />
@@ -77,6 +65,4 @@
 		<property name="prefix" value="/pages/" />
 		<!-- <property name="suffix" value=".html"></property> -->
 	</bean>
-
-
 </beans>

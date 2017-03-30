@@ -29,8 +29,7 @@ public class Facade {
 	private AnsweredQuestionDAO answeredQuestionDAO;
 	private CourseDAO courseDAO;
 	private ExamDAO examDAO;
-/*	private SessionFactory sf;
-*/	private StudentDAO studentDAO;
+	private StudentDAO studentDAO;
 	private TakenExamDAO takenExamDAO;
 	private TeacherDAO teacherDAO;
 	private QuestionDAO questionDAO;
