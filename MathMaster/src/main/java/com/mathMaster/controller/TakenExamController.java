@@ -44,15 +44,15 @@ public class TakenExamController {
 	}
 	
 	// Take Exam
-	@RequestMapping(value="/{username}/{examId}", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/{username}/{examId}", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<Exam> createExam(@PathVariable String username, @PathVariable int examId, @RequestBody TakenExam takenExam) throws Exception {
+	public ResponseEntity<Integer> createExam(@PathVariable String username, @PathVariable int examId, @RequestBody TakenExam takenExam) throws Exception {
 		takenExam.setStudent(businessDelegate.getStudentByUsername(username));
 		takenExam.setTakenExam(businessDelegate.getExamById(examId));
 		System.out.println("takenExamId: " + takenExam.getTakenExamId());
 		businessDelegate.createTakenExam(takenExam);
 		System.out.println(takenExam.getTakenExamId());
-		return new ResponseEntity<>(HttpStatus.CREATED);
+		return new ResponseEntity<Integer>(takenExam.getTakenExamId(),HttpStatus.CREATED);
 	}
 	
 }
