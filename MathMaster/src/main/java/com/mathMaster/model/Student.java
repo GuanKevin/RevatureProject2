@@ -45,7 +45,7 @@ public class Student {
 	@Column(name="EMAIL", unique=true)
 	private String email;
 	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name = "STUDENT_COURSE")
 	private Set<Course> courses = new HashSet<Course>();
 	
@@ -53,7 +53,9 @@ public class Student {
 	@OneToMany(mappedBy="student", fetch=FetchType.EAGER)
 	private Set<TakenExam> takenExamSet = new HashSet<TakenExam>();
 	
-	public Student() {}
+	public Student() {
+		super();
+	}
 
 	public Student(String userName, String password, String firstName, String lastName, String email) {
 		super();

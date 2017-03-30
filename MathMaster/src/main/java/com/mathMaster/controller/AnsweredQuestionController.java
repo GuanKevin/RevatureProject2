@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +19,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mathMaster.model.AnsweredQuestion;
 import com.mathMaster.model.Question;
 import com.mathMaster.model.TakenExam;
-import com.mathMaster.util.Facade;
+import com.mathMaster.service.Delegate;
 
 @Controller
-@RequestMapping(value = "answeredQuestion")
+@RequestMapping(value = "answeredQuestion") 
 public class AnsweredQuestionController {
-
+	///////////////////////// TESTING PURPOSE... IDEALLY THE QUESTION OBJECT SHOULD BE IN THE JSON FOR EACH SUMBITTED ANSWER
+	// REMOVE THE ENTERING QUESTION OBJECT ..it should be entered in the json in the front end
+	
+	private Delegate businessDelegate;
+	
+	@Autowired
+	public void setBusinessDelegate(Delegate businessDelegate) {
+		this.businessDelegate = businessDelegate;
+	}
+	
 	/**
 	 * Add the list of questions when the submit button is pressed
 	 */
@@ -31,34 +41,35 @@ public class AnsweredQuestionController {
 	@ResponseBody
 	public ResponseEntity<String> addAllAnsweredQuestions(@RequestBody AnsweredQuestion[] ansQues, @PathVariable int takenExamId) { 
 
-		Facade facade = new Facade();
+		TakenExam takenExam = businessDelegate.getTakenExamById(takenExamId);
 		
-		TakenExam takenExam = facade.getTakenExamById(takenExamId);
-		
+		System.out.println("[     this is the taken exam      ]: " + takenExam.getTakenExamId() + " " + takenExam.getTakenExam());
 		// set of all the questions for the exam of this taken exam
-		Set<Question> questions = takenExam.getTakenExam().getQuestionSet(); 
+	     
+	     // this is where i will i will set taken exam and question to each answered question
+	    // ideally in the front end the question should be insereted in the JSON before sending
+		// the list to be submmited		
 		
-		System.out.println(questions);
+		
+
 		List<AnsweredQuestion> list = Arrays.asList(ansQues);
+		Set<Question> questions = takenExam.getTakenExam().getQuestionSet();
 		
-		Iterator<Question> it = questions.iterator();
-	     
-	     
+		System.out.println("[      THIS IS THE SET OF QUESTIONS      ]"+questions);
+		
+		Iterator<Question> iter = questions.iterator();
+		
+		// this is for testing purposes
 		for(AnsweredQuestion ansquest: list){
-		     Question question = it.next();
+			
+		    Question question = iter.next();
 			ansquest.setTakenExamQuestion(takenExam);
 			ansquest.setQuestion(question);
 		}
-		
-		System.out.println(takenExam);
-		facade.insertAnsweredQuestions(list);
 
+		businessDelegate.insertAnsweredQuestions(list);
 		
-		try {
-			facade.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		System.out.println("SUCESS CHECK THE DATABASE IT WAS ENTERED");
 		
 		return new ResponseEntity<String>("Sucess all Answered Questions have been added! ", HttpStatus.CREATED);
 	}

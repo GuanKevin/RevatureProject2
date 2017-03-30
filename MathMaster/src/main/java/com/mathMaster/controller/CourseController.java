@@ -1,10 +1,8 @@
 package com.mathMaster.controller;
 
-
 import java.util.Set;
 
-import javax.servlet.http.HttpServletRequest;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,45 +14,37 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mathMaster.model.Course;
+import com.mathMaster.model.Exam;
 import com.mathMaster.model.Student;
-import com.mathMaster.model.Teacher;
-import com.mathMaster.util.Facade;
+import com.mathMaster.service.Delegate;
 
 @Controller
 @RequestMapping(value = "Course")
 public class CourseController {
 
-	@RequestMapping(value = "{courseId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public ResponseEntity<Course> getByCourseById(@PathVariable int courseId) {
-		Facade facade = new Facade();
-		try {
-			Course course = facade.getCourseById(courseId);
-			return new ResponseEntity<Course>(course, HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<Course>(HttpStatus.NOT_FOUND);
-		}
-	}
-
-	@RequestMapping(value = "index", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public ResponseEntity<Teacher> getByAllCourse(HttpServletRequest req) {
-		Facade facade = new Facade();
-		Teacher teacher = facade.getTeacherByUserName("Code_Blooded_KG");
-		return new ResponseEntity<Teacher>(teacher, HttpStatus.OK);
-		// return new ResponseEntity<Set<Course>>(teacher.getCourses(),
-		// HttpStatus.OK);
+	private Delegate businessDelegate;
+	
+	@Autowired
+	public void setBusinessDelegate(Delegate businessDelegate) {
+		this.businessDelegate = businessDelegate;
 	}
 
 	@RequestMapping(value = "create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<String> createCourse(@RequestBody Course course) {
-		try {
-			new Facade().createCourse(course);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return new ResponseEntity<String>("Success!", HttpStatus.CREATED);
+	public ResponseEntity<Course> createCourse(@RequestBody Course course) {
+		businessDelegate.createCourse(course);
+		return new ResponseEntity<>(HttpStatus.CREATED);
+	}
+	
+	@RequestMapping(value = "{courseId}/students", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<Set<Student>> getStudentsByCourseId(@PathVariable int courseId) {
+		return new ResponseEntity<Set<Student>>(businessDelegate.getCourseById(courseId).getStudents(), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "{courseId}/exams", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<Set<Exam>> getExamsByCourseId(@PathVariable int courseId) {
+		return new ResponseEntity<Set<Exam>>(businessDelegate.getCourseById(courseId).getExams(), HttpStatus.OK);
 	}
 }

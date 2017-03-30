@@ -16,11 +16,10 @@ import com.mathMaster.model.Course;
 import com.mathMaster.model.Exam;
 import com.mathMaster.model.Student;
 import com.mathMaster.service.Delegate;
-import com.mathMaster.util.Facade;
 
 @Controller
 @RequestMapping(value="Student")
-public class StudentController {
+public class StudentController { 
 	
 	private Delegate businessDelegate;
 	
@@ -28,7 +27,7 @@ public class StudentController {
 	public void setBusinessDelegate(Delegate businessDelegate) {
 		this.businessDelegate = businessDelegate;
 	}
-
+	
 	@RequestMapping(value="{username}", method=RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<Student> getStudentById(@PathVariable String username) throws Exception {

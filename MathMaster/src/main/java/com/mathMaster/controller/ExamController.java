@@ -27,6 +27,11 @@ public class ExamController {
 	public void setBusinessDelegate(Delegate businessDelegate) {
 		this.businessDelegate = businessDelegate;
 	}
+	
+	@RequestMapping(value="home", method=RequestMethod.GET)
+	public String spa(){
+		return "exam.html";
+	}
 
 	// Get Exam
 	@RequestMapping(value="{examId}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
@@ -36,12 +41,14 @@ public class ExamController {
 	}
 	
 	// Create Exam
-	@RequestMapping(value="create/{courseId}", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="create/{courseId}", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<Exam> createExam(@RequestBody Exam exam, @PathVariable int courseId) throws Exception {
+	public ResponseEntity<Integer> createExam(@RequestBody Exam exam, @PathVariable int courseId) throws Exception {
+		
 		exam.setCourse(businessDelegate.getCourseById(courseId));
 		businessDelegate.createExam(exam);
-		return new ResponseEntity<>(HttpStatus.CREATED);
+		System.out.println(exam.getId());
+		return new ResponseEntity<Integer>(exam.getId(), HttpStatus.CREATED);
 	}
 	
 	// Get Exam Questions

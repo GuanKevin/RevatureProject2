@@ -1,6 +1,8 @@
 package com.mathMaster.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import java.util.Set;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mathMaster.model.Course;
 import com.mathMaster.model.Teacher;
 import com.mathMaster.service.Delegate;
-import com.mathMaster.util.Facade;
 
 @Controller
+@RequestMapping(value = "Teacher")
 public class TeacherController {
 	private Delegate businessDelegate;
 	
@@ -24,18 +26,27 @@ public class TeacherController {
 		this.businessDelegate = businessDelegate;
 	}
 
-	@RequestMapping(value = "Teacher/{username}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	/**
+	 * http://localhost:7001/MathMaster/Teacher/Code_Blooded_KG
+	 * 
+	 * @param username
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "{username}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<Teacher> getTeacherByUsername(@PathVariable String username) throws Exception {
 		return new ResponseEntity<Teacher>(businessDelegate.getTeacherByUserName(username), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "Teacher/Course/{username}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(method=RequestMethod.GET) 
+	public String teacherView () {
+		return "teacherHome.html";
+	}
+	
+	@RequestMapping(value = "Course/{username}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<Course> getAllCourseByTeacherUsername(@PathVariable String username) throws Exception {
-		Facade facade = new Facade();
-		Course course = null;
-		facade.close();
-		return new ResponseEntity<Course>(course, HttpStatus.OK);
+	public ResponseEntity<Set<Course>> getAllCourseByTeacherUsername(@PathVariable String username) throws Exception {
+		return new ResponseEntity<Set<Course>>(businessDelegate.getTeacherByUserName(username).getCourses(), HttpStatus.OK);
 	}
 }

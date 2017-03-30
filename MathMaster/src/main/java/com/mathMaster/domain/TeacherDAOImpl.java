@@ -1,77 +1,55 @@
 package com.mathMaster.domain;
 
 import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mathMaster.model.Teacher;
 
-@Repository(value="teacherDAO")
+@Repository(value = "teacherDAO")
 public class TeacherDAOImpl implements TeacherDAO {
-	private Session session;
+
+	private SessionFactory sessionFactory;
+
+	@Autowired
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 
 	public TeacherDAOImpl() {
 		super();
-	}
-
-	public void setSession(Session session) {
-		this.session = session;
 	}
 	
 	/**
 	 * Queries the database for a teacher with their unique user-name and
 	 * returns the user-name
 	 */
+	@Transactional
 	public Teacher getTeacherByUserName(String username) {
 		if (username.isEmpty())
 			return null;
 
-		Criteria criteria = session.createCriteria(Teacher.class);
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Teacher.class);
 		return (Teacher) criteria.add(Restrictions.eq("userName", username)).uniqueResult();
 	}
 
 	/**
 	 * Gets a teacher object and store the teachers' data into the database
 	 */
+	@Transactional(rollbackFor=Exception.class, propagation=Propagation.REQUIRES_NEW, isolation=Isolation.READ_COMMITTED)
 	public boolean createTeacher(Teacher teacher) {
-		Transaction tx = session.beginTransaction();
-
-		try {
-			
-			session.save(teacher);
-			session.flush();
-			tx.commit();
-			
-			return true;
-		} catch (Exception ex) {
-			System.out.println("Error in adding new teacher to the database");
-
-			if (tx != null)
-				tx.rollback();
-			
-			return false;
-		} 
+		sessionFactory.getCurrentSession().save(teacher);
+		return true;
 	}
 
+	@Transactional(rollbackFor=Exception.class, propagation=Propagation.REQUIRES_NEW, isolation=Isolation.READ_COMMITTED)
 	public boolean removeTeacher(Teacher teacher) {
-		Transaction tx = null;
-
-		try {
-			tx = session.beginTransaction();
-			session.delete(teacher);
-			session.flush();
-			tx.commit();
-			
-			return true;
-		} catch (Exception ex) {
-			System.out.println("Error in deleting teacher from the database");
-
-			if (tx != null)
-				tx.rollback();
-			
-			return false;
-		} 
+		sessionFactory.getCurrentSession().delete(teacher);
+		return true;
 	}
 }

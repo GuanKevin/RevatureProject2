@@ -37,7 +37,7 @@ public class TakenExamController {
 	}
 
 	// Get TakenExam Questions
-	@RequestMapping(value="{takenExamxamId}/index", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="{takenExamId}/index", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<Set<AnsweredQuestion>> getAllQuestionByTakenExamId(@PathVariable int takenExamId) throws Exception {
 		return new ResponseEntity<Set<AnsweredQuestion>>(businessDelegate.getTakenExamById(takenExamId).getAnsweredQuestionSet(), HttpStatus.OK);
@@ -49,9 +49,9 @@ public class TakenExamController {
 	public ResponseEntity<Exam> createExam(@PathVariable String username, @PathVariable int examId, @RequestBody TakenExam takenExam) throws Exception {
 		takenExam.setStudent(businessDelegate.getStudentByUsername(username));
 		takenExam.setTakenExam(businessDelegate.getExamById(examId));
-		takenExam.setTakenExamId(200);
-		System.out.println("controller: " + takenExam);
-		businessDelegate.takeExam(takenExam);
+		System.out.println("takenExamId: " + takenExam.getTakenExamId());
+		businessDelegate.createTakenExam(takenExam);
+		System.out.println(takenExam.getTakenExamId());
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	

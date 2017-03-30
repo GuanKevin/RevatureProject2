@@ -19,8 +19,8 @@ public class TakenExamService {
 		return facade.getTakenExamById(id);
 	}
 	
-	public void takeExam(TakenExam takenExam) {
-		facade.takeExam(takenExam);
+	public void createTakenExam(TakenExam takenExam) {
+		facade.createTakenExam(takenExam);
 	}
 
 	public void updateScore(TakenExam takenExam, int score) {

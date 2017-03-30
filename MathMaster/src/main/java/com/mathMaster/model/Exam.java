@@ -19,10 +19,9 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-@JsonIgnoreProperties({"course", "takenExamSet"})
+@JsonIgnoreProperties({"course", "takenExamSet", "questionSet"})
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
 @Entity
 @Table(name = "M2_EXAM")
@@ -42,11 +41,13 @@ public class Exam {
 	@Column(name="EXAM_END")
 	private Timestamp end;
 	
+
+	//@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="COURSE_ID")
 	private Course course;
 
-	@JsonManagedReference
+	//@JsonManagedReference
 	@OneToMany(mappedBy="examQuestion", fetch=FetchType.EAGER, cascade = CascadeType.ALL) 
 	private Set<Question> questionSet = new HashSet<Question>();
 		

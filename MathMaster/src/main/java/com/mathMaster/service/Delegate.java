@@ -1,6 +1,5 @@
 package com.mathMaster.service;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +32,9 @@ public class Delegate {
 	}
 
 	public void insertAnsweredQuestions(List<AnsweredQuestion> answeredQuestions) {
+		System.out.println("[     IN DELEGATE    ]");
 		answeredQuestionService.insertAnsweredQuestions(answeredQuestions);
+		System.out.println("[    EXITING DELEGATE   ]");
 	}
 	
 	public Course getCourseById(int id) {
@@ -57,7 +58,9 @@ public class Delegate {
 	}
 
 	public void insertQuestions(List<Question> questions) {
-		questionService.insertQuestions(questions);;
+		System.out.println("[     IN DELEGATE    ]");
+		questionService.insertQuestions(questions);
+		System.out.println("[    EXITING DELEGATE   ]");
 	}	
 	
 	public Student getStudentByUsername(String username) {
@@ -76,8 +79,8 @@ public class Delegate {
 		return takenExamService.getTakenExamById(id);
 	}
 	
-	public void takeExam(TakenExam takenExam) {
-		takenExamService.takeExam(takenExam);
+	public void createTakenExam(TakenExam takenExam) {
+		takenExamService.createTakenExam(takenExam);
 	}
 
 	public void updateScore(TakenExam takenExam, int score) {

@@ -2,7 +2,7 @@ package com.mathMaster.domain;
 
 import java.util.List;
 
-import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import com.mathMaster.model.AnsweredQuestion;
 
@@ -27,5 +27,5 @@ public interface AnsweredQuestionDAO {
 	 */
 	public boolean insertAnsweredQuestions(List<AnsweredQuestion> answeredQuestions);
 	
-	public void setSession(Session session);
+	public void setSessionFactory(SessionFactory sessionFactory);
 }

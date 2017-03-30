@@ -2,54 +2,40 @@ package com.mathMaster.domain;
 
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mathMaster.model.AnsweredQuestion;
 
-@Repository(value="answeredQuestionDAO")
+@Repository(value = "answeredQuestionDAO")
 public class AnsweredQuestionDAOImpl implements AnsweredQuestionDAO {
 
-	private Session session;
+	private SessionFactory sessionFactory;
+
+	@Autowired
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 
 	public AnsweredQuestionDAOImpl() {
 	}
 
-	public AnsweredQuestionDAOImpl(Session session) {
-		this.session = session;
-	}
-
-	public void setSession(Session session) {
-		this.session = session;
-	}
-
+	@Transactional(rollbackFor=Exception.class, propagation=Propagation.REQUIRES_NEW, isolation=Isolation.READ_COMMITTED)
 	public boolean insertAnsweredQuestion(AnsweredQuestion answeredQuestion) {
-		Transaction tx = session.beginTransaction();
-		try {
-			session.save(answeredQuestion);
-			tx.commit();
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			tx.rollback();
-			return false;
-		}
+		sessionFactory.getCurrentSession().save(answeredQuestion);
+		return true;
 	}
 
+	@Transactional(rollbackFor=Exception.class, propagation=Propagation.REQUIRES_NEW, isolation=Isolation.READ_COMMITTED)
 	public boolean insertAnsweredQuestions(List<AnsweredQuestion> answeredQuestions) {
-		Transaction tx = session.beginTransaction();
-		try {
-			for (AnsweredQuestion ansQuestion : answeredQuestions) {
-				session.save(ansQuestion);
-			}
-			tx.commit();
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			tx.rollback();
-			return false;
+		for (AnsweredQuestion ansQuestion : answeredQuestions) {
+			sessionFactory.getCurrentSession().save(ansQuestion);
 		}
+		return true;
 	}
 
 }

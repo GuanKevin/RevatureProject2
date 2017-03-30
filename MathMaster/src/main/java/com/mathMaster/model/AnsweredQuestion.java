@@ -11,9 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 
@@ -35,12 +34,12 @@ public class AnsweredQuestion {
 	@Column(name = "ANSWER_CHOOSEN")
 	private String answerChoosen;
 	
-	@JsonManagedReference
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "QUESTION_ID")
 	private Question question;
 
-	@JsonBackReference
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "TAKEN_EXAM_ID")
 	private TakenExam takenExamQuestion;

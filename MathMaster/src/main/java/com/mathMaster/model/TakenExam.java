@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,12 +17,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-@JsonIgnoreProperties()
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
+@JsonIgnoreProperties({"takenExam", "student", "answeredQuestionSet"})
 @Entity
 @Table(name="M2_TAKEN_EXAM")
 public class TakenExam {
@@ -48,7 +46,9 @@ public class TakenExam {
 	@OneToMany(mappedBy = "takenExamQuestion", fetch=FetchType.EAGER)
 	private Set<AnsweredQuestion> answeredQuestionSet = new HashSet<AnsweredQuestion>();
 	
-	public TakenExam() {}
+	public TakenExam() {
+		super();
+	}
 
 	public TakenExam(Exam exam, Student student, int score, Timestamp timeTaken) {
 		super();

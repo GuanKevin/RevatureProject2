@@ -10,6 +10,7 @@ public class LoginController {
 	
 	@RequestMapping(value="Login", method=RequestMethod.GET) 
 	public String welomePage() {
+
 		return "login.html";
 	}
 }

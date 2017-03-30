@@ -1,7 +1,6 @@
 package com.mathMaster.domain;
 
-
-import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import com.mathMaster.model.Student;
 /**
@@ -26,5 +25,5 @@ public interface StudentDAO {
 	 * @return
 	 */
 	public boolean removeStudent(Student student);
-	public void setSession(Session session);
+	public void setSessionFactory(SessionFactory sessionFactory);
 }
