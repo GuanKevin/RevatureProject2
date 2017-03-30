@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Teacher HomePage</title>
+<title>Insert title here</title>
 </head>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
 	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -10,19 +10,9 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="pages/style.css"></link>
-<link rel="stylesheet" href="pages/teacherHome.css"></link>
 <body>
 	<div id="app">
 		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="page-header">
-						<h1>
-							M<sup>2</sup> <small>Major Master</small>
-						</h1>
-					</div>
-				</div>
-			</div>
 			<div class="row">
 				<div class="sidebar col col-md-2" id="displayUser">
 					<div class="panel panel-default">
@@ -40,10 +30,11 @@
 				<div class="sidebar col col-md-2">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h3>Hello</h3>
+							<h1>
+								M<sup>2</sup> <small>Major Master</small>
+							</h1>
 						</div>
 						<div class="panel-body">
-							<button id="add">Add</button>
 							<button id="new-exam">Create New Exam</button>
 						</div>
 					</div>
@@ -52,10 +43,15 @@
 		</div>
 	</div>
 	<div class="modal"></div>
+	
 </body>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="pages/teacherHome.js"></script>
-<script type="text/javascript" src="pages/teacherData.js"></script>
-<script type="text/javascript" src="pages/displayStudents.js"></script>
+<script type="text/javascript" src="pages/denisejs/createQuestions.js"></script>
+<script type="text/javascript" src="pages/denisejs/enterAnsweredQuestions.js"></script>
+<script type="text/javascript" src="pages/pierjs/studentData.js"></script>
+<script type="text/javascript" src="pages/pierjs/studentHome.js"></script>
+<script type="text/javascript" src="pages/pierjs/displayExam.js"></script>
+
 </html>
+

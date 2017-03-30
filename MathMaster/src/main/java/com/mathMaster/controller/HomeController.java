@@ -33,10 +33,26 @@ private Delegate businessDelegate;
 	
 	@RequestMapping(value="login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public Object login(@RequestBody List<String> userinfo){
-		
-		for(String us : userinfo) {
+		/*for(String us : userinfo) {
 			System.out.println(us);
+		}*/
+		
+		String username = userinfo.get(0);
+		String password = userinfo.get(1);
+		
+		if (userinfo.contains("teacher")) {
+			if (businessDelegate.teacherLogin(username, password) != null)
+				return new ResponseEntity<Object>(businessDelegate.getTeacherByUserName(username),HttpStatus.OK);
+			else
+				return null;
 		}
-		return new ResponseEntity<Object>(businessDelegate.getStudentByUsername("Student001"),HttpStatus.OK);
+		else if (userinfo.contains("student")) {
+			if (businessDelegate.studentLogin(username, password) != null)
+				return new ResponseEntity<Object>(businessDelegate.getStudentByUsername(username),HttpStatus.OK);
+			else
+				return null;
+		}
+		else
+			return null;
 	}
 }

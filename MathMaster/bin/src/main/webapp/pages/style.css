@@ -1,0 +1,159 @@
+.row {
+	background-color: #eeeeee;	
+}
+.col {
+  padding: 0;
+}
+.panel-body {
+  min-height: 50px;
+}
+.panel {
+	border: 0;	
+	background-color: #003366;
+  	border-radius: 0;
+  	min-height: 801px;
+  	margin: 0;
+}
+.sidebar {
+	text-align: center;
+}
+.exams {
+	border: 0;
+}
+.panel>.list-group .exams:hover {
+	border-right: 10px solid #003366;
+}
+.list-group {
+	margin: 0;
+}
+.panel>.list-group .list-group-item {
+	padding: 0;
+	border-width: 0;
+	border: 0;
+	cursor: pointer;
+}
+
+.list-group-item {
+	border: 0;
+}
+.panel>.list-group .exams {
+	border-right: 5px solid #003366;
+	color: #003366;
+    background-color: #efefef;
+    border-top: 1px solid;
+    padding: 15px 0;
+}
+.panel-default>.panel-heading {
+	border-bottom: #fff 5px solid;
+	border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+.panel-default>.panel-heading h1 {
+	color: #003366;
+}
+.panel-default>.panel-heading small {
+	color: #003366;
+}
+.panel-default>.panel-heading sup {
+	color: #CCCC99;
+}
+.panel-heading+.list-group .exams:first-child {
+	border-top: 1px solid;
+}
+.panel>.list-group:last-child .exams:last-child {
+	border-bottom: 1px solid;
+}
+.panel-heading > .username {
+	font-size: 20px;
+	font-weight : 700;
+}
+.courses {
+	border-top: 1px solid;
+    color: #003366;
+	border-radius: 0;
+    background-color: #CCCCCC;
+}
+.courses:hover {
+	background-color: #CCCC99;
+}
+
+.quesContainer {
+	margin: 0 auto;
+	width: 80%;
+}
+.quesContainer .question {
+	background-color: #CCCC99;
+}
+.panel-primary>.panel-heading {
+	background-color: #003366;
+}
+.question>.radio {
+	margin-bottom: 0;
+    margin-top: 0;
+}
+.checkbox label:last-child {
+	margin-bottom: 0;
+	padding-bottom: 15px;
+}
+.radio label:last-child {
+	padding-bottom: 15px;
+}
+.checkbox label, .radio label {
+    display: block;
+    margin: 15px;
+    margin-bottom: 0;	
+}
+.centered {
+  	position: fixed;
+  	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
+}
+.radio {
+  color: #fff;
+    margin: 25px 0;
+}
+input {
+  margin: 10px 0;
+}
+
+#loginBtn {
+  background-color: #CCCC99;
+  margin-bottom: 21px;
+}
+.form-con {
+  min-height: 400px;
+  background-color: #003366;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #003366;
+    border-color: #2e6da4;
+}
+
+
+/******************MODAL******************/
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 1000;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background: rgba(255, 255, 255, .8)
+		url('loading.gif') 50% 50% no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading {
+	overflow: hidden;
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .modal {
+	display: block;
+
+}
