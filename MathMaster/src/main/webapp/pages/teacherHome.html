@@ -1,61 +1,29 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Teacher HomePage</title>
-</head>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-	crossorigin="anonymous"></script>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="pages/style.css"></link>
-<link rel="stylesheet" href="pages/teacherHome.css"></link>
-<body>
-	<div id="app">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="page-header">
-						<h1>
-							M<sup>2</sup> <small>Major Master</small>
-						</h1>
-					</div>
+<div class="container-fluid">
+	<div class="row">
+		<div class="sidebar col col-md-2" id="displayUser">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<a href="#" class="thumbnail"> <img
+						src="https://au.junkfreejune.org/themes/base/production/images/default-profile.png"
+						alt="profile-pic"></a>
+					<h4 class="username">Hello</h4>
 				</div>
+				<ul class="list-group" id="sidebarMenu">
+				</ul>
 			</div>
-			<div class="row">
-				<div class="sidebar col col-md-2" id="displayUser">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<a href="#" class="thumbnail"> <img
-								src="https://au.junkfreejune.org/themes/base/production/images/default-profile.png"
-								alt="profile-pic"></a>
-							<h4 class="username">Hello</h4>
-						</div>
-						<ul class="list-group" id="sidebarMenu">
-						</ul>
-					</div>
+		</div>
+		<div class="main col col-md-8" id="mainBody"></div>
+		<div class="sidebar col col-md-2">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h1>
+						M<sup>2</sup> <small>Major Master</small>
+					</h1>
 				</div>
-				<div class="main col col-md-8" id="mainBody"></div>
-				<div class="sidebar col col-md-2">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3>Hello</h3>
-						</div>
-						<div class="panel-body">
-							<button id="add">Add</button>
-							<button id="new-exam">Create New Exam</button>
-						</div>
-					</div>
+				<div class="panel-body">
+					<button id="new-exam">Create New Exam</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="modal"></div>
-</body>
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="pages/teacherHome.js"></script>
-<script type="text/javascript" src="pages/teacherData.js"></script>
-<script type="text/javascript" src="pages/displayStudents.js"></script>
-</html>
+</div>

@@ -1,22 +1,20 @@
-$(document).ready(function() {
-	
+$(document).ready(function(){
+	console.log('HO');
 	function AnsweredQuestionObj(answerChoosen) {
 		this.answerChoosen = answerChoosen;
 	}
-	
 	function TakenExam(score, timeTaken) {
 		this.score = score;
 		this.timeTaken = timeTaken;
 	}
-
-	
 	$("#mainBody").on("click", "#enter-exam", function() {
 		$("body").addClass("loading");
 		var score = 90;      				// hard coded
 		var timeTaken = 1490543129564;      // hard coded
 		var studentUsername = "Student001"; // hard coded
 		console.log("BOOOOOOO");
-		//var examId = $('li.exams').attr('id');    // the exam that has been choosen
+		var examId = $('li.exams').data('id');    // the exam that has been choosen
+		console.log(examId);
 		var examId = 121;
 		var takenExamId;
 		
@@ -63,6 +61,7 @@ $(document).ready(function() {
 					
 				})// end of for each
 				
+				$('#mainBody').html('');
 			}, complete: function() {
 				$("body").removeClass("loading");
 			}, error : function() {
@@ -71,5 +70,4 @@ $(document).ready(function() {
 		})	
 				
 	})// end of event listener
-	
-});
+})
