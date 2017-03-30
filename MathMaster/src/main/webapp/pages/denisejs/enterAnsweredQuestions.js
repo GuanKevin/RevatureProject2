@@ -11,6 +11,7 @@ $(document).ready(function() {
 
 	
 	$("#mainBody").on("click", "#enter-exam", function() {
+		$("body").addClass("loading");
 		var score = 90;      				// hard coded
 		var timeTaken = 1490543129564;      // hard coded
 		var studentUsername = "Student001"; // hard coded
@@ -33,8 +34,9 @@ $(document).ready(function() {
 				console.log("response: " + response);
 				takenExamId = response;
 				console.log("Taken Exam Id: " + takenExamId);
-			},
-			error : function() {
+			}, complete: function() {
+				$("body").removeClass("loading");
+			}, error : function() {
 				console.log("error");
 			}
 		})	
