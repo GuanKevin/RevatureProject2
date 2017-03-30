@@ -8,9 +8,9 @@ $(document).ready(function() {
 				var li = $('<li>').attr('class', 'list-group-item').append(
 						$('<div>').attr({
 							'class' : 'panel-heading courses',
-							'data-id' : course.courseId,
+							'data-courseid' : course.courseId,
 							'data-toggle' : 'collapse',
-							'data-target' : '#course' + index
+							'data-target' : '#course' + index,
 						}).append($('<h4>').text(course.courseName)));
 				var liDivDiv = $('<div>').attr({
 					'class' : 'collapse',

@@ -1,5 +1,6 @@
 package com.mathMaster.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -24,9 +25,9 @@ import com.mathMaster.service.Delegate;
 @Controller
 @RequestMapping(value = "answeredQuestion") 
 public class AnsweredQuestionController {
-	///////////////////////// TESTING PURPOSE... IDEALLY THE QUESTION OBJECT SHOULD BE IN THE JSON FOR EACH SUMBITTED ANSWER
-	// REMOVE THE ENTERING QUESTION OBJECT ..it should be entered in the json in the front end
-	
+
+ 	List<AnsweredQuestion> ansQues = new ArrayList<AnsweredQuestion>();
+ 	
 	private Delegate businessDelegate;
 	
 	@Autowired
@@ -44,14 +45,7 @@ public class AnsweredQuestionController {
 		TakenExam takenExam = businessDelegate.getTakenExamById(takenExamId);
 		
 		System.out.println("[     this is the taken exam      ]: " + takenExam.getTakenExamId() + " " + takenExam.getTakenExam());
-		// set of all the questions for the exam of this taken exam
-	     
-	     // this is where i will i will set taken exam and question to each answered question
-	    // ideally in the front end the question should be insereted in the JSON before sending
-		// the list to be submmited		
-		
-		
-
+	
 		List<AnsweredQuestion> list = Arrays.asList(ansQues);
 		Set<Question> questions = takenExam.getTakenExam().getQuestionSet();
 		

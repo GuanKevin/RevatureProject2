@@ -13,7 +13,7 @@ import com.mathMaster.model.Student;
 import com.mathMaster.model.TakenExam;
 import com.mathMaster.model.Teacher;
 
-@Service(value="businessDelegate")
+@Service
 public class Delegate {
 	private AnsweredQuestionService answeredQuestionService;
 	private CourseService courseService;

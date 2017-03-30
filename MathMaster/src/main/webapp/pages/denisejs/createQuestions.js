@@ -4,9 +4,7 @@ $(document).ready(function() {
 		this.start = start;
 		this.end = end;
 	}
-	
-	var exam = new Exam("Exam Test", 1490543129564, 1490543129564);
-	var examId;
+
 	
 	//here change it with my new html and css stuff
 	$("#new-exam").click(function() {
@@ -96,7 +94,6 @@ $(document).ready(function() {
 			method : "POST",
 			data : JSON.stringify(questionCreated),
 			headers : {
-				/* "Accept" : "application/json", */
 				"Content-Type" : "application/json"
 			},
 			success : function(response) {

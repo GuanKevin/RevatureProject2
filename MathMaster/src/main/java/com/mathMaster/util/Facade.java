@@ -21,13 +21,13 @@ import com.mathMaster.model.Student;
 import com.mathMaster.model.TakenExam;
 import com.mathMaster.model.Teacher;
 
-@Component(value = "facade")
+@Component
 public class Facade {
 	private AnsweredQuestionDAO answeredQuestionDAO;
 	private CourseDAO courseDAO;
 	private ExamDAO examDAO;
-	private SessionFactory sf;
-	private StudentDAO studentDAO;
+/*	private SessionFactory sf;
+*/	private StudentDAO studentDAO;
 	private TakenExamDAO takenExamDAO;
 	private TeacherDAO teacherDAO;
 	private QuestionDAO questionDAO;
