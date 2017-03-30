@@ -8,12 +8,13 @@ $(document).ready(function(){
 		this.timeTaken = timeTaken;
 	}
 	$("#mainBody").on("click", "#enter-exam", function() {
-		console.log("HEY BRO")
+		$("body").addClass("loading");
 		var score = 90;      				// hard coded
 		var timeTaken = 1490543129564;      // hard coded
 		var studentUsername = "Student001"; // hard coded
 		console.log("BOOOOOOO");
-		//var examId = $('li.exams').attr('id');    // the exam that has been choosen
+		var examId = $('li.exams').data('id');    // the exam that has been choosen
+		console.log(examId);
 		var examId = 121;
 		var takenExamId;
 		
@@ -31,8 +32,10 @@ $(document).ready(function(){
 				console.log("response: " + response);
 				takenExamId = response;
 				console.log("Taken Exam Id: " + takenExamId);
-			},
-			error : function() {
+				$('#mainBody').html('');
+			}, complete: function() {
+				$("body").removeClass("loading");
+			}, error : function() {
 				console.log("error");
 			}
 		})	
