@@ -82,7 +82,7 @@ public class QuestionController {
 		for(Question question : questions){			
 			System.out.println("[   THIS IS THE ID FOR THE QUESTIONS   ]   :  "+ question.getQuestionId());
 		}
-		questions = null;
+		questions = new ArrayList<Question>(); 
 		
 		return "";
 	}
