@@ -47,6 +47,9 @@ public class TeacherDAOImpl implements TeacherDAO {
 		return true;
 	}
 
+	/**
+	 * Removed the specific teacher from the database
+	 */
 	@Transactional(rollbackFor=Exception.class, propagation=Propagation.REQUIRES_NEW, isolation=Isolation.READ_COMMITTED)
 	public boolean removeTeacher(Teacher teacher) {
 		sessionFactory.getCurrentSession().delete(teacher);
