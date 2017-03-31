@@ -27,10 +27,15 @@ $(document).ready(function() {
 		var tbody = $('<tbody>');
 		$.each(exams, function(index, exam) {
 			var tbodytr = $('<tr>');
+			var date = new Date(exam.timeTaken);
+			var options = {  
+			    weekday: "long", year: "numeric", month: "short",  
+			    day: "numeric", hour: "2-digit", minute: "2-digit"  
+			};  
 			tbodytr.append($('<td>').text(exam.score))
 					.append($('<td>').text(exam.takenExam.name))
 					// where to convert
-					.append($('<td>').text(new Date(exam.timeTaken).toUTCString()));	
+					.append($('<td>').text(date.toLocaleTimeString("en-us", options)));	
 			tbody.append(tbodytr);
 		});
 		
