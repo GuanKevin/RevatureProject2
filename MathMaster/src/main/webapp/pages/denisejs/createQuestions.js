@@ -11,11 +11,24 @@ $(document).ready(function() {
 		courseId = $(this).data('id');
 		console.log(courseId + " SDFDD");
 		$('#mainBody').html(
-    			'<h4>Create a New Exam</h4>'+
-    			'<input type="text" id="name" placeholder="Name">'+
-    			'<input type="datetime-local" id="start">'+
-    			'<input type="datetime-local" id="end">'+
-    			'<button id="create-exam">Submit</button>');
+			'<div class="exam-con col-md-8 col-md-offset-2">' + 
+    			'<h4 class="text-center">Create a New Exam</h4>'+
+    			'<div class="form-group">' +
+    				'<label for="name">Exam Name</label>' +
+    				'<input type="text" id="name" placeholder="Name" class="form-control">'+
+    			'</div>' +
+    			'<div class="form-group">' +
+    				'<label for="start">Start Date and Time</label>' +
+    				'<input type="datetime-local" id="start" class="form-control">'+
+    			'</div>' + 
+    			'<div class="form-group">' +
+    				'<label for="end">Exam Name</label>' +
+    				'<input type="datetime-local" id="end" class="form-control">'+
+    			'</div>' + 
+    			'<div class="form-group text-center">' + 
+    				'<button id="create-exam" class="btn">Submit</button>');
+				'</div>'
+			'</div>';
 		})
 
 	$("#mainBody").on("click", "#create-exam", function(){

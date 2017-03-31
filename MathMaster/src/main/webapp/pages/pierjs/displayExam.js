@@ -1,5 +1,4 @@
 $(document).ready(function() {
-	console.log(window.role + " from displayExam");
 	$('body').on('click', 'li.exams', function() {
 		$("body").addClass("loading");
 		var examId = $(this).data('id');
