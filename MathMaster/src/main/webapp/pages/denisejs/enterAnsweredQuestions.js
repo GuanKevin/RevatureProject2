@@ -6,13 +6,19 @@ $(document).ready(function(){
 		this.score = score;
 		this.timeTaken = timeTaken;
 	}
+	var examId;
+
+	$("body").on("click", "li.exams", function(){
+		examId = $(this).data("id");
+		
+	});
+	
 	$("#mainBody").on("click", "#enter-exam", function() {
 		$("body").addClass("loading");
-		var score = 0;      				// hard coded
+		
+		var score = 0;      			
 		var timeTaken = new Date().getTime();
-		var studentUsername = "Student001"; // hard coded
-		console.log("BOOOOOOO");
-		var examId = $('li.exams').data('id');    // the exam that has been choosen
+		var studentUsername = data.userName;
 		console.log(examId);
 		var takenExamId;
 		
