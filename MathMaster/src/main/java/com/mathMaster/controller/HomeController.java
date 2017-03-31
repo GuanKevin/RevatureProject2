@@ -33,9 +33,6 @@ private Delegate businessDelegate;
 	
 	@RequestMapping(value="login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public Object login(@RequestBody List<String> userinfo){
-		/*for(String us : userinfo) {
-			System.out.println(us);
-		}*/
 		
 		String username = userinfo.get(0);
 		String password = userinfo.get(1);

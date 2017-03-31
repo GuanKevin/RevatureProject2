@@ -42,6 +42,12 @@ public class CourseController {
 		return new ResponseEntity<Set<Student>>(businessDelegate.getCourseById(courseId).getStudents(), HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = "{courseId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<Course> getCourseById(@PathVariable int courseId) {
+		return new ResponseEntity<Course>(businessDelegate.getCourseById(courseId), HttpStatus.OK);
+	}
+	
 	@RequestMapping(value = "{courseId}/exams", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<Set<Exam>> getExamsByCourseId(@PathVariable int courseId) {

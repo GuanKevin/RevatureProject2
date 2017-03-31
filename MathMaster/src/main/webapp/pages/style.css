@@ -1,31 +1,48 @@
+* {
+	font-family: 'Lato', sans-serif;
+	text-transform: capitalize;
+}
+
+body {
+	
+}
+
 .row {
-	background-color: #eeeeee;	
+	background-color: #eeeeee;
 }
+
 .col {
-  padding: 0;
+	padding: 0;
 }
+
 .panel-body {
-  min-height: 50px;
+	min-height: 50px;
 }
+
 .panel {
-	border: 0;	
+	border: 0;
 	background-color: #003366;
-  	border-radius: 0;
-  	min-height: 801px;
-  	margin: 0;
+	border-radius: 0;
+	min-height: 801px;
+	margin: 0;
 }
+
 .sidebar {
 	text-align: center;
 }
+
 .exams {
 	border: 0;
 }
+
 .panel>.list-group .exams:hover {
 	border-right: 10px solid #003366;
 }
+
 .list-group {
 	margin: 0;
 }
+
 .panel>.list-group .list-group-item {
 	padding: 0;
 	border-width: 0;
@@ -36,101 +53,161 @@
 .list-group-item {
 	border: 0;
 }
+
 .panel>.list-group .exams {
 	border-right: 5px solid #003366;
 	color: #003366;
-    background-color: #efefef;
-    border-top: 1px solid;
-    padding: 15px 0;
+	background-color: #efefef;
+	border-top: 1px solid;
+	padding: 15px 0;
 }
+
 .panel-default>.panel-heading {
 	border-bottom: #fff 5px solid;
 	border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
+	border-top-right-radius: 0px;
 }
+
 .panel-default>.panel-heading h1 {
 	color: #003366;
 }
+
 .panel-default>.panel-heading small {
 	color: #003366;
 }
+
 .panel-default>.panel-heading sup {
 	color: #CCCC99;
 }
+
 .panel-heading+.list-group .exams:first-child {
 	border-top: 1px solid;
 }
+
 .panel>.list-group:last-child .exams:last-child {
 	border-bottom: 1px solid;
 }
-.panel-heading > .username {
+
+.panel-heading>.username {
 	font-size: 20px;
-	font-weight : 700;
+	font-weight: 700;
 }
+
 .courses {
 	border-top: 1px solid;
-    color: #003366;
+	color: #003366;
 	border-radius: 0;
-    background-color: #CCCCCC;
+	background-color: #CCCCCC;
 }
+
 .courses:hover {
 	background-color: #CCCC99;
 }
 
 .quesContainer {
-	margin: 0 auto;
+	margin: 95px auto;
 	width: 80%;
 }
+
 .quesContainer .question {
+	margin-bottom: 30px;
 	background-color: #CCCC99;
 }
+
 .panel-primary>.panel-heading {
 	background-color: #003366;
 }
+
 .question>.radio {
 	margin-bottom: 0;
-    margin-top: 0;
+	margin-top: 0;
 }
+
 .checkbox label:last-child {
 	margin-bottom: 0;
 	padding-bottom: 15px;
 }
+
 .radio label:last-child {
 	padding-bottom: 15px;
 }
+
 .checkbox label, .radio label {
-    display: block;
-    margin: 15px;
-    margin-bottom: 0;	
+	display: block;
+	margin: 15px;
+	margin-bottom: 0;
 }
+
 .centered {
-  	position: fixed;
-  	top: 50%;
-  	left: 50%;
-  	transform: translate(-50%, -50%);
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
+
 .radio {
-  color: #fff;
-    margin: 25px 0;
+	color: #fff;
+	margin: 25px 0;
 }
+
 input {
-  margin: 10px 0;
+	margin: 10px 0;
 }
 
 #loginBtn {
-  background-color: #CCCC99;
-  margin-bottom: 21px;
-}
-.form-con {
-  min-height: 400px;
-  background-color: #003366;
-}
-.btn-primary {
-    color: #fff;
-    background-color: #003366;
-    border-color: #2e6da4;
+	background-color: #CCCC99;
+	margin-bottom: 21px;
 }
 
+.btn {
+	background-color: #CCCC99;
+	margin-bottom: 21px;
+	color: #fff;
+}
+
+#enter-exam {
+	margin: 10px 0;
+}
+
+.form-con {
+	min-height: 400px;
+	background-color: #003366;
+}
+
+.btn-primary {
+	color: #fff;
+	background-color: #003366;
+	border-color: #2e6da4;
+}
+
+.table {
+	margin-bottom: 0;
+	text-align: center;
+}
+
+.table>thead>tr>th {
+	background-color: #003366;
+	color: #fff;
+	border-right: 2px solid #ddd;
+	text-align: center;
+	border-right: 2px solid #ddd;
+}
+
+.table>thead>tr>th:LAST-CHILD {
+	width: 14%;
+	border-right: 0;
+}
+
+.table>tbody>tr>td {
+	background-color: #CCCC99;
+	border-right: 2px solid #ddd;
+	text-align: center;
+	border-right: 2px solid #ddd;
+}
+
+.table>tbody>tr>td:LAST-CHILD {
+	border-right: 0;
+}
 
 /******************MODAL******************/
 .modal {
@@ -141,8 +218,7 @@ input {
 	left: 0;
 	height: 100%;
 	width: 100%;
-	background: rgba(255, 255, 255, .8)
-		url('loading.gif') 50% 50% no-repeat;
+	background: rgba(255, 255, 255, .8) url('loading.gif') 50% 50% no-repeat;
 }
 
 /* When the body has the loading class, we turn
@@ -155,5 +231,4 @@ body.loading {
    modal element will be visible */
 body.loading .modal {
 	display: block;
-
 }

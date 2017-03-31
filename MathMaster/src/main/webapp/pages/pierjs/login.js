@@ -48,6 +48,7 @@ $(document).ready(function() {
 	$('body').on('click', 'div#courseList', function() {
 		$("body").addClass("loading");
 		$('#sidebarMenu').empty();
+		$('#mainBody').empty();
 		if(role == 'student') {
 			$.ajax('http://localhost:7001/MathMaster/Student/' + data.userName + '/Course', {
 				method: 'GET',
@@ -72,8 +73,34 @@ $(document).ready(function() {
 			})
 		}
 	})
-	function displayStudents(){};
+	
+	function displayStudents(course, container){
+		console.log(course);
+		container.append($('<h1>').text(course.courseName));
+		var table = $('<table>').attr({'class' : 'table'});
+		var thead = $('<thead>');
+		var theadtr = $('<tr>').append($('<th>').text('ID'))
+								.append($('<th>').text('First Name'))
+								.append($('<th>').text('Last Name'))
+								.append($('<th>').text('E-mail'))
+								.append($('<th>').text('Username'));
+		table.append(thead.append(theadtr));
+		
+		var tbody = $('<tbody>');
+		var tbodytr = $('<tr>');
+		$.each(course.students, function(index, student) {
+			tbodytr.append($('<td>').text(student.studentId))
+					.append($('<td>').text(student.firstName))
+					.append($('<td>').text(student.lastName))
+					.append($('<td>').text(student.email))
+					.append($('<td>').text(student.userName));
+		})
+		table.append(tbody.append(tbodytr));
+		container.append(table);	
+		$('#mainBody').html(container);
+	};
 	function displayCourses(courses){
+		var container = $('<div>');
 		$('title').text('Home');
 		var coursesLi = $('<li>').attr('class', 'list-group-item').append(
 				$('<div>').attr({
@@ -84,11 +111,11 @@ $(document).ready(function() {
 			'class' : 'list-group'
 		});
 		$.each(courses, function(index, course) {
-			var li = $('<li>').attr({'class' : 'list-group-item'}).append(
+			if(role == 'teacher') { displayStudents(course, container); }
+			var li = $('<li>').attr({'class' : 'list-group-item course', 'data-id' : course.courseId}).append(
 					$('<div>').attr({
 						'class' : 'panel-heading courses',
 						'data-toggle' : 'collapse',
-						'data-id' : course.id,
 						'data-target' : '#course' + index
 					}).append($('<h4>').text(course.courseName)));
 

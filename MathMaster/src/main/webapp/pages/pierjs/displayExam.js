@@ -35,19 +35,8 @@ $(document).ready(function() {
 				html.append(wrapper);
 
 			});
-			html.append($('<div>').append($('<button>').attr({'id' : 'enter-exam', 'class' : 'btn btn-primary'}).text('Submit')));
+			html.append($('<div>').attr({'class' : 'text-center'}).append($('<button>').attr({'id' : 'enter-exam', 'class' : 'btn btn-primary'}).text('Submit')));
 			$('#mainBody').html(html);
-//				$.each(questionID,function(index, question){
-//					
-//					console.log($(question).data('id'));
-//					
-//					var quesID = $(question).data('id');
-//					
-//					var radioValue = $("input[name='optionsRadios"+ quesID +"']:checked").val();
-//					
-//					console.log(radioValue);
-//				})
-//			})
 		}
 	})
 });
