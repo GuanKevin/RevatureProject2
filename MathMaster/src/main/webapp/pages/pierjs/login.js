@@ -81,7 +81,7 @@ $(document).ready(function() {
 		container.append($('<h2>').text(course.courseName));
 		container.append(
 				$('<span>').append(
-						$('<button>').attr({'class' : 'btn', 'class' : 'new-exam', 'data-id' : course.courseId}).text('Create New Exam')));
+						$('<button>').attr({'class' : 'btn', 'class' : 'new-exam btn', 'data-id' : course.courseId}).text('Create New Exam')));
 		var table = $('<table>').attr({'class' : 'table'});
 		var thead = $('<thead>');
 		var theadtr = $('<tr>').append($('<th>').text('ID'))

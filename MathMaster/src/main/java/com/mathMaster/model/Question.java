@@ -32,7 +32,6 @@ public class Question {
 	@GeneratedValue(generator="QUESTION", strategy=GenerationType.SEQUENCE)
 	private int questionId;
 
-	
 	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="EXAM_ID")

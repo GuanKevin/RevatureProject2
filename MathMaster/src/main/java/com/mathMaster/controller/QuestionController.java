@@ -2,6 +2,7 @@ package com.mathMaster.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +21,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mathMaster.model.Exam;
 import com.mathMaster.model.Question;
 import com.mathMaster.service.Delegate;
-
+/*
+ * Set<Question> question = new HashMap<Question>();
+ * addQuestionToExam
+ * 	
+ * getAllQuestion
+ */
 @Controller
 @RequestMapping(value = "question")
 public class QuestionController {
@@ -41,17 +47,15 @@ public class QuestionController {
 	public ResponseEntity<String> addQuestion(@RequestBody Question question, @PathVariable int examId) { 
 		System.out.println("Add question: " + question);
 		
-		
 		Exam exam =  businessDelegate.getExamById(examId);
-		
+		System.out.println("ey");
 		System.out.println("[     THIS IS THE EXAM ]" + exam);
-		// Completing the question object with the exam object
 		question.setExamQuestion(exam);
 		System.out.println(question.getQuestionId());
 		System.out.println("[   this is the question with the exam ]" + question);
 		// adding the new question to the list
+		System.out.println(questions);
 		questions.add(question);
-		
 		System.out.println("the question is now added to the list");
 		
 		return new ResponseEntity<String>("Success! ", HttpStatus.CREATED);
@@ -64,9 +68,6 @@ public class QuestionController {
 		System.out.println("Get All Questions..... update the view with the new data");		
 		return new ResponseEntity<List<Question>>(questions, HttpStatus.OK);
 	}
-	
-
-	
 	
 	@RequestMapping(value = "create", method = RequestMethod.POST)
 	@ResponseBody
