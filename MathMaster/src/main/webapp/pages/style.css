@@ -8,7 +8,7 @@ body {
 }
 
 .row {
-	background-color: #eeeeee;
+	background-color: #f5f5f5;;
 }
 
 .col {
@@ -34,7 +34,13 @@ body {
 .exams {
 	border: 0;
 }
-
+#mainBody {
+	margin-top: 20px;
+	background-color: #fff;
+}
+#mainBody h2 {
+	float: left;
+}
 .panel>.list-group .exams:hover {
 	border-right: 10px solid #003366;
 }
@@ -168,7 +174,9 @@ input {
 #enter-exam {
 	margin: 10px 0;
 }
-
+#new-exam {
+	margin: 20px;
+}
 .form-con {
 	min-height: 400px;
 	background-color: #003366;
