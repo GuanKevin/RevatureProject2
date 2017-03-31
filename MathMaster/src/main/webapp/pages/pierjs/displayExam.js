@@ -22,13 +22,13 @@ $(document).ready(function() {
 				wrapper.append($('<div>').attr({'class' : 'panel-heading questions', 'data-id' : question.questionId}).append($('<h5>').attr({'class' : 'panel-title', 'id' : 'question' + question.questionId }).text(question.question)));				
 				var choiceHtml = $('<div>').attr({'class' : 'radio'});
 
-				var input = $('<input>').attr({'type' : 'radio', 'name' : 'optionsRadios' + question.questionId, 'value' : question.choiceOne});
+				var input = $('<input>').attr({'type' : 'radio', 'name' : 'optionsRadios' + question.questionId, 'value' : question.choiceOne, 'data-id' : 'false'});
 				choiceHtml.append($('<label>').append(input).append(question.choiceOne));
-				var input = $('<input>').attr({'type' : 'radio', 'name' : 'optionsRadios' + question.questionId, 'value' : question.choiceTwo});
+				var input = $('<input>').attr({'type' : 'radio', 'name' : 'optionsRadios' + question.questionId, 'value' : question.choiceTwo, 'data-id' : 'false'});
 				choiceHtml.append($('<label>').append(input).append(question.choiceTwo));
-				var input = $('<input>').attr({'type' : 'radio', 'name' : 'optionsRadios' + question.questionId, 'value' : question.choiceThree});
+				var input = $('<input>').attr({'type' : 'radio', 'name' : 'optionsRadios' + question.questionId, 'value' : question.choiceThree, 'data-id' : 'false'});
 				choiceHtml.append($('<label>').append(input).append(question.choiceThree));
-				var input = $('<input>').attr({'type' : 'radio', 'name' : 'optionsRadios' + question.questionId, 'value' : question.answer});
+				var input = $('<input>').attr({'type' : 'radio', 'name' : 'optionsRadios' + question.questionId, 'value' : question.answer, 'data-id' : 'true'});
 				choiceHtml.append($('<label>').append(input).append(question.answer));
 
 				wrapper.append(choiceHtml);
