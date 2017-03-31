@@ -9,8 +9,8 @@ $(document).ready(function(){
 	}
 	$("#mainBody").on("click", "#enter-exam", function() {
 		$("body").addClass("loading");
-		var score = 90;      				// hard coded
-		var timeTaken = 1490543129564;      // hard coded
+		var score = 0;      				// hard coded
+		var timeTaken = new Date().getTime();      // hard coded
 		var studentUsername = "Student001"; // hard coded
 		console.log("BOOOOOOO");
 		var examId = $('li.exams').data('id');    // the exam that has been choosen
