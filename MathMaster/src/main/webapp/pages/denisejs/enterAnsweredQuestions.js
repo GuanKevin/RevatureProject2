@@ -1,5 +1,4 @@
 $(document).ready(function(){
-	console.log('HO');
 	function AnsweredQuestionObj(answerChoosen) {
 		this.answerChoosen = answerChoosen;
 	}
@@ -15,7 +14,6 @@ $(document).ready(function(){
 		console.log("BOOOOOOO");
 		var examId = $('li.exams').data('id');    // the exam that has been choosen
 		console.log(examId);
-		var examId = 121;
 		var takenExamId;
 		
 		var numOfQuestions = 0; // keep track of number of questions
@@ -52,9 +50,8 @@ $(document).ready(function(){
 					var answeredQues = new AnsweredQuestionObj(radioValue);
 						
 					// going through each answered question and adding 
-					// the object to the list before sending it to the database
-					// with the corresponding question and taken exam id
-					$.ajax("http://localhost:7001/MathMaster/TansweredQuestion/new/" + takenExamId + "/" + quesID, {
+					// enter the answered question to the DB
+					$.ajax("http://localhost:7001/MathMaster/answeredQuestion/new/" + takenExamId + "/" + quesID, {
 						method : "POST",
 						data : JSON.stringify(answeredQues),
 						headers : {
