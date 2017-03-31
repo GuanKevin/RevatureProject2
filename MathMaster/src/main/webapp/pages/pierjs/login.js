@@ -21,6 +21,7 @@ $(document).ready(function() {
 			},
 			success : function(response) {
 				window.data = response;
+				console.log(response);
 				if (role == 'student' && response != null) {
 					$('#app').load('./pages/pierstudenthome.html', function(){
 						$('.username').text(data.firstName + " " + data.lastName);
@@ -40,6 +41,7 @@ $(document).ready(function() {
 			},
 			complete : function() {
 				$('body').removeClass('loading');
+				$.getScript("pages/pierjs/displayPastExams.js");
 				$.getScript("pages/denisejs/enterAnsweredQuestions.js");
 				$.getScript("pages/denisejs/createQuestions.js");
 
@@ -92,17 +94,18 @@ $(document).ready(function() {
 		table.append(thead.append(theadtr));
 		
 		var tbody = $('<tbody>');
-		var tbodytr = $('<tr>');
 		$.each(course.students, function(index, student) {
 			if(typeof student !== 'number') {
+				var tbodytr = $('<tr>');
 				tbodytr.append($('<td>').text(student.studentId))
 						.append($('<td>').text(student.firstName))
 						.append($('<td>').text(student.lastName))
 						.append($('<td>').text(student.email))
 						.append($('<td>').text(student.userName));
+				tbody.append(tbodytr);
 			}
 		})
-		table.append(tbody.append(tbodytr));
+		table.append(tbody);
 		container.append(table);	
 		$('#mainBody').html(container);
 	};
