@@ -1,5 +1,10 @@
 package com.mathMaster.util;
 
+/**
+ * Class no longer being called or used
+ * Every DAO has a session factory
+ * Everything is configured in the XML file
+ */
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
