@@ -4,12 +4,12 @@ $(document).ready(function() {
 		this.start = start;
 		this.end = end;
 	}
-
-	$("#mainBody").on("click", "#enter-exam", function() {
-		console.log('sdf')
-	})
 	//here change it with my new html and css stuff
-	$("#new-exam").click(function() {
+	var courseId;
+	console.log(courseId + " SDF");
+	$("#mainBody").on('click', '.new-exam', function() {
+		courseId = $(this).data('id');
+		console.log(courseId + " SDFDD");
 		$('#mainBody').html(
     			'<h4>Create a New Exam</h4>'+
     			'<input type="text" id="name" placeholder="Name">'+
@@ -20,11 +20,13 @@ $(document).ready(function() {
 
 	$("#mainBody").on("click", "#create-exam", function(){
 		$("body").addClass("loading");
+		console.log("CourseID" + courseId);
 		console.log("name: " + $("#name").val());
 		console.log("start: " + new Date($("#start").val()).getTime());
-		console.log("end: " + new Date($("#start").val()).getTime());
-		var exam = new Exam($("#name").val(), new Date($("#start").val()).getTime(),new Date($("#start").val()).getTime());
-		$.ajax("http://localhost:7001/MathMaster/Exam/create/3", {
+		console.log("end: " + new Date($("#end").val()).getTime());
+		var exam = new Exam($("#name").val(), new Date($("#start").val()).getTime(),new Date($("#end").val()).getTime());
+		console.log(exam);
+		$.ajax("http://localhost:7001/MathMaster/Exam/create/" + courseId, {
 			method : "POST",
 			data : JSON.stringify(exam),
 			headers : {
@@ -81,6 +83,7 @@ $(document).ready(function() {
 				console.log("good job denise");
 			},
 			complete: function() {
+				$("#mainBody").html('');
 				$("body").removeClass("loading");
 			}
 		});

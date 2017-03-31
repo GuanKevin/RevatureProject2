@@ -1,7 +1,9 @@
 $(document).ready(function() {
 	
 	window.data;
-	
+	window.role;
+	window.username;
+	window.password;
 	$('body').on('click', '#loginBtn', function(e) {
 		e.preventDefault();
 		
@@ -76,8 +78,10 @@ $(document).ready(function() {
 	})
 	
 	function displayStudents(course, container){
-		console.log(course);
-		container.append($('<h1>').text(course.courseName));
+		container.append($('<h2>').text(course.courseName));
+		container.append(
+				$('<span>').append(
+						$('<button>').attr({'class' : 'btn', 'class' : 'new-exam btn', 'data-id' : course.courseId}).text('Create New Exam')));
 		var table = $('<table>').attr({'class' : 'table'});
 		var thead = $('<thead>');
 		var theadtr = $('<tr>').append($('<th>').text('ID'))
@@ -90,11 +94,13 @@ $(document).ready(function() {
 		var tbody = $('<tbody>');
 		var tbodytr = $('<tr>');
 		$.each(course.students, function(index, student) {
-			tbodytr.append($('<td>').text(student.studentId))
-					.append($('<td>').text(student.firstName))
-					.append($('<td>').text(student.lastName))
-					.append($('<td>').text(student.email))
-					.append($('<td>').text(student.userName));
+			if(typeof student !== 'number') {
+				tbodytr.append($('<td>').text(student.studentId))
+						.append($('<td>').text(student.firstName))
+						.append($('<td>').text(student.lastName))
+						.append($('<td>').text(student.email))
+						.append($('<td>').text(student.userName));
+			}
 		})
 		table.append(tbody.append(tbodytr));
 		container.append(table);	
