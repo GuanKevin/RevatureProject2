@@ -34,12 +34,13 @@ $(document).ready(function() {
 							displayCourses(teachCourses);
 							console.log(response);
 						})
+					
+					$.getScript("pages/denisejs/createQuestions.js");
 				}
 			},
 			complete : function() {
 				$('body').removeClass('loading');
 				$.getScript("pages/denisejs/enterAnsweredQuestions.js");
-				$.getScript("pages/denisejs/createQuestions.js");
 			}
 		})
 	})

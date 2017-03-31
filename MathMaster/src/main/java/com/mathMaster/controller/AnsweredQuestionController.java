@@ -27,7 +27,7 @@ import com.mathMaster.service.Delegate;
 public class AnsweredQuestionController {
 
 	List<AnsweredQuestion> answeredQuestions = new ArrayList<AnsweredQuestion>();
- 	
+	
 	private Delegate businessDelegate;
 	
 	@Autowired
