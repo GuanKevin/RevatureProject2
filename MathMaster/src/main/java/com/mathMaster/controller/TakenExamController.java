@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mathMaster.model.AnsweredQuestion;
-import com.mathMaster.model.Exam;
 import com.mathMaster.model.TakenExam;
 import com.mathMaster.service.Delegate;
 
@@ -53,6 +52,13 @@ public class TakenExamController {
 		businessDelegate.createTakenExam(takenExam);
 		System.out.println(takenExam.getTakenExamId());
 		return new ResponseEntity<Integer>(takenExam.getTakenExamId(),HttpStatus.CREATED);
+	}
+	
+	@RequestMapping(value="/{takenExamId}/{score}", method=RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<Integer> updateExam(@PathVariable int takenExamId, @PathVariable int score) throws Exception {
+		businessDelegate.updateScore(businessDelegate.getTakenExamById(takenExamId), score);
+		return new ResponseEntity<Integer>(HttpStatus.OK);
 	}
 	
 }

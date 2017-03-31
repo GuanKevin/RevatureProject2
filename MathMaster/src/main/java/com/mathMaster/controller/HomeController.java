@@ -37,13 +37,15 @@ private Delegate businessDelegate;
 		String username = userinfo.get(0);
 		String password = userinfo.get(1);
 		
-		if (userinfo.contains("teacher")) {
+		if (username == null || password == null)
+			return null;
+		if (userinfo.get(2).equals("teacher")) {
 			if (businessDelegate.teacherLogin(username, password) != null)
 				return new ResponseEntity<Object>(businessDelegate.getTeacherByUserName(username),HttpStatus.OK);
 			else
 				return null;
 		}
-		else if (userinfo.contains("student")) {
+		else if (userinfo.get(2).equals("student")) {
 			if (businessDelegate.studentLogin(username, password) != null)
 				return new ResponseEntity<Object>(businessDelegate.getStudentByUsername(username),HttpStatus.OK);
 			else

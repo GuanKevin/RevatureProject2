@@ -40,6 +40,7 @@ $(document).ready(function() {
 				$('body').removeClass('loading');
 				$.getScript("pages/denisejs/enterAnsweredQuestions.js");
 				$.getScript("pages/denisejs/createQuestions.js");
+
 			}
 		})
 	})
