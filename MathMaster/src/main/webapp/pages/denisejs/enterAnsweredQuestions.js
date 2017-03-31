@@ -8,9 +8,11 @@ $(document).ready(function(){
 	}
 	$("#mainBody").on("click", "#enter-exam", function() {
 		$("body").addClass("loading");
-		var score = 0;      				// hard coded
+		
+		console.log(check);
+		var score = 0;      			
 		var timeTaken = new Date().getTime();
-		var studentUsername = "Student001"; // hard coded
+		var studentUsername = data.userName;
 		console.log("BOOOOOOO");
 		var examId = $('li.exams').data('id');    // the exam that has been choosen
 		console.log(examId);
