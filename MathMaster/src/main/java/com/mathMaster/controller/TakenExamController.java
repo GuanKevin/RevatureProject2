@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mathMaster.model.AnsweredQuestion;
-import com.mathMaster.model.Exam;
 import com.mathMaster.model.TakenExam;
 import com.mathMaster.service.Delegate;
 
