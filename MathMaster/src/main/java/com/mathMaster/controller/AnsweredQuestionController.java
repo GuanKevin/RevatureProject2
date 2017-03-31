@@ -1,10 +1,10 @@
 package com.mathMaster.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,7 +26,7 @@ import com.mathMaster.service.Delegate;
 @RequestMapping(value = "answeredQuestion") 
 public class AnsweredQuestionController {
 
- 	List<AnsweredQuestion> ansQues = new ArrayList<AnsweredQuestion>();
+	List<AnsweredQuestion> answeredQuestions = new ArrayList<AnsweredQuestion>();
  	
 	private Delegate businessDelegate;
 	
@@ -36,36 +36,45 @@ public class AnsweredQuestionController {
 	}
 	
 	/**
-	 * Add the list of questions when the submit button is pressed
+	 * Saves  Question to the List (I commented out to save a question directly to the DB)
 	 */
-	@RequestMapping(value = "submit/{takenExamId}", method =  RequestMethod.POST, consumes =  MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "new/{takenExamId}/{questionId}", method =  RequestMethod.POST, consumes =  MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<String> addAllAnsweredQuestions(@RequestBody AnsweredQuestion[] ansQues, @PathVariable int takenExamId) { 
-
+	public ResponseEntity<String> addAnsweredQuestion(@RequestBody AnsweredQuestion ansques, @PathVariable int questionId, @PathVariable int takenExamId) { 
+		
+		Question question =  businessDelegate.getQuestionByQuestionId(questionId);
 		TakenExam takenExam = businessDelegate.getTakenExamById(takenExamId);
-		
-		System.out.println("[     this is the taken exam      ]: " + takenExam.getTakenExamId() + " " + takenExam.getTakenExam());
-	
-		List<AnsweredQuestion> list = Arrays.asList(ansQues);
-		Set<Question> questions = takenExam.getTakenExam().getQuestionSet();
-		
-		System.out.println("[      THIS IS THE SET OF QUESTIONS      ]"+questions);
-		
-		Iterator<Question> iter = questions.iterator();
-		
-		// this is for testing purposes
-		for(AnsweredQuestion ansquest: list){
-			
-		    Question question = iter.next();
-			ansquest.setTakenExamQuestion(takenExam);
-			ansquest.setQuestion(question);
-		}
 
-		businessDelegate.insertAnsweredQuestions(list);
+		ansques.setQuestion(question);
+		ansques.setTakenExamQuestion(takenExam);
 		
-		System.out.println("SUCESS CHECK THE DATABASE IT WAS ENTERED");
+		// add to list if i use addAllAnsweredQuestions(....)
+		answeredQuestions.add(ansques);
 		
-		return new ResponseEntity<String>("Sucess all Answered Questions have been added! ", HttpStatus.CREATED);
+		businessDelegate.insertAnsweredQuestion(ansques);
+
+		
+		return new ResponseEntity<String>("Success answered question has been added! ", HttpStatus.CREATED);
 	}
 
+	
+	@RequestMapping(value = "submit", method = RequestMethod.POST)
+	@ResponseBody
+	public String addAllAnsweredQuestions(HttpServletRequest req, HttpServletResponse resp){
+		System.out.println("about to submit the list of answered questions to the database");
+			
+		businessDelegate.insertAnsweredQuestions(answeredQuestions);
+		
+		System.out.println("sucessfully submited the list to the database---CHECK THE DATABASE to see if the questions are there");
+		
+		for(AnsweredQuestion ansQues : answeredQuestions){			
+			System.out.println("[   THIS IS THE ID FOR THE ANSWERED QUESTIONS   ]   :  "+ ansQues.getAnsQuesId());
+		}
+
+		// reseting the list to null for the next call
+		answeredQuestions = null;
+		
+		return "";
+	}
 }
+
