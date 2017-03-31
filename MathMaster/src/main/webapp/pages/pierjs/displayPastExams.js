@@ -26,12 +26,11 @@ $(document).ready(function() {
 		
 		var tbody = $('<tbody>');
 		$.each(exams, function(index, exam) {
-			var time = new Date(exam.timeTaken);
 			var tbodytr = $('<tr>');
 			tbodytr.append($('<td>').text(exam.score))
 					.append($('<td>').text(exam.takenExam.name))
 					// where to convert
-					.append($('<td>').text(time.getMinutes() + " mins"));	
+					.append($('<td>').text(new Date(exam.timeTaken).toUTCString()));	
 			tbody.append(tbodytr);
 		});
 		
